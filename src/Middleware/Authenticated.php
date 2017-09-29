@@ -26,8 +26,8 @@ class Authenticated
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::guard('gayly')->check()) {
-            return redirect('/gayly');
+        if (Auth::guard('gayly')->guest()) {
+            return redirect('/gayly/auth/login');
         }
 
         return $next($request);

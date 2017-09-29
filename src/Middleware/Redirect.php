@@ -26,8 +26,8 @@ class Redirect
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::guard('gayly')->guest) {
-            return redirect('/gayly/auth/login');
+        if (Auth::guard('gayly')->check()) {
+            return redirect('/gayly');
         }
 
         return $next($request);

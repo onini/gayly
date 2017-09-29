@@ -127,7 +127,6 @@ class GaylyServiceProvider extends ServiceProvider
              * @var [type]
              */
             $router->group([
-                'prefix'    =>  'auth',
                 'middleware' => config('admin.route.middleware', 'gayly'),
             ], function ($router) {
                 $router->group([
