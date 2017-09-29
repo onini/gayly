@@ -8,3 +8,120 @@
 // +----------------------------------------------------------------------
 // | Author: gayly <tthd@163.com>
 // +----------------------------------------------------------------------
+
+namespace Onini\Gayly;
+
+use Illuminate\Support\ServiceProvider;
+
+class GaylyServiceProvider extends ServiceProvider
+{
+
+	/**
+	 * route middlewares
+	 * @var [type]
+	 */
+	protected $routeMiddleware = [
+
+	];
+
+	/**
+	 * middleware group
+	 * @var [type]
+	 */
+	protected $middlewareGroup = [
+
+	];
+
+	/**
+	 * command
+	 * @var [type]
+	 */
+	protected $command = [
+
+	];
+
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+		$this->loadViewsFrom(__DIR__.'/../resource/views', config('admin.view.namesace', 'admin'));
+
+		$this->registerPublishes();
+    }
+
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->mergeConfig();
+
+		$this->registerMiddleware();
+    }
+
+	protected function registerPublishes()
+	{
+		if ($this->app->runningInConsole()) {
+			$this->publishes([__DIR__.'/../config' => config_path()], 'gayly-config');
+			$this->publishes([__DIR__.'/../resources/lang' => resource_path('lang')], 'gayly-lang');
+			$this->publishes([__DIR__.'/../resources/assets' => public_path('vendor/gayly')], 'gayly-assets');
+			$this->publishes([__DIR__.'/database/migrations' => database_path('migrations')], 'gayly-migrations');
+		}
+	}
+
+	/**
+	 * merge config
+	 * @method mergeConfig
+	 * @return [type]      [description]
+	 */
+	protected function mergeConfig()
+	{
+		if (file_exists(config_path('admin'))) {
+			// set auth guard
+			config(array_dot(config('admin.auth', []), 'auth.'));
+			// set database prefix
+			$default = config('database.default');
+			config(['database.connections.'.$default.'.prefix' => config('admin.database.prefix')]);
+		}
+	}
+
+	/**
+	 * register middleware and group
+	 * @method registerMiddleware
+	 * @return [type]             [description]
+	 */
+	protected function registerMiddleware()
+	{
+		$this->registerRouteMiddleware();
+		$this->registerMiddlewareGroup();
+	}
+
+	/**
+	 * register middleware
+	 * @method registerRouteMiddleware
+	 * @return [type]                  [description]
+	 */
+	protected function registerRouteMiddleware()
+	{
+		foreach ($this->routeMiddleware as $key => $value) {
+			app('router')->aliasMiddleware($key, $value);
+		}
+	}
+
+	/**
+	 * register middleware group
+	 * @method registerMiddlewareGroup
+	 * @return [type]                  [description]
+	 */
+	protected function registerMiddlewareGroup()
+	{
+		foreach ($this->middlewareGroup as $key => $value) {
+			app('router')->middlewareGroup($key, $value);
+		}
+	}
+}

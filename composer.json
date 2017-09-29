@@ -14,5 +14,16 @@
 		]
 	},
 	"minimum-stability": "dev",
-	"require": {}
+	"require": {},
+	"extra": {
+        "laravel": {
+            "providers": [
+                "Onini\\Gayly\\GaylyServiceProvider"
+            ],
+            "aliases": {
+                "Gayly": "Onini\\Gayly\\Support\\Facades\\Gayly"
+            }
+
+        }
+    }
 }

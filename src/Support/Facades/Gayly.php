@@ -8,3 +8,15 @@
 // +----------------------------------------------------------------------
 // | Author: gayly <tthd@163.com>
 // +----------------------------------------------------------------------
+
+namespace Onini\Gayly\Support\Facades\Gayly;
+
+use Illuminate\Support\Facades\Facade;
+
+class Gayly extends Facade
+{
+	protected static function getFacadeAccessor()
+	{
+		return \Onini\Gayly\Support\Gayly::class;
+	}
+}
