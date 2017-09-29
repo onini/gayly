@@ -11,9 +11,9 @@
 
 namespace Onini\Gayly\Console;
 
-use Illuminate\Console\Command;
+use Illuminate\Console\GeneratorCommand;
 
-class InstallCommand extends Command
+class InstallCommand extends GeneratorCommand
 {
 	/**
      * The console command name.
@@ -36,7 +36,7 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-		$this->installPublishes();
+		parent::handle();
     }
 
 	/**
@@ -48,4 +48,20 @@ class InstallCommand extends Command
 	{
 		$this->call('vendor:publish', ['--provider' => \Onini\Gayly\GaylyServiceProvider::class]);
 	}
+
+	protected function installGaylyBasePath()
+	{
+
+	}
+
+	/**
+     * Get the stub file for the generator.
+     *
+     * @return string
+     */
+	 protected function getStub($name)
+	 {
+		 return __DIR__.'/stubs/'.$name.'.stub';
+	 }
+
 }
