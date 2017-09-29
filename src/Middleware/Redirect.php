@@ -24,8 +24,12 @@ class Redirect
      * @param  string|null  $guard
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next)
     {
+        if (Auth::guard('gayly')->guest) {
+            return redirect('/gayly/auth/login');
+        }
+
         return $next($request);
     }
 }

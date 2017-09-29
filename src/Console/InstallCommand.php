@@ -36,6 +36,16 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-
+		$this->installPublishes();
     }
+
+	/**
+	 * Install public assets
+	 * @method installPublishes
+	 * @return [type]           [description]
+	 */
+	protected function installPublishes()
+	{
+		$this->call('vendor:publish', ['--provider' => \Onini\Gayly\GaylyServiceProvider::class]);
+	}
 }

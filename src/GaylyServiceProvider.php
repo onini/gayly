@@ -55,7 +55,7 @@ class GaylyServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/../resource/views', config('gayly.view.namesace', 'gayly'));
+        $this->loadViewsFrom(__DIR__.'/../resources/views', config('gayly.view.namesace', 'gayly'));
 
         $this->registerPublishes();
     }
@@ -67,11 +67,14 @@ class GaylyServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfig();
+        if (file_exists(config_path('gayly.php'))) {
 
-        $this->registerMiddleware();
+            $this->mergeConfig();
 
-        $this->registerGaylyRoute();
+            $this->registerMiddleware();
+
+            $this->registerGaylyRoute();
+        }
 
         $this->commands($this->command);
     }
@@ -82,7 +85,7 @@ class GaylyServiceProvider extends ServiceProvider
             $this->publishes([__DIR__.'/../config' => config_path()], 'gayly-config');
             $this->publishes([__DIR__.'/../resources/lang' => resource_path('lang')], 'gayly-lang');
             $this->publishes([__DIR__.'/../resources/assets' => public_path('vendor/gayly')], 'gayly-assets');
-            $this->publishes([__DIR__.'/database/migrations' => database_path('migrations')], 'gayly-migrations');
+            $this->publishes([__DIR__.'/../database/migrations' => database_path('migrations')], 'gayly-migrations');
         }
     }
 
@@ -93,10 +96,6 @@ class GaylyServiceProvider extends ServiceProvider
      */
     protected function mergeConfig()
     {
-        if (!file_exists(config_path('gayly'))) {
-            return;
-        }
-
         // set auth guard
         config(array_dot(config('gayly.auth', []), 'auth.'));
         // set database prefix
@@ -110,6 +109,10 @@ class GaylyServiceProvider extends ServiceProvider
             'prefix' => config('gayly.route.prefix'),
             'middleware' => 'web',
         ], function ($router) {
+            /**
+             * auth login
+             * @var [type]
+             */
             $router->group([
                 'prefix'    =>  'auth',
                 'namespace' => 'Onini\\Gayly\\Controllers\\Auth',
@@ -119,6 +122,10 @@ class GaylyServiceProvider extends ServiceProvider
                 $router->get('logout', 'LoginController@logout');
             });
 
+            /**
+             * permission
+             * @var [type]
+             */
             $router->group([
                 'prefix'    =>  'auth',
                 'middleware' => config('admin.route.middleware', 'gayly'),
