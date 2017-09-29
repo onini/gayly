@@ -21,7 +21,10 @@ class GaylyServiceProvider extends ServiceProvider
 	 * @var [type]
 	 */
 	protected $routeMiddleware = [
-
+		'gayly.auth'	=>	\Onini\Gayly\Middleware\Authenticated::class,
+		'gayly.guest'	=>	\Onini\Gayly\Middleware\Redirect::class,
+		'gayly.permission'	=>	\Onini\Gayly\Middleware\Permission::class,
+		'gayly.operationlog'	=>	\Onini\Gayly\Middleware\OperationLog::class,
 	];
 
 	/**
@@ -29,7 +32,11 @@ class GaylyServiceProvider extends ServiceProvider
 	 * @var [type]
 	 */
 	protected $middlewareGroup = [
-
+		'gayly'	=>	[
+			'gayly.auth',
+			'gayly.permission',
+			'gayly.operationlog',
+		],
 	];
 
 	/**
@@ -37,7 +44,7 @@ class GaylyServiceProvider extends ServiceProvider
 	 * @var [type]
 	 */
 	protected $command = [
-
+		'Onini\Gayly\Console\InstallCommand',
 	];
 
     /**
@@ -62,6 +69,8 @@ class GaylyServiceProvider extends ServiceProvider
         $this->mergeConfig();
 
 		$this->registerMiddleware();
+
+		$this->commands($this->command);
     }
 
 	protected function registerPublishes()

@@ -9,23 +9,33 @@
 // | Author: gayly <tthd@163.com>
 // +----------------------------------------------------------------------
 
-namespace Onini\Gayly\Middleware;
+namespace Onini\Gayly\Console;
 
-use Closure;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Console\Command;
 
-class Redirect
+class InstallCommand extends Command
 {
-    /**
-     * Handle an incoming request.
+	/**
+     * The console command name.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @param  string|null  $guard
-     * @return mixed
+     * @var string
      */
-    public function handle($request, Closure $next, $guard = null)
+	protected $name = 'gayly:install';
+
+	/**
+     * The console command description.
+     *
+     * @var string
+     */
+	protected $description = 'Install gayly package';
+
+	/**
+     * Execute the console command.
+     *
+     * @return void
+     */
+    public function handle()
     {
-        return $next($request);
+
     }
 }
