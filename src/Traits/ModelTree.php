@@ -11,9 +11,11 @@
 
 namespace Onini\Gayly\Traits;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Request;
+use Illuminate\{
+    Database\Eloquent\Model,
+    Support\Facades\DB,
+    Support\Facades\Request
+};
 
 trait ModelTree
 {

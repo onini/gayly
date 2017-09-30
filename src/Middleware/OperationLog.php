@@ -13,9 +13,11 @@ namespace Onini\Gayly\Middleware;
 
 use Closure;
 use Gayly;
-use Illuminate\Http\Request;
+use Illuminate\{
+    Http\Request,
+    Support\Str
+};
 use Onini\Gayly\Models\OperationLog as Operation;
-use Illuminate\Support\Str;
 
 class OperationLog
 {

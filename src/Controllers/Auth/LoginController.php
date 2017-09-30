@@ -12,9 +12,11 @@
 namespace Onini\Gayly\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\{
+    Http\Request,
+    Support\Facades\Auth,
+    Foundation\Auth\AuthenticatesUsers
+};
 
 class LoginController extends Controller
 {

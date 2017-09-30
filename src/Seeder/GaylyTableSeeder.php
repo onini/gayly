@@ -12,10 +12,12 @@
 namespace Onini\Gayly\Seeder;
 
 use Illuminate\Database\Seeder;
-use Onini\Gayly\Models\SystemUser;
-use Onini\Gayly\Models\Permission;
-use Onini\Gayly\Models\Role;
-use Onini\Gayly\Models\Menu;
+use Onini\Gayly\Models\{
+    SystemUser,
+    Permission,
+    Role,
+    Menu
+};
 
 class GaylyTableSeeder extends Seeder
 {

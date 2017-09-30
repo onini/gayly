@@ -11,8 +11,10 @@
 
 namespace Onini\Gayly\Console;
 
-use Illuminate\Filesystem\Filesystem;
-use Illuminate\Console\GeneratorCommand;
+use Illuminate\{
+	Filesystem\Filesystem,
+	Console\GeneratorCommand
+};
 use Symfony\Component\Console\Input\InputArgument;
 use Onini\Gayly\Models\SystemUser;
 
@@ -74,6 +76,13 @@ class InstallCommand extends GeneratorCommand
 
 	protected function installMigrateAndSeeder()
 	{
+		$gayly = include config_path('gayly.php');
+		config(array_dot($gayly, 'gayly.'));
+		
+		// set table prefix
+		$default = config('database.default');
+        config(['database.connections.'.$default.'.prefix' => config('gayly.database.prefix')]);
+
 		$this->call('migrate');
 
 		if (SystemUser::count() == 0) {

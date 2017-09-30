@@ -13,8 +13,10 @@ namespace Onini\Gayly\Support;
 
 use Auth;
 use Closure;
-use Onini\Gayly\Support\Layout\Content;
-use Onini\Gayly\Models\Menu;
+use Onini\Gayly\{
+	Support\Layout\Content,
+	Models\Menu
+};
 
 class Gayly
 {

@@ -11,9 +11,11 @@
 
 namespace Onini\Gayly\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Support\Facades\DB;
+use Illuminate\{
+	Database\Eloquent\Model,
+	Database\Eloquent\Relations\BelongsToMany,
+	Support\Facades\DB
+};
 use Onini\Gayly\Traits\ModelTree;
 
 class Menu extends Model

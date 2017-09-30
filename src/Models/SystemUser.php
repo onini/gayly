@@ -11,8 +11,10 @@
 
 namespace Onini\Gayly\Models;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\{
+    Notifications\Notifiable,
+    Foundation\Auth\User as Authenticatable
+};
 use Onini\Gayly\Traits\HasPermission;
 
 class SystemUser extends Authenticatable

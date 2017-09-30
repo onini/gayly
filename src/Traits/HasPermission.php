@@ -11,9 +11,11 @@
 
 namespace Onini\Gayly\Traits;
 
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\{
+    Database\Eloquent\Relations\BelongsToMany,
+    Support\Collection,
+    Support\Facades\Storage
+};
 
 trait HasPermission
 {

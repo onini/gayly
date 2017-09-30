@@ -11,10 +11,12 @@
 
 namespace Onini\Gayly\Models;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\{
+    Http\Request,
+    Support\Str,
+    Database\Eloquent\Model,
+    Database\Eloquent\Relations\BelongsToMany
+};
 
 class Permission extends Model
 {

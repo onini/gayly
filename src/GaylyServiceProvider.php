@@ -11,8 +11,10 @@
 
 namespace Onini\Gayly;
 
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\{
+    ServiceProvider,
+    Facades\Route
+};
 
 class GaylyServiceProvider extends ServiceProvider
 {
@@ -95,7 +97,7 @@ class GaylyServiceProvider extends ServiceProvider
      * @method mergeConfig
      * @return [type]      [description]
      */
-    protected function mergeConfig()
+    public function mergeConfig()
     {
         // set auth guard
         config(array_dot(config('gayly.auth', []), 'auth.'));
