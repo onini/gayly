@@ -6,7 +6,7 @@
             @else
                  <a href="{{ gayly_url($item['uri']) }}">
             @endif
-                <i class="{{ $item['icon'] }}"></i>
+                <i class="material-icons">{{ $item['icon'] }}</i>
                 <span>{{ $item['title'] }}</span>
             </a>
         </li>
