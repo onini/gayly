@@ -19,7 +19,7 @@
 			</a>
 			<ul class="sub-menu">
 				@foreach($item['children'] as $item)
-                    @include('gayly::layouts.menu', $item)
+                    @include('gayly::layouts.child', $item)
                 @endforeach
 			</ul>
 		</li>
