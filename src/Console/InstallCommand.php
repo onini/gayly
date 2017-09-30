@@ -11,7 +11,9 @@
 
 namespace Onini\Gayly\Console;
 
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Console\GeneratorCommand;
+use Symfony\Component\Console\Input\InputArgument;
 
 class InstallCommand extends GeneratorCommand
 {
@@ -30,17 +32,45 @@ class InstallCommand extends GeneratorCommand
 	protected $description = 'Install gayly package';
 
 	/**
+     * The type of class being generated.
+     *
+     * @var string
+     */
+    protected $type = 'Onini\Gayly';
+
+	protected $directory = '';
+
+	protected $controller = '';
+
+	public function __construct(Filesystem $files)
+	{
+		parent::__construct($files);
+
+		$this->directory = config('admin.directory', 'Gayly');
+		$this->controller = $this->directory.'/Controllers';
+	}
+
+	/**
      * Execute the console command.
      *
      * @return void
      */
     public function handle()
     {
-		parent::handle();
+		$this->installPublishes();
+
+		if (!$this->alreadyExists($this->directory)) {
+
+			$this->installGaylyController();
+
+			$this->installRoutesFile();
+		}
+
+		$this->info($this->type.' install successfully.');
     }
 
 	/**
-	 * Install public assets
+	 * Install publishes
 	 * @method installPublishes
 	 * @return [type]           [description]
 	 */
@@ -49,9 +79,47 @@ class InstallCommand extends GeneratorCommand
 		$this->call('vendor:publish', ['--provider' => \Onini\Gayly\GaylyServiceProvider::class]);
 	}
 
-	protected function installGaylyBasePath()
+	/**
+	 * Install Gayly base path
+	 * @method installGaylyController
+	 * @return [type]                 [description]
+	 */
+	protected function installGaylyController()
 	{
+		$name = $this->qualifyClass($this->controller.'/DashController');
+		$path = $this->getPath($name);
 
+		$this->makeDirectory($path);
+
+		$this->files->put($path, $this->buildClass($name));
+		$this->info('DashController created successfully.');
+	}
+
+	/**
+	 * Install routes
+	 * @method installRoutesFile
+	 * @return [type]            [description]
+	 */
+	protected function installRoutesFile()
+	{
+		$routes = $this->files->get($this->getStub('routes'));
+		$path = $this->getPath($this->directory.'/routes');
+
+		$this->files->put($path, $routes);
+		$this->info('routes created successfully.');
+	}
+
+	/**
+	 * Build the class with the given name.
+	 *
+	 * @param  string  $name
+	 * @return string
+	 */
+	protected function buildClass($name)
+	{
+		$stub = $this->files->get($this->getStub('controller'));
+
+		return $this->replaceNamespace($stub, $name)->replaceClass($stub, $name);
 	}
 
 	/**
@@ -64,4 +132,14 @@ class InstallCommand extends GeneratorCommand
 		 return __DIR__.'/stubs/'.$name.'.stub';
 	 }
 
+	 /**
+	  * Get the console command arguments.
+	  *
+	  * @return array
+	  */
+	 protected function getArguments()
+	 {
+		 return [
+		 ];
+	 }
 }
