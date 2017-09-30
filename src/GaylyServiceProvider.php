@@ -46,6 +46,7 @@ class GaylyServiceProvider extends ServiceProvider
      */
     protected $command = [
         'Onini\Gayly\Console\InstallCommand',
+        'Onini\Gayly\Console\UninstallCommand',
     ];
 
     /**
