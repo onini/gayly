@@ -4,6 +4,9 @@ namespace DummyNamespace;
 
 use Illuminate\Http\Request;
 use DummyRootNamespaceHttp\Controllers\Controller;
+use Gayly;
+use Onini\Gayly\Support\Layout\Row;
+use Onini\Gayly\Support\Layout\Content;
 
 class DummyClass extends Controller
 {
@@ -14,6 +17,10 @@ class DummyClass extends Controller
      */
     public function index()
     {
-        return 'hello';
+    return Gayly::content(function (Content $content) {
+        $content->row(function (Row $row) {
+            $row->column(12, '测试');
+        });
+    });
     }
 }

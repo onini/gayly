@@ -11,7 +11,7 @@
 	<meta content="" name="description" />
 	<meta content="" name="author" />
 	<!-- BEGIN PLUGIN CSS -->
-	@statck('link')
+	@stack('link')
 	{!! Gayly::css() !!}
 	<!-- END PLUGIN CSS -->
 	<!-- BEGIN PLUGIN CSS -->
@@ -65,7 +65,7 @@
 		@show
 		</div>
 		<!-- BEGIN CHAT -->
-		@include('gayly::layouts.chat')
+		{{-- @include('gayly::layouts.chat') --}}
 		<!-- END CHAT -->
 	</div>
 	<!-- END CONTAINER -->
@@ -85,10 +85,10 @@
 	<script src="{{ gayly_asset('vendor/gayly/webarch/js/webarch.js') }}" type="text/javascript"></script>
 	<script src="{{ gayly_asset('vendor/gayly/assets/js/chat.js') }}" type="text/javascript"></script>
 	<!-- BEGIN PAGE LEVEL JS -->
-	@statck('js')
+	@stack('js')
 	{!! Gayly::js() !!}
 	<!-- END PAGE LEVEL PLUGINS -->
-	@statck('script')
+	@stack('script')
 	<!-- END CORE TEMPLATE JS -->
 </body>
 

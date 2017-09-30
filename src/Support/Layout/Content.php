@@ -14,7 +14,7 @@ namespace Onini\Gayly\Support\Layout;
 use Closure;
 use Illuminate\Contracts\Support\Renderable;
 
-class Content extends Renderable
+class Content implements Renderable
 {
 
 	/**

@@ -12,6 +12,9 @@
 namespace Onini\Gayly\Support;
 
 use Auth;
+use Closure;
+use Onini\Gayly\Support\Layout\Content;
+use Onini\Gayly\Models\Menu;
 
 class Gayly
 {
@@ -24,9 +27,9 @@ class Gayly
 
 	protected static $extension = [];
 
-	public function content()
+	public function content(Closure $callable = null)
 	{
-
+		return new Content($callable);
 	}
 
 	public function user()
@@ -36,33 +39,36 @@ class Gayly
 
 	public function title()
 	{
-		return config('admin.title');
+		return config('gayly.title');
+	}
+
+	public function menu()
+	{
+		return (new Menu())->toTree();
 	}
 
 	public static function css($css = null)
 	{
 		if (!is_null($css)) {
-			self::$css = array_merge(self::$css, (array) $css);
+            self::$css = array_merge(self::$css, (array) $css);
 
-			return;
-		}
+            return;
+        }
 
-		static::$css = array_merge(static::$css, $css);
-
-		return view('gayly::partials.css', ['css' => array_unique(static::$css)]);
+        static::$css = array_merge(static::$css, (array) $css);
+        return view('gayly::partials.css', ['css' => array_unique(static::$css)]);
 	}
 
 	public static function js($js = null)
 	{
 		if (!is_null($js)) {
-			self::$js = array_merge(self::$js, (array) $js);
+            self::$js = array_merge(self::$js, (array) $js);
 
-			return;
-		}
+            return;
+        }
 
-		static::$js = array_merge(static::$js, $js);
-
-		return view('gayly::partials.js', ['js' => array_unique(static::$js)]);
+        static::$js = array_merge(static::$js, (array) $js);
+        return view('gayly::partials.js', ['js' => array_unique(static::$js)]);
 	}
 
 	public static function script($script = '')

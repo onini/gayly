@@ -33,6 +33,7 @@ class Column implements Build
         if ($content instanceof Closure) {
             call_user_func($content, $this);
         } else {
+            $this->append($content);
         }
 
         $this->num = $num;

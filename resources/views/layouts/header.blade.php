@@ -11,7 +11,7 @@
 			</ul>
 			<!-- BEGIN LOGO -->
 			<a href="index.html">
-		<img src="{{ gayly_asset('vendor/gayly/assets/img/logo.png" class="logo" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/logo.png" data-src-retina="assets/img/logo2x.png" width="106" height="21" />
+		<img src="{{ gayly_asset('vendor/gayly/assets/img/logo.png') }}" class="logo" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/logo.png') }}" data-src-retina="{{ gayly_asset('vendor/gayly/assets/img/logo2x.png') }}" width="106" height="21" />
 	  </a>
 			<!-- END LOGO -->
 			<ul class="nav pull-right notifcation-center">
@@ -71,7 +71,7 @@
 				<div style="width:300px">
 					<div class="notification-messages info">
 						<div class="user-profile">
-							<img src="{{ gayly_asset('vendor/gayly/assets/img/profiles/d.jpg" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/profiles/d.jpg" data-src-retina="assets/img/profiles/d2x.jpg" width="35" height="35">
+							<img src="{{ gayly_asset('vendor/gayly/assets/img/profiles/d.jpg') }}" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/profiles/d.jpg') }}" data-src-retina="{{ gayly_asset('vendor/gayly/assets/img/profiles/d2x.jpg') }}" width="35" height="35">
 						</div>
 						<div class="message-wrapper">
 							<div class="heading">
@@ -105,7 +105,7 @@
 					</div>
 					<div class="notification-messages success">
 						<div class="user-profile">
-							<img src="{{ gayly_asset('vendor/gayly/assets/img/profiles/h.jpg" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/profiles/h.jpg" data-src-retina="assets/img/profiles/h2x.jpg" width="35" height="35">
+							<img src="{{ gayly_asset('vendor/gayly/assets/img/profiles/h.jpg') }}" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/profiles/h.jpg') }}" data-src-retina="{{ gayly_asset('vendor/gayly/assets/img/profiles/h2x.jpg') }}" width="35" height="35">
 						</div>
 						<div class="message-wrapper">
 							<div class="heading">
@@ -127,7 +127,7 @@
 			<div class="pull-right">
 				<div class="chat-toggler sm">
 					<div class="profile-pic">
-						<img src="{{ gayly_asset('vendor/gayly/assets/img/profiles/avatar_small.jpg" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/profiles/avatar_small.jpg" data-src-retina="assets/img/profiles/avatar_small2x.jpg" width="35" height="35" />
+						<img src="{{ gayly_asset('vendor/gayly/assets/img/profiles/avatar_small.jpg') }}" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/profiles/avatar_small.jpg') }}" data-src-retina="{{ gayly_asset('vendor/gayly/assets/img/profiles/avatar_small2x.jpg') }}" width="35" height="35" />
 						<div class="availability-bubble online"></div>
 					</div>
 				</div>

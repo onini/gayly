@@ -32,9 +32,9 @@
 				<div class="side-widget-title">favourites</div>
 				<div id="favourites-list">
 					<div class="side-widget-content">
-						<div class="user-details-wrapper active" data-chat-status="online" data-chat-user-pic="assets/img/profiles/d.jpg" data-chat-user-pic-retina="assets/img/profiles/d2x.jpg" data-user-name="Jane Smith">
+						<div class="user-details-wrapper active" data-chat-status="online" data-chat-user-pic="{{ gayly_asset('vendor/gayly/assets/img/profiles/d.jpg') }}" data-chat-user-pic-retina="{{ gayly_asset('vendor/gayly/assets/img/profiles/d2x.jpg') }}" data-user-name="Jane Smith">
 							<div class="user-profile">
-								<img src="{{ gayly_asset('vendor/gayly/assets/img/profiles/d.jpg" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/profiles/d.jpg" data-src-retina="assets/img/profiles/d2x.jpg" width="35" height="35">
+								<img src="{{ gayly_asset('vendor/gayly/assets/img/profiles/d.jpg') }}" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/profiles/d.jpg') }}" data-src-retina="{{ gayly_asset('vendor/gayly/assets/img/profiles/d2x.jpg') }}" width="35" height="35">
 							</div>
 							<div class="user-details">
 								<div class="user-name">
@@ -52,9 +52,9 @@
 							</div>
 							<div class="clearfix"></div>
 						</div>
-						<div class="user-details-wrapper" data-chat-status="busy" data-chat-user-pic="assets/img/profiles/d.jpg" data-chat-user-pic-retina="assets/img/profiles/d2x.jpg" data-user-name="David Nester">
+						<div class="user-details-wrapper" data-chat-status="busy" data-chat-user-pic="{{ gayly_asset('vendor/gayly/assets/img/profiles/d.jpg') }}" data-chat-user-pic-retina="{{ gayly_asset('vendor/gayly/assets/img/profiles/d2x.jpg') }}" data-user-name="David Nester">
 							<div class="user-profile">
-								<img src="{{ gayly_asset('vendor/gayly/assets/img/profiles/c.jpg" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/profiles/c.jpg" data-src-retina="assets/img/profiles/c2x.jpg" width="35" height="35">
+								<img src="{{ gayly_asset('vendor/gayly/assets/img/profiles/c.jpg') }}" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/profiles/c.jpg') }}" data-src-retina="{{ gayly_asset('vendor/gayly/assets/img/profiles/c2x.jpg') }}" width="35" height="35">
 							</div>
 							<div class="user-details">
 								<div class="user-name">
@@ -78,9 +78,9 @@
 			<div class="side-widget">
 				<div class="side-widget-title">more friends</div>
 				<div class="side-widget-content" id="friends-list">
-					<div class="user-details-wrapper" data-chat-status="online" data-chat-user-pic="assets/img/profiles/d.jpg" data-chat-user-pic-retina="assets/img/profiles/d2x.jpg" data-user-name="Jane Smith">
+					<div class="user-details-wrapper" data-chat-status="online" data-chat-user-pic="{{ gayly_asset('vendor/gayly/assets/img/profiles/d.jpg') }}" data-chat-user-pic-retina="{{ gayly_asset('vendor/gayly/assets/img/profiles/d2x.jpg') }}" data-user-name="Jane Smith">
 						<div class="user-profile">
-							<img src="{{ gayly_asset('vendor/gayly/assets/img/profiles/d.jpg" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/profiles/d.jpg" data-src-retina="assets/img/profiles/d2x.jpg" width="35" height="35">
+							<img src="{{ gayly_asset('vendor/gayly/assets/img/profiles/d.jpg') }}" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/profiles/d.jpg') }}" data-src-retina="{{ gayly_asset('vendor/gayly/assets/img/profiles/d2x.jpg') }}" width="35" height="35">
 						</div>
 						<div class="user-details">
 							<div class="user-name">
@@ -97,9 +97,9 @@
 						</div>
 						<div class="clearfix"></div>
 					</div>
-					<div class="user-details-wrapper" data-chat-status="busy" data-chat-user-pic="assets/img/profiles/d.jpg" data-chat-user-pic-retina="assets/img/profiles/d2x.jpg" data-user-name="David Nester">
+					<div class="user-details-wrapper" data-chat-status="busy" data-chat-user-pic="{{ gayly_asset('vendor/gayly/assets/img/profiles/d.jpg') }}" data-chat-user-pic-retina="{{ gayly_asset('vendor/gayly/assets/img/profiles/d2x.jpg') }}" data-user-name="David Nester">
 						<div class="user-profile">
-							<img src="{{ gayly_asset('vendor/gayly/assets/img/profiles/h.jpg" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/profiles/h.jpg" data-src-retina="assets/img/profiles/h2x.jpg" width="35" height="35">
+							<img src="{{ gayly_asset('vendor/gayly/assets/img/profiles/h.jpg') }}" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/profiles/h.jpg') }}" data-src-retina="{{ gayly_asset('vendor/gayly/assets/img/profiles/h2x.jpg') }}" width="35" height="35">
 						</div>
 						<div class="user-details">
 							<div class="user-name">
@@ -117,9 +117,9 @@
 						</div>
 						<div class="clearfix"></div>
 					</div>
-					<div class="user-details-wrapper" data-chat-status="online" data-chat-user-pic="assets/img/profiles/d.jpg" data-chat-user-pic-retina="assets/img/profiles/d2x.jpg" data-user-name="Jane Smith">
+					<div class="user-details-wrapper" data-chat-status="online" data-chat-user-pic="{{ gayly_asset('vendor/gayly/assets/img/profiles/d.jpg') }}" data-chat-user-pic-retina="{{ gayly_asset('vendor/gayly/assets/img/profiles/d2x.jpg') }}" data-user-name="Jane Smith">
 						<div class="user-profile">
-							<img src="{{ gayly_asset('vendor/gayly/assets/img/profiles/c.jpg" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/profiles/c.jpg" data-src-retina="assets/img/profiles/c2x.jpg" width="35" height="35">
+							<img src="{{ gayly_asset('vendor/gayly/assets/img/profiles/c.jpg') }}" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/profiles/c.jpg') }}" data-src-retina="{{ gayly_asset('vendor/gayly/assets/img/profiles/c2x.jpg') }}" width="35" height="35">
 						</div>
 						<div class="user-details">
 							<div class="user-name">
@@ -136,9 +136,9 @@
 						</div>
 						<div class="clearfix"></div>
 					</div>
-					<div class="user-details-wrapper" data-chat-status="busy" data-chat-user-pic="assets/img/profiles/d.jpg" data-chat-user-pic-retina="assets/img/profiles/d2x.jpg" data-user-name="David Nester">
+					<div class="user-details-wrapper" data-chat-status="busy" data-chat-user-pic="{{ gayly_asset('vendor/gayly/assets/img/profiles/d.jpg') }}" data-chat-user-pic-retina="{{ gayly_asset('vendor/gayly/assets/img/profiles/d2x.jpg') }}" data-user-name="David Nester">
 						<div class="user-profile">
-							<img src="{{ gayly_asset('vendor/gayly/assets/img/profiles/h.jpg" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/profiles/h.jpg" data-src-retina="assets/img/profiles/h2x.jpg" width="35" height="35">
+							<img src="{{ gayly_asset('vendor/gayly/assets/img/profiles/h.jpg') }}" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/profiles/h.jpg') }}" data-src-retina="{{ gayly_asset('vendor/gayly/assets/img/profiles/h2x.jpg') }}" width="35" height="35">
 						</div>
 						<div class="user-details">
 							<div class="user-name">
@@ -180,7 +180,7 @@
 					<div class="sent_time">Yesterday 11:25pm</div>
 					<div class="user-details-wrapper ">
 						<div class="user-profile">
-							<img src="{{ gayly_asset('vendor/gayly/assets/img/profiles/d.jpg" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/profiles/d.jpg" data-src-retina="assets/img/profiles/d2x.jpg" width="35" height="35">
+							<img src="{{ gayly_asset('vendor/gayly/assets/img/profiles/d.jpg') }}" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/profiles/d.jpg') }}" data-src-retina="{{ gayly_asset('vendor/gayly/assets/img/profiles/d2x.jpg') }}" width="35" height="35">
 						</div>
 						<div class="user-details">
 							<div class="bubble">
@@ -192,7 +192,7 @@
 					</div>
 					<div class="user-details-wrapper ">
 						<div class="user-profile">
-							<img src="{{ gayly_asset('vendor/gayly/assets/img/profiles/d.jpg" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/profiles/d.jpg" data-src-retina="assets/img/profiles/d2x.jpg" width="35" height="35">
+							<img src="{{ gayly_asset('vendor/gayly/assets/img/profiles/d.jpg') }}" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/profiles/d.jpg') }}" data-src-retina="{{ gayly_asset('vendor/gayly/assets/img/profiles/d2x.jpg') }}" width="35" height="35">
 						</div>
 						<div class="user-details">
 							<div class="bubble">
@@ -204,7 +204,7 @@
 					</div>
 					<div class="user-details-wrapper ">
 						<div class="user-profile">
-							<img src="{{ gayly_asset('vendor/gayly/assets/img/profiles/d.jpg" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/profiles/d.jpg" data-src-retina="assets/img/profiles/d2x.jpg" width="35" height="35">
+							<img src="{{ gayly_asset('vendor/gayly/assets/img/profiles/d.jpg') }}" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/profiles/d.jpg') }}" data-src-retina="{{ gayly_asset('vendor/gayly/assets/img/profiles/d2x.jpg') }}" width="35" height="35">
 						</div>
 						<div class="user-details">
 							<div class="bubble">
