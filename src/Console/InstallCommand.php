@@ -59,7 +59,7 @@ class InstallCommand extends GeneratorCommand
      *
      * @return string
      */
-	 protected function getStub($name)
+	 protected function getStub($name = '')
 	 {
 		 return __DIR__.'/stubs/'.$name.'.stub';
 	 }
