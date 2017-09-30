@@ -31,7 +31,7 @@ class Gayly
 
 	public function user()
 	{
-		return Auth::guard(admin)->user();
+		return Auth::guard('gayly')->user();
 	}
 
 	public function title()

@@ -9,14 +9,9 @@
 // | Author: gayly <tthd@163.com>
 // +----------------------------------------------------------------------
 
-namespace Onini\Gayly\Support\Facades;
+namespace Onini\Gayly\Support\Layout;
 
-use Illuminate\Support\Facades\Facade;
-
-class Gayly extends Facade
+interface Build
 {
-	protected static function getFacadeAccessor()
-	{
-		return \Onini\Gayly\Support\Gayly::class;
-	}
+	public function build();
 }

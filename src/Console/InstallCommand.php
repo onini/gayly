@@ -14,6 +14,7 @@ namespace Onini\Gayly\Console;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Input\InputArgument;
+use Onini\Gayly\Models\SystemUser;
 
 class InstallCommand extends GeneratorCommand
 {
@@ -59,6 +60,8 @@ class InstallCommand extends GeneratorCommand
     {
 		$this->installPublishes();
 
+		$this->installMigrateAndSeeder();
+
 		if (!$this->alreadyExists($this->directory)) {
 
 			$this->installGaylyController();
@@ -68,6 +71,15 @@ class InstallCommand extends GeneratorCommand
 
 		$this->info($this->type.' install successfully.');
     }
+
+	protected function installMigrateAndSeeder()
+	{
+		$this->call('migrate');
+
+		if (SystemUser::count() == 0) {
+			$this->call('db:seed', ['--class' => \Onini\Gayly\Seeder\GaylyTableSeeder::class]);
+		}
+	}
 
 	/**
 	 * Install publishes

@@ -90,3 +90,15 @@ if (!function_exists('gayly_layout')) {
 		return \Onini\Gayly\Support\Facades\Gayly::css();
 	}
 }
+
+if (!function_exists('gayly_error')) {
+
+    function gayly_error($data, $code = 403)
+    {
+        if (request()->ajax() && (request()->getMethod() != 'GET')) {
+            return response()->json($data, $code);
+        } else {
+            return response()->view('gayly::errors.default', $data);
+        }
+    }
+}

@@ -12,6 +12,7 @@
 namespace Onini\Gayly\Middleware;
 
 use Closure;
+use Gayly;
 
 class Permission
 {
@@ -25,6 +26,19 @@ class Permission
      */
     public function handle($request, Closure $next, $guard = null)
     {
+        if (!Gayly::user()) {
+            return $next($request);
+        }
+
+        if (!Gayly::user()->allPermissions()->first(function ($permission) use ($request) {
+            return $permission->shouldPassThrough($request);
+        })) {
+            return gayly_error([
+                'code' => 403,
+                'message' => '您没有权限'
+                ]);
+        }
+
         return $next($request);
     }
 }
