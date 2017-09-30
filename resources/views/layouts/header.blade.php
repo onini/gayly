@@ -127,7 +127,7 @@
 			<div class="pull-right">
 				<div class="chat-toggler sm">
 					<div class="profile-pic">
-						<img src="{{ gayly_asset('vendor/gayly/assets/img/profiles/avatar_small.jpg') }}" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/profiles/avatar_small.jpg') }}" data-src-retina="{{ gayly_asset('vendor/gayly/assets/img/profiles/avatar_small2x.jpg') }}" width="35" height="35" />
+						<img src="{{ Gayly::user()->avatar }}" alt="" data-src="{{ Gayly::user()->avatar }}" data-src-retina="{{ Gayly::user()->avatar }}" width="35" height="35" />
 						<div class="availability-bubble online"></div>
 					</div>
 				</div>
@@ -138,19 +138,19 @@
 			</a>
 						<ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
 							<li>
-								<a href="user-profile.html"> My Account</a>
+								<a href="user-profile.html"> 个人资料</a>
 							</li>
 							<li>
-								<a href="calender.html">My Calendar</a>
+								<a href="calender.html">设置中心</a>
 							</li>
 							<li>
-								<a href="email.html"> My Inbox&nbsp;&nbsp;
+								<a href="email.html"> 消息&nbsp;&nbsp;
 					<span class="badge badge-important animated bounceIn">2</span>
 				</a>
 							</li>
 							<li class="divider"></li>
 							<li>
-								<a href="login.html"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Log Out</a>
+								<a href="{{ gayly_url('auth/logout') }}"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;注销</a>
 							</li>
 						</ul>
 					</li>

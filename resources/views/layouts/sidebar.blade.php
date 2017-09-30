@@ -3,7 +3,7 @@
 	<div class="page-sidebar-wrapper scrollbar-dynamic" id="main-menu-wrapper">
 		<div class="user-info-wrapper sm">
 			<div class="profile-wrapper sm">
-				<img src="{{ gayly_asset('vendor/gayly/assets/img/profiles/avatar.jpg') }}" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/profiles/avatar.jpg') }}" data-src-retina="{{ gayly_asset('vendor/gayly/assets/img/profiles/avatar2x.jpg') }}" width="69"
+				<img src="{{ Gayly::user()->avatar }}" alt="" data-src="{{ Gayly::user()->avatar }}" data-src-retina="{{ Gayly::user()->avatar }}" width="69"
 				 height="69" />
 				<div class="availability-bubble online"></div>
 			</div>
@@ -14,33 +14,33 @@
 		</div>
 		<!-- END MINI-PROFILE -->
 		<!-- BEGIN SIDEBAR MENU -->
-		<p class="menu-title sm">BROWSE <span class="pull-right"><a href="javascript:;"><i class="material-icons">refresh</i></a></span></p>
+		<p class="menu-title sm">控制面板 <span class="pull-right"><a href="javascript:;"><i class="material-icons">refresh</i></a></span></p>
 		<ul>
 			@each('gayly::layouts.menu', Gayly::menu(), 'item')
 		</ul>
 		<div class="side-bar-widgets">
-			<p class="menu-title sm">FOLDER <span class="pull-right"><a href="#" class="create-folder"> <i class="material-icons">add</i></a></span></p>
+			<p class="menu-title sm">任务 <span class="pull-right"><a href="#" class="create-folder"> <i class="material-icons">add</i></a></span></p>
 			<ul class="folders">
 				<li>
 					<a href="#">
 						<div class="status-icon green"></div>
-						My quick tasks </a>
+						我的任务 </a>
 				</li>
 				<li>
 					<a href="#">
 						<div class="status-icon red"></div>
-						To do list </a>
+						任务中 </a>
 				</li>
 				<li>
 					<a href="#">
 						<div class="status-icon blue"></div>
-						Projects </a>
+						已完成 </a>
 				</li>
 				<li class="folder-input" style="display:none">
 					<input type="text" placeholder="Name of folder" class="no-boarder folder-name" name="">
 				</li>
 			</ul>
-			<p class="menu-title">PROJECTS </p>
+			<p class="menu-title">项目 </p>
 			<div class="status-widget">
 				<div class="status-widget-wrapper">
 					<div class="title">Freelancer<a href="#" class="remove-widget"><i class="material-icons">close</i></a></div>

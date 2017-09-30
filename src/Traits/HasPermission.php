@@ -31,7 +31,7 @@ trait HasPermission
         if ($avatar) {
             return Storage::disk(config('gayly.upload.disk'))->url($avatar);
         }
-        return admin_asset('/vendor/laravel-admin/AdminLTE/dist/img/user2-160x160.jpg');
+        return gayly_asset('vendor/gayly/assets/img/profiles/avatar.jpg');
     }
 
     /**

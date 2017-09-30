@@ -65,7 +65,7 @@
 		@show
 		</div>
 		<!-- BEGIN CHAT -->
-		{{-- @include('gayly::layouts.chat') --}}
+		@include('gayly::layouts.chat')
 		<!-- END CHAT -->
 	</div>
 	<!-- END CONTAINER -->
