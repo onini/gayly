@@ -17,10 +17,6 @@ class DummyClass extends Controller
      */
     public function index()
     {
-    return Gayly::content(function (Content $content) {
-        $content->row(function (Row $row) {
-            $row->column(12, '测试');
-        });
-    });
+        return view('gayly::dash.index', ['content_class' => 'sm-gutter']);
     }
 }

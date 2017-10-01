@@ -43,7 +43,7 @@
 		@include('gayly::layouts.sidebar')
 		<!-- END SIDEBAR -->
 		<!-- BEGIN PAGE CONTAINER-->
-		<div class="page-content {{ $page_content or '' }}">
+		<div class="page-content {{ $page_content_class or '' }}">
 		@section('page-content')
 			@include('gayly::partials.error')
 			@include('gayly::partials.success')
@@ -58,7 +58,7 @@
 			</div>
 			<div class="clearfix"></div>
 			@section('content')
-			<div class="content {{ $content or '' }}">
+			<div class="content {{ $content_class or '' }}">
 				@yield('container')
 			</div>
 			@show

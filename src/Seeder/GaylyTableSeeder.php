@@ -31,10 +31,10 @@ class GaylyTableSeeder extends Seeder
         // create a user.
         SystemUser::truncate();
         SystemUser::create([
-            'username'  => 'admin',
-            'password'  => bcrypt('admin'),
+            'username'  => 'gayly',
+            'password'  => bcrypt('gayly'),
             'email' =>  'tthd@163.com',
-            'name'      => 'Administrator',
+            'name'      => '太年轻',
         ]);
 
         // create a role.
