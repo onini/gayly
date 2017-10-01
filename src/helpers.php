@@ -31,9 +31,10 @@ if (!function_exists('gayly_url')) {
      *
      * @return string
      */
-    function gayly_url($path = '')
+    function gayly_url($path = '', $parameters = [], $secure = null)
     {
-        return url(gayly_base_path($path));
+        $secure = is_null($secure) ? config('gayly.secure', false) : $secure;
+        return url(gayly_base_path($path), $parameters, $secure);
     }
 }
 
