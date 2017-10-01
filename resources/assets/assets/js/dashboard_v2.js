@@ -1,7 +1,7 @@
-/* Webarch Admin Dashboard 
+/* Webarch Admin Dashboard
 /* This JS is only for DEMO Purposes - Extract the code that you need
------------------------------------------------------------------*/	
-$(document).ready(function() {	
+-----------------------------------------------------------------*/
+$(document).ready(function() {
 
 loadServerChart();
 //drawMouseSpeedDemo();
@@ -119,7 +119,7 @@ function loadShareMarketGraph(){
 	var hoverDetail = new Rickshaw.Graph.HoverDetail( {
 		graph: graph_3
 	});
-	
+
 	random_3.addData(seriesData_3);
 	graph_3.update();
 
@@ -158,7 +158,7 @@ function loadShareMarketGraph_Demo2(){
 	var hoverDetail = new Rickshaw.Graph.HoverDetail( {
 		graph: graph_3
 	});
-	
+
 	random_3.addData(seriesData_4);
 	graph_3.update();
 
@@ -195,16 +195,16 @@ var seriesData_5 = [ [], [],[]];
 			}
 		]
 	} );
-	
+
 	var hoverDetail = new Rickshaw.Graph.HoverDetail( {
 		graph: rick
 	});
-	
+
 	random.addData(seriesData_5);
 	rick.update();
-	
+
 	var ticksTreatment = 'glow';
-	
+
 	var xAxis = new Rickshaw.Graph.Axis.Time( {
 	graph: rick,
 	ticksTreatment: ticksTreatment,
@@ -218,14 +218,14 @@ var seriesData_5 = [ [], [],[]];
 		tickFormat: Rickshaw.Fixtures.Number.formatKMBT,
 		ticksTreatment: ticksTreatment
 	});
-	
+
 	var legend = new Rickshaw.Graph.Legend( {
 	graph: rick,
 	element: document.getElementById('legend')
-	});	
-	
+	});
+
 	yAxis.render();
-	
+
 	var shelving = new Rickshaw.Graph.Behavior.Series.Toggle( {
 		graph: rick,
 		legend: legend
@@ -258,7 +258,7 @@ var seriesData_5 = [ [], [],[]];
 		barSpacing: 2,
 		barColor: '#0aa699',
 		negBarColor: '#0aa699'
-	});		
+	});
 }
 
 function loadSampleChartDemo2(){
@@ -292,16 +292,16 @@ var seriesData_5 = [ [], [],[]];
 			}
 		]
 	} );
-	
+
 	var hoverDetail = new Rickshaw.Graph.HoverDetail( {
 		graph: rick
 	});
-	
+
 	random.addData(seriesData_5);
 	rick.update();
-	
+
 	var ticksTreatment = 'glow';
-	
+
 	var xAxis = new Rickshaw.Graph.Axis.Time( {
 	graph: rick,
 	ticksTreatment: ticksTreatment,
@@ -315,14 +315,14 @@ var seriesData_5 = [ [], [],[]];
 		tickFormat: Rickshaw.Fixtures.Number.formatKMBT,
 		ticksTreatment: ticksTreatment
 	});
-	
+
 	var legend = new Rickshaw.Graph.Legend( {
 	graph: rick,
 	element: document.getElementById('legend_2')
-	});	
-	
+	});
+
 	yAxis.render();
-	
+
 	var shelving = new Rickshaw.Graph.Behavior.Series.Toggle( {
 		graph: rick,
 		legend: legend
@@ -355,12 +355,12 @@ var seriesData_5 = [ [], [],[]];
 		barSpacing: 2,
 		barColor: '#0aa699',
 		negBarColor: '#0aa699'
-	});		
+	});
 }
 
 function drawMouseSpeedDemo() {
     var mrefreshinterval = 500; // update display every 500ms
-    var lastmousex=-1; 
+    var lastmousex=-1;
     var lastmousey=-1;
     var lastmousetime;
     var mousetravel = 0;
@@ -390,7 +390,7 @@ function drawMouseSpeedDemo() {
         setTimeout(mdraw, mrefreshinterval);
     }
     // We could use setInterval instead, but I prefer to do it this way
-    setTimeout(mdraw, mrefreshinterval); 
+    setTimeout(mdraw, mrefreshinterval);
 };
 
 function loadSalesSparkline(){
@@ -423,25 +423,25 @@ $("#earnings-chart").sparkline([0,4,4,5,6,8,3,2,2,4,6,7], {
  if ($.fn.owlCarousel){
 	$("#testomonials").owlCarousel({
 		singleItem:true
-	});		
-	
-	$("#image-demo-carl").owlCarousel({	 
-		  navigation : false, 
+	});
+
+	$("#image-demo-carl").owlCarousel({
+		  navigation : false,
 		  slideSpeed : 300,
 		  paginationSpeed : 400,
 		  singleItem:true,
 		  pagination:false,
-		  autoHeight : true	 
+		  autoHeight : true
 	  });
-	  $("#image-demo-carl-2").owlCarousel({	 
-		  navigation : false, 
+	  $("#image-demo-carl-2").owlCarousel({
+		  navigation : false,
 		  slideSpeed : 300,
 		  paginationSpeed : 400,
 		  singleItem:true,
 		  pagination:false,
-		  autoHeight : true	 
+		  autoHeight : true
 	  });
-	  
+
  }
 //Morris Charts
  function randValue() {
@@ -497,7 +497,7 @@ $("#earnings-chart").sparkline([0,4,4,5,6,8,3,2,2,4,6,7], {
         [22, 120 + randValue()],
         [23, 130 + randValue()]
       ];
-	  
+
     var names = [
                     "Alpha",
                     "Beta",
@@ -508,17 +508,17 @@ $("#earnings-chart").sparkline([0,4,4,5,6,8,3,2,2,4,6,7], {
                     "Eta",
                     "Theta"
                 ];
-          
+
       var plot_statistics = $.plot($("#chart_1"), [{
-        data: data_com, showLabels: true, label: "New Visitors", labelPlacement: "below", canvasRender: true, cColor: "#FFFFFF" 
+        data: data_com, showLabels: true, label: "New Visitors", labelPlacement: "below", canvasRender: true, cColor: "#FFFFFF"
       },{
-        data: data_com2, showLabels: true, label: "Old Visitors", labelPlacement: "below", canvasRender: true, cColor: "#FFFFFF" 
+        data: data_com2, showLabels: true, label: "Old Visitors", labelPlacement: "below", canvasRender: true, cColor: "#FFFFFF"
       }
       ], {
         series: {
           lines: {
             show: true,
-            lineWidth: 1, 
+            lineWidth: 1,
             fill: true,
              fillColor: { colors: [{ opacity: 0.5 }, { opacity: 0.5}] }
           },
@@ -556,17 +556,17 @@ $("#earnings-chart").sparkline([0,4,4,5,6,8,3,2,2,4,6,7], {
           tickDecimals: 0
         }
       });
-	  
+
 	  var plot_visits = $.plot($("#sales_chart_alt"), [{
-        data: data_com, showLabels: true, label: "New Visitors", labelPlacement: "below", canvasRender: true, cColor: "#FFFFFF" 
+        data: data_com, showLabels: true, label: "New Visitors", labelPlacement: "below", canvasRender: true, cColor: "#FFFFFF"
       },{
-        data: data_com2, showLabels: true, label: "Old Visitors", labelPlacement: "below", canvasRender: true, cColor: "#FFFFFF" 
+        data: data_com2, showLabels: true, label: "Old Visitors", labelPlacement: "below", canvasRender: true, cColor: "#FFFFFF"
       }
       ], {
         series: {
           lines: {
             show: true,
-            lineWidth: 1, 
+            lineWidth: 1,
             fill: false,
              fillColor: { colors: [{ opacity:1 }, { opacity: 1}] }
           },
@@ -607,19 +607,19 @@ $("#earnings-chart").sparkline([0,4,4,5,6,8,3,2,2,4,6,7], {
       });
 
 
-//Weahter Icons 
+//Weahter Icons
 function loadAnimatedWeatherIcons(){
 	/*** Animated Weather Icon **/
 	var icons = new Skycons({"color": "white"});
 	var icons_grey = new Skycons({"color": "#8b91a0"});
-	
+
 	icons.set("widget-partly-cloudy-day", Skycons.PARTLY_CLOUDY_DAY);
 	icons.set("widget-partly-rainy-day", Skycons.WIND);
 	//icons.set("widget-2-cloudy-day", Skycons.PARTLY_CLOUDY_DAY);
 	icons_grey.set("widget-wind", Skycons.WIND);
 	icons_grey.set("widget-sleet", Skycons.SLEET);
 	icons_grey.set("widget-2-cloudy-big", Skycons.PARTLY_CLOUDY_DAY);
-	
+
 	icons.play();
 	icons_grey.play();
 }
@@ -631,7 +631,7 @@ function loadAnimatedWidget_pure_white(){
 	icons_grey.set("white_widget_03", Skycons.WIND);
 	icons_grey.set("white_widget_04", Skycons.SLEET);
 	icons_grey.set("white_widget_05", Skycons.PARTLY_CLOUDY_DAY);
-	
+
 	icons_grey.set("white_widget_06", Skycons.PARTLY_CLOUDY_DAY);
 	icons_grey.set("white_widget_07", Skycons.PARTLY_CLOUDY_DAY);
 	icons_grey.set("white_widget_08", Skycons.WIND);
@@ -639,7 +639,7 @@ function loadAnimatedWidget_pure_white(){
 	icons_grey.set("white_widget_10", Skycons.PARTLY_CLOUDY_DAY);
 	icons_grey.set("white_widget_11", Skycons.SLEET);
 	icons_grey.set("white_widget_12", Skycons.SLEET);
-	
+
 	icons_grey.set("white_widget_13", Skycons.WIND);
 	icons_grey.set("white_widget_14", Skycons.SLEET);
 	icons_grey.play();
@@ -669,9 +669,9 @@ if($('#location-map-2').length > 0){
  //Initialize Map
   new google.maps.Map(document.getElementById('location-map-2'), myOptions);
 }
-    
+
 $('#mapplic_demo').mapplic({
-    source: 'http://revox.io/webarch/json/states.json',
+    source: 'https://revox.io/webarch/json/states.json',
     height: 494,
     sidebar: false,
     minimap: false,
@@ -682,6 +682,6 @@ $('#mapplic_demo').mapplic({
     developer: false,
     maxscale: 3,
     height:380
-});    
+});
 $(".live-tile,.flip-list").liveTile();
 }
