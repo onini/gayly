@@ -21,7 +21,7 @@ class Content implements Renderable
 	 * title
 	 * @var [type]
 	 */
-	protected $title = '';
+	protected $title = false;
 
 	/**
 	 * description
@@ -136,10 +136,16 @@ class Content implements Renderable
 	public function render()
 	{
 		$items = [
-			'title'	=>	$this->title,
-			'description' => $this->description,
 			'content'	=>	$this->build(),
 		];
+
+		if ($this->title) {
+			$items['title'] = $this->title;
+		}
+
+		if ($this->description) {
+			$items['description'] = $this->description;
+		}
 
 		return view('gayly::content', $items);
 	}

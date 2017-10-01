@@ -13,45 +13,117 @@ namespace Onini\Gayly\Support;
 
 use Auth;
 use Closure;
-use Onini\Gayly\{
-	Support\Layout\Content,
-	Models\Menu
-};
+use Onini\Gayly\Support\Layout\Content;
+use Onini\Gayly\Models\Menu;
+use Illuminate\Database\Eloquent\Model as EloquentModel;
 
 class Gayly
 {
+	/**
+	 * [public description]
+	 * @var [type]
+	 */
+    public static $css = [];
 
-	public static $css = [];
+	/**
+	 * [public description]
+	 * @var [type]
+	 */
+    public static $js = [];
 
-	public static $js = [];
+	/**
+	 * [public description]
+	 * @var [type]
+	 */
+    public static $script = [];
 
-	public static $script = [];
+	/**
+	 * [protected description]
+	 * @var [type]
+	 */
+    protected static $extension = [];
 
-	protected static $extension = [];
+	/**
+	 * [content description]
+	 * @method content
+	 * @param  [type]  $callable [description]
+	 * @return [type]            [description]
+	 */
+    public function content(Closure $callable = null)
+    {
+        return new Content($callable);
+    }
 
-	public function content(Closure $callable = null)
-	{
-		return new Content($callable);
-	}
+	/**
+	 * [grid description]
+	 * @method grid
+	 * @param  [type]  $model    [description]
+	 * @param  Closure $callable [description]
+	 * @return [type]            [description]
+	 */
+    public function grid($model, Closure $callable)
+    {
+        return new Grid($this->getModel($model), $callable);
+    }
 
-	public function user()
-	{
-		return Auth::guard('gayly')->user();
-	}
+	/**
+	 * [user description]
+	 * @method user
+	 * @return [type] [description]
+	 */
+    public function user()
+    {
+        return Auth::guard('gayly')->user();
+    }
 
-	public function title()
-	{
-		return config('gayly.title');
-	}
+	/**
+	 * [title description]
+	 * @method title
+	 * @return [type] [description]
+	 */
+    public function title()
+    {
+        return config('gayly.title');
+    }
 
-	public function menu()
-	{
-		return (new Menu())->toTree();
-	}
+	/**
+	 * [menu description]
+	 * @method menu
+	 * @return [type] [description]
+	 */
+    public function menu()
+    {
+        return (new Menu())->toTree();
+    }
 
-	public static function css($css = null)
-	{
-		if (!is_null($css)) {
+	/**
+	 * [getModel description]
+	 * @method getModel
+	 * @param  [type]   $model [description]
+	 * @return [type]          [description]
+	 */
+    public function getModel($model)
+    {
+        if ($model instanceof EloquentModel) {
+            return $model;
+        }
+
+        if (is_string($model) && class_exists($model)) {
+            return $this->getModel(new $model());
+        }
+
+        throw new InvalidArgumentException("$model is not a valid model");
+    }
+
+	/**
+	 * [css description]
+	 * @method css
+	 * @param  [type] $css [description]
+	 * @return [type]      [description]
+	 */
+    public static function css($css = null)
+    {
+        if (!is_null($css)) {
             self::$css = array_merge(self::$css, (array) $css);
 
             return;
@@ -59,11 +131,17 @@ class Gayly
 
         static::$css = array_merge(static::$css, (array) $css);
         return view('gayly::partials.css', ['css' => array_unique(static::$css)]);
-	}
+    }
 
-	public static function js($js = null)
-	{
-		if (!is_null($js)) {
+	/**
+	 * [js description]
+	 * @method js
+	 * @param  [type] $js [description]
+	 * @return [type]     [description]
+	 */
+    public static function js($js = null)
+    {
+        if (!is_null($js)) {
             self::$js = array_merge(self::$js, (array) $js);
 
             return;
@@ -71,21 +149,34 @@ class Gayly
 
         static::$js = array_merge(static::$js, (array) $js);
         return view('gayly::partials.js', ['js' => array_unique(static::$js)]);
-	}
+    }
 
-	public static function script($script = '')
-	{
-		if (!empty($script)) {
-			self::$script = array_merge(self::$script, $script);
+	/**
+	 * [script description]
+	 * @method script
+	 * @param  string $script [description]
+	 * @return [type]         [description]
+	 */
+    public static function script($script = '')
+    {
+        if (!empty($script)) {
+            self::$script = array_merge(self::$script, $script);
 
-			return;
-		}
+            return;
+        }
 
-		return view('gayly::partials.script', ['script' => array_unique(self::$script)]);
-	}
+        return view('gayly::partials.script', ['script' => array_unique(self::$script)]);
+    }
 
-	public static function extension($key, $class)
-	{
-		static::$extension[$key] = $class;
-	}
+	/**
+	 * [extension description]
+	 * @method extension
+	 * @param  [type]    $key   [description]
+	 * @param  [type]    $class [description]
+	 * @return [type]           [description]
+	 */
+    public static function extension($key, $class)
+    {
+        static::$extension[$key] = $class;
+    }
 }

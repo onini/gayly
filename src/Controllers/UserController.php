@@ -13,6 +13,13 @@ namespace Onini\Gayly\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Gayly;
+use Onini\Gayly\Support\{
+    Layout\Row,
+    Layout\Content,
+    Grid,
+    Grid\Filter
+};
 
 class UserController extends Controller
 {
@@ -23,7 +30,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return Gayly::content(function (Content $content) {
+            $content->title('控制面板');
+
+            $content->row($this->grid());
+        });
     }
 
     /**
@@ -90,5 +101,21 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    protected function grid()
+    {
+        return Gayly::grid(\Onini\Gayly\Models\SystemUser::class, function (Grid $grid) {
+            // $grid->id('ID');
+			$grid->name('昵称');
+            $grid->email('邮箱');
+            $grid->mobile('手机');
+            $grid->wechat('微信');
+            $grid->qq('QQ');
+            $grid->disableFilter();
+            $grid->filter(function (Filter $filter) {
+                $filter->like('name');
+            });
+        });
     }
 }
