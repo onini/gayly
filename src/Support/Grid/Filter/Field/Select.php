@@ -2,8 +2,8 @@
 
 namespace Onini\Gayly\Support\Grid\Filter\Field;
 
-use Gayly\Leaf\Facades\Admin;
-use Gayly\Leaf\Grid\Filter\AbstractFilter;
+use Gayly;
+use Onini\Gayly\Support\Grid\Filter\AbstractFilter;
 use Illuminate\Contracts\Support\Arrayable;
 
 class Select
@@ -61,7 +61,7 @@ class Select
             $this->options = $this->options->toArray();
         }
 
-        $placeholder = trans('admin.choose');
+        $placeholder = trans('gayly.choose');
 
         $script = <<<SCRIPT
 $(".{$this->getElementClass()}").select2({
@@ -84,7 +84,7 @@ SCRIPT;
      */
     protected function loadAjaxOptions($resourceUrl)
     {
-        $placeholder = trans('admin.choose');
+        $placeholder = trans('gayly.choose');
 
         $script = <<<EOT
 

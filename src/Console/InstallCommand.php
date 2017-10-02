@@ -49,7 +49,7 @@ class InstallCommand extends GeneratorCommand
 	{
 		parent::__construct($files);
 
-		$this->directory = config('admin.directory', 'Gayly');
+		$this->directory = config('gayly.directory', 'Gayly');
 		$this->controller = $this->directory.'/Controllers';
 	}
 
@@ -78,7 +78,7 @@ class InstallCommand extends GeneratorCommand
 	{
 		$gayly = include config_path('gayly.php');
 		config(array_dot($gayly, 'gayly.'));
-		
+
 		// set table prefix
 		$default = config('database.default');
         config(['database.connections.'.$default.'.prefix' => config('gayly.database.prefix')]);

@@ -11,34 +11,32 @@
 
 namespace Onini\Gayly\Support\Grid\Tool;
 
-use Onini\Gayly\Support\Grid;
-
-class CreateButton extends AbstractTool
+abstract class AbstractAction
 {
 
-	/**
-	 * create button
-	 * @method __constrcut
-	 * @param  Grid        $grid [description]
-	 * @return [type]            [description]
-	 */
-	public function __construct(Grid $grid)
-	{
-		$this->grid = $grid;
-	}
+	protected $id;
 
-	public function render()
-	{
-		if (!$this->grid->useCreate()) {
-			return '';
-		}
+	protected $resource;
 
-		$new = trans('gayly.new');
+	public function setId($id)
+    {
+        $this->id = $id;
+    }
 
-		return <<<HTML
-			<div class="pull-right">
-				<button type="button" class="btn btn-success btn-xs btn-mini"><i class="fa fa-user"></i> {$new}</button>
-			</div>
-HTML;
-	}
+    public function setResource($resource)
+    {
+        $this->resource = $resource;
+    }
+
+    public function getToken()
+    {
+        return csrf_token();
+    }
+
+    protected function getElementClass()
+    {
+        return '.grid-batch-'.$this->id;
+    }
+
+    abstract public function script();
 }

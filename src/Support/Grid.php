@@ -54,13 +54,17 @@ class Grid
 
     protected $tool;
 
+    public $perPages = [10, 20, 30, 50, 100];
+
+    public $perPage = 20;
+
     protected $options = [
-        'usePagination'     => true,
+        'usePaginator'     => true,
         'useFilter'         => true,
         'useExporter'       => true,
         'useActions'        => true,
         'useRowSelector'    => true,
-        'allowCreate'       => true,
+        'useCreate'       => true,
     ];
     public function __construct(Eloquent $model, Closure $builder)
     {
@@ -201,14 +205,19 @@ class Grid
         return $this->filter->render();
     }
 
-    public function disableCreate()
+    public function removeCreate()
     {
-        return $this->option('allowCreate', false);
+        return $this->option('useCreate', false);
     }
 
-    public function allowCreate()
+    public function useCreate()
     {
-        return $this->option('allowCreate');
+        return $this->option('useCreate');
+    }
+
+    public function tool(Closure $callback)
+    {
+        return call_user_func($callback, $this->tool);
     }
 
     /**
@@ -226,6 +235,28 @@ class Grid
         return new \Onini\Gayly\Support\Grid\Tool\CreateButton($this);
     }
 
+    public function paginator()
+    {
+        return new \Onini\Gayly\Support\Grid\Tool\Paginator($this);
+    }
+
+    public function removePaginator()
+    {
+        $this->option('usePaginator', false);
+
+        return $this;
+    }
+
+    public function usePaginator()
+    {
+        return $this->option('usePaginator');
+    }
+
+    public function perPages(array $perPages)
+    {
+        $this->perPages = $perPages;
+    }
+
     protected function variables()
     {
         $this->variables['grid'] = $this;
@@ -239,7 +270,7 @@ class Grid
         }
 
         $data = $this->processFilter();
-
+    
         // $this->prependRowSelectorColumn();
         // $this->appendActionsColumn();
 

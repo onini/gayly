@@ -11,11 +11,13 @@
 
 namespace Onini\Gayly\Support\Grid;
 
+use Closure;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Collection;
 use Onini\Gayly\Support\Grid;
 use Onini\Gayly\Support\Grid\Tool\RefreshButton;
 use Onini\Gayly\Support\Grid\Tool\AbstractTool;
+use Onini\Gayly\Support\Grid\Tool\ActionButton;
 
 class Tool implements Renderable
 {
@@ -43,6 +45,7 @@ class Tool implements Renderable
 
 	protected function defaultTool()
 	{
+		$this->append(new ActionButton());
 		$this->append(new RefreshButton());
 	}
 
@@ -70,6 +73,19 @@ class Tool implements Renderable
 		$this->tool->prepend($tool);
 
 		return $this;
+	}
+
+	/**
+	 *
+	 * @method action
+	 * @param  Closure $closure [description]
+	 * @return [type]           [description]
+	 */
+	public function action(Closure $closure)
+	{
+		call_user_func_array($closure, $this->tool->first(function ($tool) {
+			return $tool instanceof ActionButon;
+		}));
 	}
 
 	/**

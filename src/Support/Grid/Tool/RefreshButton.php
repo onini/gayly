@@ -18,7 +18,9 @@ class RefreshButton extends AbstractTool
 	{
 		$refresh = trans('gayly.refresh');
 		return <<<HTML
-			<button type="button" class="btn btn-info btn-xs btn-mini"><i class="fa fa-refresh"></i> {$refresh}</button>
+			<div class="pull-left">
+				<button type="button" class="btn btn-info btn-xs btn-mini m-l-10"><i class="fa fa-refresh"></i> {$refresh}</button>
+			</div>
 HTML;
 	}
 }

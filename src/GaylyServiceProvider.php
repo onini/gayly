@@ -130,17 +130,17 @@ class GaylyServiceProvider extends ServiceProvider
              * @var [type]
              */
             $router->group([
-                'middleware' => config('admin.route.middleware', 'gayly'),
+                'middleware' => config('gayly.route.middleware', 'gayly'),
             ], function ($router) {
                 $router->group([
                     'prefix'    =>  'auth',
                     'namespace' => 'Onini\\Gayly\\Controllers',
                 ], function ($router) {
-                    $router->resource('user', 'UserController', ['names' => config('admin.route.name', 'gayly.').'user']);
-                    $router->resource('role', 'Auth\RoleController', ['names' => config('admin.route.name', 'gayly.').'role']);
-                    $router->resource('permission', 'Auth\PermissionController', ['names' => config('admin.route.name', 'gayly.').'permission']);
-                    $router->resource('menu', 'MenuController', ['names' => config('admin.route.name', 'gayly.').'menu', 'except' => ['create']]);
-                    $router->resource('log', 'OperationLogController', ['names' => config('admin.route.name', 'gayly.').'log', 'only' => ['index', 'destroy']]);
+                    $router->resource('user', 'UserController', ['names' => config('gayly.route.name', 'gayly.').'user']);
+                    $router->resource('role', 'Auth\RoleController', ['names' => config('gayly.route.name', 'gayly.').'role']);
+                    $router->resource('permission', 'Auth\PermissionController', ['names' => config('gayly.route.name', 'gayly.').'permission']);
+                    $router->resource('menu', 'MenuController', ['names' => config('gayly.route.name', 'gayly.').'menu', 'except' => ['create']]);
+                    $router->resource('log', 'OperationLogController', ['names' => config('gayly.route.name', 'gayly.').'log', 'only' => ['index', 'destroy']]);
                 });
 
                 if (file_exists($routes = gayly_path('routes.php'))) {

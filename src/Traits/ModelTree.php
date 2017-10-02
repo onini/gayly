@@ -278,7 +278,7 @@ trait ModelTree
         static::saving(function (Model $branch) {
             $parentColumn = $branch->getParentColumn();
             if (Request::has($parentColumn) && Request::input($parentColumn) == $branch->getKey()) {
-                throw new \Exception(trans('admin.parent_select_error'));
+                throw new \Exception(trans('gayly.parent_select_error'));
             }
             if (Request::has('_order')) {
                 $order = Request::input('_order');
