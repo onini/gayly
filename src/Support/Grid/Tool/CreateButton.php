@@ -22,7 +22,7 @@ class CreateButton extends AbstractTool
 	 * @param  Grid        $grid [description]
 	 * @return [type]            [description]
 	 */
-	public function __constrcut(Grid $grid)
+	public function __construct(Grid $grid)
 	{
 		$this->grid = $grid;
 	}

@@ -221,6 +221,11 @@ class Grid
         return $this->tool->render();
     }
 
+    public function renderCreateButton()
+    {
+        return new \Onini\Gayly\Support\Grid\Tool\CreateButton($this);
+    }
+
     protected function variables()
     {
         $this->variables['grid'] = $this;

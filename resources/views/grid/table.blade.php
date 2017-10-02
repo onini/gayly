@@ -31,9 +31,7 @@
 					<li class="divider"></li>
 				</ul>
 			</div>
-			<div class="pull-right">
-				<button type="button" class="btn btn-success btn-xs btn-mini"><i class="fa fa-user"></i> 添加</button>
-			</div>
+			{!! $grid->renderCreateButton() !!}
 		</div>
 
 		<br>
