@@ -56,7 +56,7 @@ abstract class AbstractFilter
     /**
      * @var string
      */
-    protected $view = 'leaf::filter.where';
+    protected $view = 'gayly::filter.where';
 
     /**
      * AbstractFilter constructor.

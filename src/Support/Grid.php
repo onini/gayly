@@ -26,6 +26,7 @@ use Onini\Gayly\Support\Grid\Model;
 use Onini\Gayly\Support\Grid\Filter;
 use Onini\Gayly\Support\Grid\Column;
 use Onini\Gayly\Support\Grid\Row;
+use Onini\Gayly\Support\Grid\Tool;
 
 class Grid
 {
@@ -51,6 +52,8 @@ class Grid
 
     protected $view = 'gayly::grid.table';
 
+    protected $tool;
+
     protected $options = [
         'usePagination'     => true,
         'useFilter'         => true,
@@ -67,7 +70,13 @@ class Grid
         $this->rows = new Collection();
         $this->builder = $builder;
 
+        $this->setupTool();
         $this->setupFilter();
+    }
+
+    protected function setupTool()
+    {
+        $this->tool = new Tool($this);
     }
 
     protected function setupFilter()
@@ -188,7 +197,28 @@ class Grid
         if (!$this->option('useFilter')) {
             return '';
         }
+
         return $this->filter->render();
+    }
+
+    public function disableCreate()
+    {
+        return $this->option('allowCreate', false);
+    }
+
+    public function allowCreate()
+    {
+        return $this->option('allowCreate');
+    }
+
+    /**
+     * render tool
+     * @method renderHeaderTool
+     * @return [type]           [description]
+     */
+    public function renderHeaderTool()
+    {
+        return $this->tool->render();
     }
 
     protected function variables()

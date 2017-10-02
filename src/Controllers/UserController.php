@@ -31,7 +31,7 @@ class UserController extends Controller
     public function index()
     {
         return Gayly::content(function (Content $content) {
-            $content->title('控制面板');
+            $content->title('用户列表');
 
             $content->row($this->grid());
         });
@@ -112,7 +112,7 @@ class UserController extends Controller
             $grid->mobile('手机');
             $grid->wechat('微信');
             $grid->qq('QQ');
-            $grid->disableFilter();
+            // $grid->disableFilter();
             $grid->filter(function (Filter $filter) {
                 $filter->like('name');
             });

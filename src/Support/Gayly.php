@@ -160,7 +160,7 @@ class Gayly
     public static function script($script = '')
     {
         if (!empty($script)) {
-            self::$script = array_merge(self::$script, $script);
+            self::$script = array_merge(self::$script, (array) $script);
 
             return;
         }
