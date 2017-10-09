@@ -27,6 +27,8 @@ use Onini\Gayly\Support\Grid\Filter;
 use Onini\Gayly\Support\Grid\Column;
 use Onini\Gayly\Support\Grid\Row;
 use Onini\Gayly\Support\Grid\Tool;
+use Onini\Gayly\Support\Grid\Displayers\Actions;
+use Onini\Gayly\Support\Grid\Displayers\RowSelector;
 
 class Grid
 {
@@ -39,6 +41,8 @@ class Grid
     protected $rows;
 
     protected $rowsCallback;
+
+    protected $resource;
 
     protected $keyName = 'id';
 
@@ -58,6 +62,8 @@ class Grid
 
     public $perPage = 20;
 
+    protected $actionsCallback;
+
     protected $options = [
         'usePaginator'     => true,
         'useFilter'         => true,
@@ -68,6 +74,7 @@ class Grid
     ];
     public function __construct(Eloquent $model, Closure $builder)
     {
+        $this->keyName = $model->getKeyName();
         $this->model = new Model($model);
         $this->keyName = $model->getKeyName();
         $this->columns = new Collection();
@@ -127,6 +134,11 @@ class Grid
         $this->dbColumns = collect(Schema::connection($connection)->getColumnListing($this->model()->getTable()));
     }
 
+    public function getKeyName()
+    {
+        return $this->keyName ?: 'id';
+    }
+
     public function column($name, $label = '')
     {
         $relationName = $relationColumn = '';
@@ -164,25 +176,6 @@ class Grid
         foreach (func_get_args() as $column) {
             $this->column($column);
         }
-    }
-
-    /**
-     * Handle table column for grid.
-     *
-     * @param string $method
-     * @param string $label
-     *
-     * @return bool|Column
-     */
-    protected function handleTableColumn($method, $label)
-    {
-        if (empty($this->dbColumns)) {
-            $this->setDbColumns();
-        }
-        if ($this->dbColumns->has($method)) {
-            return $this->addColumn($method, $label);
-        }
-        return false;
     }
 
     public function processFilter()
@@ -235,6 +228,21 @@ class Grid
         return new \Onini\Gayly\Support\Grid\Tool\CreateButton($this);
     }
 
+    public function resource($path = null)
+    {
+        if (!empty($path)) {
+            $this->resource = $path;
+
+            return $this;
+        }
+
+        if (!empty($this->resource)) {
+            return $this->resource;
+        }
+
+        return app('request')->getPathInfo();
+    }
+
     public function paginator()
     {
         return new \Onini\Gayly\Support\Grid\Tool\Paginator($this);
@@ -263,6 +271,57 @@ class Grid
         return $this->variables;
     }
 
+    public function removeActions()
+    {
+        return $this->option('useActions', false);
+    }
+
+    public function actions(Closure $callback)
+    {
+        $this->actionsCallback = $callback;
+
+        return $this;
+    }
+
+    protected function appendActionsColumn()
+    {
+        if (!$this->option('useActions')) {
+            return;
+        }
+
+        $grid = $this;
+        $callback = $this->actionsCallback;
+        $column = $this->addColumn('__actions__', trans('gayly.action'));
+
+        $column->display(function ($value) use ($grid, $column, $callback) {
+            $actions = new Actions($value, $grid, $column, $this);
+
+            return $actions->display($callback);
+        });
+
+        $column->setAttributes(['width' => '80']);
+    }
+
+    protected function prependRowSelectorColumn()
+    {
+        if (!$this->option('useRowSelector')) {
+            return;
+        }
+
+        $grid = $this;
+
+        $column = new Column(Column::SELECT_COLUMN_NAME, ' ');
+        $column->setGrid($this)->display(function ($value) use ($grid, $column) {
+            $actions = new RowSelector($value, $grid, $column, $this);
+
+            return $actions->display();
+        });
+
+        $column->setAttributes(['width' => 40]);
+
+        $this->columns->prepend($column);
+    }
+
     public function build()
     {
         if ($this->builded) {
@@ -270,11 +329,11 @@ class Grid
         }
 
         $data = $this->processFilter();
-    
-        // $this->prependRowSelectorColumn();
-        // $this->appendActionsColumn();
 
-        // Column::setOriginalGridData($data);
+        $this->prependRowSelectorColumn();
+        $this->appendActionsColumn();
+
+        Column::setOriginalGridData($data);
 
         $this->columns->map(function (Column $column) use (&$data) {
             $data = $column->fill($data);
@@ -321,16 +380,99 @@ class Grid
         } catch (\Exception $e) {
             return Handler::renderException($e);
         }
+
         return view($this->view, $this->variables())->render();
+    }
+
+    /**
+     * Handle table column for grid.
+     *
+     * @param string $method
+     * @param string $label
+     *
+     * @return bool|Column
+     */
+    protected function handleTableColumn($method, $label)
+    {
+        if (empty($this->dbColumns)) {
+            $this->setDbColumns();
+        }
+
+        if ($this->dbColumns->has($method)) {
+            return $this->addColumn($method, $label);
+        }
+
+        return false;
+    }
+
+    /**
+     * Handle get mutator column for grid.
+     *
+     * @param string $method
+     * @param string $label
+     *
+     * @return bool|Column
+     */
+    protected function handleGetMutatorColumn($method, $label)
+    {
+        if ($this->model()->eloquent()->hasGetMutator($method)) {
+            return $this->addColumn($method, $label);
+        }
+
+        return false;
+    }
+
+    /**
+     * Handle relation column for grid.
+     *
+     * @param string $method
+     * @param string $label
+     *
+     * @return bool|Column
+     */
+    protected function handleRelationColumn($method, $label)
+    {
+        $model = $this->model()->eloquent();
+
+        if (!method_exists($model, $method)) {
+            return false;
+        }
+
+        if (!($relation = $model->$method()) instanceof Relation) {
+            return false;
+        }
+
+        if ($relation instanceof HasOne || $relation instanceof BelongsTo) {
+            $this->model()->with($method);
+
+            return $this->addColumn($method, $label)->setRelation($method);
+        }
+
+        if ($relation instanceof HasMany || $relation instanceof BelongsToMany || $relation instanceof MorphToMany) {
+            $this->model()->with($method);
+
+            return $this->addColumn($method, $label);
+        }
+
+        return false;
     }
 
     public function __call($method, $arguments)
     {
         $label = isset($arguments[0]) ? $arguments[0] : ucfirst($method);
         //
-        // if ($column = $this->handleTableColumn($method, $label)) {
-        //     return $column;
-        // }
+        if ($column = $this->handleGetMutatorColumn($method, $label)) {
+            return $column;
+        }
+
+        if ($column = $this->handleRelationColumn($method, $label)) {
+            return $column;
+        }
+
+        if ($column = $this->handleTableColumn($method, $label)) {
+            return $column;
+        }
+
         // dump($method);
         return $this->addColumn($method, $label);
     }

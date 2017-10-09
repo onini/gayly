@@ -163,6 +163,8 @@ class Column
         $this->grid = $grid;
 
         $this->setModel($grid->model()->eloquent());
+
+        return $this;
     }
 
     /**

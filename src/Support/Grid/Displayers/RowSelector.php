@@ -11,20 +11,25 @@ class RowSelector extends AbstractDisplayer
         Gayly::script($this->script());
 
         return <<<EOT
-<input type="checkbox" class="grid-row-checkbox" data-id="{$this->getKey()}" />
+
+<div class="checkbox check-success">
+    <input id="gayly-checkbox-{$this->getKey()}" type="checkbox" value="1" class="gayly-checkbox" data-id="{$this->getKey()}">
+    <label for="gayly-checkbox-{$this->getKey()}"></label>
+</div>
 EOT;
     }
 
     protected function script()
     {
-        return <<<'EOT'
-$('.grid-row-checkbox').iCheck({checkboxClass:'icheckbox_minimal-blue'}).on('ifChanged', function () {
-    if (this.checked) {
-        $(this).closest('tr').css('background-color', '#ffffd5');
-    } else {
-        $(this).closest('tr').css('background-color', '');
-    }
-});
-EOT;
+        return <<<SCRIPT
+
+        $('table .checkbox input').click( function() {
+            if($(this).is(':checked')){
+                $(this).parent().parent().parent().toggleClass('row_selected');
+            } else {
+                $(this).parent().parent().parent().toggleClass('row_selected');
+            }
+        });
+SCRIPT;
     }
 }

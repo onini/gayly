@@ -11,15 +11,29 @@
 
 namespace Onini\Gayly\Support\Grid\Tool;
 
+use Gayly;
+
 class RefreshButton extends AbstractTool
 {
 
+	protected function script()
+	{
+		return <<<SCRIPT
+
+		$('.gayly-refresh').click(function () {
+			location.reload();
+		});
+SCRIPT;
+	}
+
 	public function render()
 	{
+		Gayly::script($this->script());
+
 		$refresh = trans('gayly.refresh');
 		return <<<HTML
 			<div class="pull-left">
-				<button type="button" class="btn btn-info btn-xs btn-mini m-l-10"><i class="fa fa-refresh"></i> {$refresh}</button>
+				<button type="button" class="btn btn-info btn-xs btn-mini m-l-10 gayly-refresh"><i class="fa fa-refresh"></i> {$refresh}</button>
 			</div>
 HTML;
 	}

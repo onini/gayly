@@ -2,7 +2,7 @@
 
 namespace Onini\Gayly\Support\Grid\Displayers;
 
-use Onini\Gayly\Grid;
+use Onini\Gayly\Support\Grid;
 use Onini\Gayly\Support\Grid\Column;
 
 abstract class AbstractDisplayer

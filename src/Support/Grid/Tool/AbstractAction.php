@@ -35,7 +35,7 @@ abstract class AbstractAction
 
     protected function getElementClass()
     {
-        return '.grid-batch-'.$this->id;
+        return '.gayly-action-'.$this->id;
     }
 
     abstract public function script();

@@ -110,12 +110,11 @@ class Filter
 
         $script = <<<'EOT'
 
-$("#filter-modal .submit").click(function () {
-    $("#filter-modal").modal('toggle');
-    $('body').removeClass('modal-open');
-    $('.modal-backdrop').remove();
-});
-
+		$("#filter-modal .submit").click(function () {
+		    $("#filter-modal").modal('toggle');
+		    $('body').removeClass('modal-open');
+		    $('.modal-backdrop').remove();
+		});
 EOT;
         Gayly::script($script);
 

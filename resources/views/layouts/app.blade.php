@@ -81,15 +81,17 @@
 	<script src="{{ gayly_asset('vendor/gayly/assets/plugins/jquery-numberAnimate/jquery.animateNumbers.js') }}" type="text/javascript"></script>
 	<script src="{{ gayly_asset('vendor/gayly/assets/plugins/jquery-validation/js/jquery.validate.min.js') }}" type="text/javascript"></script>
 	<script src="{{ gayly_asset('vendor/gayly/assets/plugins/bootstrap-select2/select2.min.js') }}" type="text/javascript"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<!-- END CORE JS DEPENDECENCIES-->
 	<!-- BEGIN CORE TEMPLATE JS -->
 	<script src="{{ gayly_asset('vendor/gayly/webarch/js/webarch.js') }}" type="text/javascript"></script>
 	<script src="{{ gayly_asset('vendor/gayly/assets/js/chat.js') }}" type="text/javascript"></script>
 	<!-- BEGIN PAGE LEVEL JS -->
 	@stack('js')
-	{!! Gayly::js() !!}
+{!! Gayly::js() !!}
 	<!-- END PAGE LEVEL PLUGINS -->
 	@stack('script')
+{!! Gayly::script() !!}
 	<!-- END CORE TEMPLATE JS -->
 </body>
 

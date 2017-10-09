@@ -37,7 +37,7 @@ class CreateButton extends AbstractTool
 
 		return <<<HTML
 			<div class="pull-right">
-				<button type="button" class="btn btn-success btn-xs btn-mini"><i class="fa fa-user"></i> {$new}</button>
+				<a href="{$this->grid->resource()}/create" class="btn btn-success btn-xs btn-mini"><i class="fa fa-user"></i> {$new}</a>
 			</div>
 HTML;
 	}

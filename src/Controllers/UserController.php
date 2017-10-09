@@ -14,12 +14,12 @@ namespace Onini\Gayly\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Gayly;
-use Onini\Gayly\Support\{
-    Layout\Row,
-    Layout\Content,
-    Grid,
-    Grid\Filter
-};
+use Onini\Gayly\Support\Layout\Row;
+use Onini\Gayly\Support\Layout\Content;
+use Onini\Gayly\Support\Grid;
+use Onini\Gayly\Support\Grid\Filter;
+use Onini\Gayly\Models\SystemUser;
+use Onini\Gayly\Support\Grid\Column;
 
 class UserController extends Controller
 {
@@ -44,7 +44,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return Gayly::content(function (Content $content) {
+            $content->title('创建用户');
+        });
     }
 
     /**
@@ -77,7 +79,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        return Gayly::content(function (Content $content) {
+            $content->title('修改用户');
+        });
     }
 
     /**
@@ -105,7 +109,7 @@ class UserController extends Controller
 
     protected function grid()
     {
-        return Gayly::grid(\Onini\Gayly\Models\SystemUser::class, function (Grid $grid) {
+        return Gayly::grid(SystemUser::class, function (Grid $grid) {
             // $grid->id('ID');
 			$grid->name('昵称');
             $grid->email('邮箱');

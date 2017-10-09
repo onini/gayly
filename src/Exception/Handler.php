@@ -35,7 +35,7 @@ class Handler
         $errors = new ViewErrorBag();
         $errors->put('exception', $error);
 
-        return view('admin::partials.exception', compact('errors'))->render();
+        return view('gayly::partials.exception', compact('errors'))->render();
     }
 
     /**

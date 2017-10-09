@@ -253,6 +253,7 @@ class Model
         $this->setSort();
         $this->setPaginate();
 
+        // 调用model内paginate 返回LengthAwarePaginator实例
         $this->queries->unique()->each(function ($query) {
             $this->model = call_user_func_array([$this->model, $query['method']], $query['arguments']);
         });

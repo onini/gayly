@@ -12,54 +12,97 @@
 namespace Onini\Gayly\Support\Grid\Tool;
 
 use Illuminate\Support\Collection;
+use Gayly;
 
 class ActionButton extends AbstractTool
 {
+    protected $action;
 
-	protected $action;
+    protected $delete = true;
 
-	protected $delete = true;
+    public function __construct()
+    {
+        $this->action = new Collection();
 
-	public function __construct()
-	{
-		$this->action = new Collection();
+        $this->appendDefaultAction();
+    }
 
-		$this->appendDefaultAction();
-	}
+    protected function appendDefaultAction()
+    {
+        $this->add(trans('gayly.delete'), new DeleteAction());
+    }
 
-	protected function appendDefaultAction()
-	{
-		$this->add(trans('gayly.delete'), new DeleteAction());
-	}
+    public function removeDelete()
+    {
+        $this->delete = false;
 
-	public function removeDelete()
-	{
-		$this->delete = false;
+        return $this;
+    }
 
-		return $this;
-	}
+    public function add($title, AbstractAction $abstract)
+    {
+        $id = $this->action->count();
 
-	public function add($title, AbstractAction $abstract)
-	{
-		$id = $this->action->count();
-
-		$abstract->setId($id);
+        $abstract->setId($id);
 
         $this->action->push(compact('id', 'title', 'abstract'));
 
         return $this;
-	}
+    }
 
-	public function render()
-	{
-		if (!$this->delete) {
-			$this->action->shift();
+    protected function setUpScripts()
+    {
+        Gayly::script($this->script());
+
+        foreach ($this->action as $action) {
+            $abstract = $action['abstract'];
+            $abstract->setResource($this->grid->resource());
+
+            Gayly::script($abstract->script());
+        }
+    }
+
+
+    protected function script()
+    {
+        return <<<EOT
+
+		$('#gayly-check-all').on('click', function () {
+			if ($(this).is(':checked')) {
+                $('.gayly-checkbox').attr('checked', true);
+				// $('.gayly-checkbox').trigger('click');
+				$('.gayly-checkbox').parents('tr').addClass('row_selected');
+			} else {
+                $('.gayly-checkbox').attr('checked', false);
+				// $('.gayly-checkbox').trigger('click');
+				$('.gayly-checkbox').parents('tr').removeClass('row_selected');
+			}
+		});
+
+		var selectedRows = function () {
+		    var selected = [];
+		    $('.gayly-checkbox:checked').each(function(){
+		        selected.push($(this).data('id'));
+		    });
+
+		    return selected;
 		}
 
-		if ($this->action->isEmpty()) {
-			return '';
-		}
+EOT;
+    }
 
-		return view('gayly::grid.action', ['action' => $this->action])->render();
-	}
+    public function render()
+    {
+        if (!$this->delete) {
+            $this->action->shift();
+        }
+
+        if ($this->action->isEmpty()) {
+            return '';
+        }
+
+		$this->setUpScripts();
+
+        return view('gayly::grid.action', ['action' => $this->action])->render();
+    }
 }

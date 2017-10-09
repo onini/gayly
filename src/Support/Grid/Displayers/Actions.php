@@ -153,8 +153,9 @@ class Actions extends AbstractDisplayer
     protected function editAction()
     {
         return <<<EOT
-<a href="{$this->getResource()}/{$this->getKey()}/edit">
-    <i class="fa fa-edit"></i>
+
+<a href="{$this->getResource()}/{$this->getKey()}/edit" class="label label-success">
+    <i class="fa fa-edit" style="margin-right: -4px"></i>
 </a>
 EOT;
     }
@@ -172,50 +173,43 @@ EOT;
 
         $script = <<<SCRIPT
 
-$('.grid-row-delete').unbind('click').click(function() {
+        $('.grid-row-delete').unbind('click').click(function() {
 
-    var id = $(this).data('id');
+            var id = $(this).data('id');
 
-    swal({
-      title: "$deleteConfirm",
-      type: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#DD6B55",
-      confirmButtonText: "$confirm",
-      closeOnConfirm: false,
-      cancelButtonText: "$cancel"
-    },
-    function(){
-        $.ajax({
-            method: 'post',
-            url: '{$this->getResource()}/' + id,
-            data: {
-                _method:'delete',
-                _token:LA.token,
-            },
-            success: function (data) {
-                $.pjax.reload('#pjax-container');
-
-                if (typeof data === 'object') {
-                    if (data.status) {
-                        swal(data.message, '', 'success');
-                    } else {
-                        swal(data.message, '', 'error');
-                    }
-                }
-            }
+            swal({
+			  	title: "$deleteConfirm",
+			  	icon: "warning",
+			  	buttons: ["$cancel", "$confirm"],
+			  	dangerMode: true,
+			})
+			.then((willDelete) => {
+			  	if (willDelete) {
+					$.ajax({
+						method: 'post',
+			            url: '{$this->getResource()}/' + id,
+			            data: {
+			                _method:'delete',
+			                _token:Gayly.token,
+			            },
+			            success: function (data) {
+			                console.log(data);
+			            }
+					})
+			  	}
+			});
         });
-    });
-});
 
 SCRIPT;
 
-        Admin::script($script);
+        Gayly::script($script);
 
         return <<<EOT
-<a href="javascript:void(0);" data-id="{$this->getKey()}" class="grid-row-delete">
+
+<a href="javascript:void(0);" data-id="{$this->getKey()}" class="grid-row-delete label label-danger m-l-5">
     <i class="fa fa-trash"></i>
 </a>
+
 EOT;
     }
 }

@@ -54,12 +54,6 @@
 		<table class="table table-striped table-flip-scroll cf">
 			<thead class="cf">
 				<tr>
-					<th width="50">
-						<div class="checkbox check-default ">
-							<input id="checkbox1" type="checkbox" value="1" class="checkall">
-							<label for="checkbox1"></label>
-						</div>
-					</th>
 					@foreach($grid->columns() as $column)
 					<th>{{ $column->getLabel() }}</th>
 					@endforeach
@@ -68,14 +62,9 @@
 			<tbody>
 				@foreach($grid->rows() as $row)
 				<tr {!! $row->getRowAttributes() !!}>
-					<td>
-						<div class="checkbox check-default">
-							<input id="checkbox2" type="checkbox" value="1">
-							<label for="checkbox2"></label>
-						</div>
-					</td>
 					@foreach($grid->columnNames as $name)
-					<td {!! $row->getColumnAttributes($name) !!}> {!! $row->column($name) !!}
+					<td {!! $row->getColumnAttributes($name) !!}>
+						{!! $row->column($name) !!}
 					</td>
 					@endforeach
 				</tr>
