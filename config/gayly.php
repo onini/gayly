@@ -45,7 +45,7 @@ return [
     ],
 
     // Install directory
-    'directory'    =>    app_path('Gayly'),
+    'directory'    =>    'Gayly',
 
     // Https
     'secure'    =>    false,
