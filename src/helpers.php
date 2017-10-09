@@ -19,7 +19,7 @@ if (!function_exists('gayly_path')) {
      */
     function gayly_path($path = '')
     {
-        return ucfirst(config('gayly.directory')).($path ? DIRECTORY_SEPARATOR.$path : $path);
+        return ucfirst(app_path(config('gayly.directory'))).($path ? DIRECTORY_SEPARATOR.$path : $path);
     }
 }
 
