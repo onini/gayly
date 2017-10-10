@@ -150,7 +150,7 @@
 							</li>
 							<li class="divider"></li>
 							<li>
-								<a href="{{ gayly_url('auth/logout') }}"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;注销</a>
+								<a href="{{ gayly_base_path('auth/logout') }}"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;注销</a>
 							</li>
 						</ul>
 					</li>

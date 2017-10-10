@@ -139,7 +139,7 @@ class PermissionController extends Controller
             });
 
             $grid->filter(function ($filter) {
-               $filter->equal('ip', 'IP');
+               $filter->equal('slug', '标识');
            });
         });
     }

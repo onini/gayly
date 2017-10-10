@@ -147,14 +147,13 @@ class OperationLogController extends Controller
             });
 
             $grid->removeCreate();
-
             $grid->filter(function ($filter) {
                $filter->equal('user_id', 'User')->select(SystemUser::all()->pluck('name', 'id'));
                $filter->equal('method')->select(array_combine(OperationLog::$methods, OperationLog::$methods));
                $filter->like('path', '路径');
                $filter->equal('ip', 'IP');
            });
-           
+
         });
     }
 }

@@ -40,7 +40,7 @@
 	@include('gayly::layouts.header')
 	<!-- END HEADER -->
 	<!-- BEGIN CONTAINER -->
-	<div class="page-container row-fluid">
+	<div class="page-container row-fluid" id="pjax-container">
 		<!-- BEGIN SIDEBAR -->
 		@include('gayly::layouts.sidebar')
 		<!-- END SIDEBAR -->
@@ -72,7 +72,7 @@
 	</div>
 	<!-- END CONTAINER -->
 	<!-- END CONTAINER -->
-	<script src="{{ gayly_asset('vendor/gayly/assets/plugins/pace/pace.min.js') }}" type="text/javascript"></script>
+	{{-- <script src="{{ gayly_asset('vendor/gayly/assets/plugins/pace/pace.min.js') }}" type="text/javascript"></script> --}}
 	<!-- BEGIN JS DEPENDECENCIES-->
 	<script src="{{ gayly_asset('vendor/gayly/assets/plugins/jquery/jquery-1.11.3.min.js') }}" type="text/javascript"></script>
 	<script src="{{ gayly_asset('vendor/gayly/assets/plugins/bootstrapv3/js/bootstrap.min.js') }}" type="text/javascript"></script>
@@ -82,6 +82,7 @@
 	<script src="{{ gayly_asset('vendor/gayly/assets/plugins/jquery-numberAnimate/jquery.animateNumbers.js') }}" type="text/javascript"></script>
 	<script src="{{ gayly_asset('vendor/gayly/assets/plugins/jquery-validation/js/jquery.validate.min.js') }}" type="text/javascript"></script>
 	<script src="{{ gayly_asset('vendor/gayly/assets/plugins/bootstrap-select2/select2.min.js') }}" type="text/javascript"></script>
+	<script src="{{ gayly_asset('vendor/gayly/assets/plugins/jquery-pjax/jquery.pjax.js') }}" type="text/javascript"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<!-- END CORE JS DEPENDECENCIES-->
 	<!-- BEGIN CORE TEMPLATE JS -->

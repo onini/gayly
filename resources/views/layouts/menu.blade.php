@@ -6,7 +6,7 @@
             @if(url()->isValidUrl($item['uri']))
                 <a href="{{ $item['uri'] }}" target="_blank">
             @else
-                 <a href="{{ gayly_url($item['uri']) }}">
+                 <a href="{{ gayly_base_path($item['uri']) }}">
             @endif
 				<i class="material-icons">{{ $item['icon'] }}</i>
 				<span class="title">{{ $item['title'] }}</span>

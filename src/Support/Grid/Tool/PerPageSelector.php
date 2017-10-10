@@ -24,7 +24,7 @@ class PerPageSelector extends AbstractTool
     {
         $this->grid = $grid;
 
-		$this->initialize();
+        $this->initialize();
     }
 
     protected function initialize()
@@ -46,13 +46,50 @@ class PerPageSelector extends AbstractTool
         ->sort();
     }
 
-	public function render()
-	{
-		return '';
-	}
+    /**
+     * Render PerPageSelector。
+     *
+     * @return string
+     */
+    public function render()
+    {
+        Gayly::script($this->script());
 
-	protected function script()
-	{
-		return '';
-	}
+        $options = $this->getOptions()->map(function ($option) {
+            $selected = ($option == $this->perPage) ? 'selected' : '';
+            $url = app('request')->fullUrlWithQuery([$this->perPageName => $option]);
+
+            return "<option value=\"$url\" $selected>$option</option>";
+        })->implode("\r\n");
+
+        $show = trans('gayly.show');
+        $entries = trans('gayly.entries');
+
+        return <<<EOT
+
+<label class="control-label pull-right" style="margin-right: 10px; font-weight: 100;">
+
+        <select class="input-sm gayly-perpage form-control" name="per-page">
+            $options
+        </select>
+    </label>
+
+EOT;
+    }
+
+    /**
+     * Script of PerPageSelector.
+     *
+     * @return string
+     */
+    protected function script()
+    {
+        return <<<'EOT'
+
+$('.gayly-perpage').on("change", function(e) {
+    
+});
+
+EOT;
+    }
 }

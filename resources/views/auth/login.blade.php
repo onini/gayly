@@ -43,7 +43,7 @@
 			</div>
 			<div class="col-md-5">
 				<br>
-				<form action="{{ gayly_url('auth/login') }}" class="login-form validate" id="login-form" method="post" name="login-form">
+				<form action="{{ gayly_base_path('auth/login') }}" class="login-form validate" id="login-form" method="post" name="login-form">
 					{{ csrf_field() }}
 					<div class="row">
 						<div class="form-group col-md-10">

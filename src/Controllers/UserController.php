@@ -133,14 +133,14 @@ class UserController extends Controller
 
             // $grid->paginate(1);
 
-            // $grid->tool(function (Tool $tool) {
-            //     $tool->batch(function (ActionButton $actions) {
-            //         $actions->removeDelete();
-            //         $actions->add('测试', new \Onini\Gayly\Support\Grid\Tool\DeleteAction());
-            //     });
-            // });
+            $grid->tool(function (Tool $tool) {
+                $tool->batch(function (ActionButton $actions) {
+                    $actions->removeDelete();
+                    $actions->add('测试', new \Onini\Gayly\Support\Grid\Tool\DeleteAction());
+                });
+            });
 
-            $grid->removeRowSelector();
+            // $grid->removeRowSelector();
 
         });
     }

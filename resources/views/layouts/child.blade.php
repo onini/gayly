@@ -3,7 +3,7 @@
      <li @if (request()->getPathInfo() == gayly_base_path($item['uri']))
          class="active"
      @endif>
-    	 <a href="{{ gayly_url($item['uri']) }}">{{ $item['title'] }}</a>
+    	 <a href="{{ gayly_base_path($item['uri']) }}">{{ $item['title'] }}</a>
      </li>
  @else
      <li class="">
