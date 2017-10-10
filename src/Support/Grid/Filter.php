@@ -39,6 +39,7 @@ class Filter
 		$this->model = $model;
 
 		$pk = $this->model->eloquent()->getKeyName();
+		// 添加默认ID
 		$this->equal($pk, strtoupper($pk));
 	}
 
@@ -49,7 +50,7 @@ class Filter
         return $this;
     }
 
-	public function disableIdFilter()
+	public function removeIdFilter()
     {
         $this->useIdFilter = false;
     }
@@ -73,7 +74,7 @@ class Filter
         }
 
         $conditions = [];
-
+		// 组装where
         foreach ($this->filters() as $filter) {
             $conditions[] = $filter->condition($params);
         }
@@ -108,15 +109,15 @@ class Filter
             return '';
         }
 
-        $script = <<<'EOT'
-
-		$("#filter-modal .submit").click(function () {
-		    $("#filter-modal").modal('toggle');
-		    $('body').removeClass('modal-open');
-		    $('.modal-backdrop').remove();
-		});
-EOT;
-        Gayly::script($script);
+//         $script = <<<'EOT'
+//
+// 		$("#filter-modal .submit").click(function () {
+// 		    $("#filter-modal").modal('toggle');
+// 		    $('body').removeClass('modal-open');
+// 		    $('.modal-backdrop').remove();
+// 		});
+// EOT;
+//         Gayly::script($script);
 
         return view($this->view)->with([
             'action'    => $this->action ?: $this->urlWithoutFilters(),

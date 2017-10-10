@@ -13,10 +13,16 @@ namespace Onini\Gayly\Support\Grid\Filter;
 
 use Gayly;
 
-class Like extends AbstractFilter
+class Ilike extends AbstractFilter
 {
-
-	public function condition($inputs)
+    /**
+     * Get condition of this filter.
+     *
+     * @param array $inputs
+     *
+     * @return array|mixed|void
+     */
+    public function condition($inputs)
     {
         $value = array_get($inputs, $this->column);
 
@@ -30,6 +36,6 @@ class Like extends AbstractFilter
 
         $this->value = $value;
 
-        return $this->buildCondition($this->column, 'like', "%{$this->value}%");
+        return $this->buildCondition($this->column, 'ilike', "%{$this->value}%");
     }
 }

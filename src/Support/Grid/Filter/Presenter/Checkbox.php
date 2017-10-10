@@ -9,27 +9,16 @@
 // | Author: gayly <tthd@163.com>
 // +----------------------------------------------------------------------
 
-namespace Onini\Gayly\Support\Grid\Filter;
+namespace Onini\Gayly\Support\Grid\Filter\Presenter;
 
 use Gayly;
 
-class Like extends AbstractFilter
+class Checkbox extends Radio
 {
-
-	public function condition($inputs)
+    protected function prepare() : void
     {
-        $value = array_get($inputs, $this->column);
+        $script = "$('.{$this->filter->getId()}').iCheck({checkboxClass:'icheckbox_minimal-blue'});";
 
-        if (is_array($value)) {
-            $value = array_filter($value);
-        }
-
-        if (is_null($value) || empty($value)) {
-            return;
-        }
-
-        $this->value = $value;
-
-        return $this->buildCondition($this->column, 'like', "%{$this->value}%");
+        Gayly::script($script);
     }
 }

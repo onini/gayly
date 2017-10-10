@@ -69,7 +69,7 @@ class Actions extends AbstractDisplayer
      *
      * @return void.
      */
-    public function disableDelete()
+    public function removeDelete()
     {
         $this->allowDelete = false;
     }
@@ -79,7 +79,7 @@ class Actions extends AbstractDisplayer
      *
      * @return void.
      */
-    public function disableEdit()
+    public function removeEdit()
     {
         $this->allowEdit = false;
     }
@@ -193,7 +193,13 @@ EOT;
 			                _token:Gayly.token,
 			            },
 			            success: function (data) {
-			                console.log(data);
+                            if (typeof data === 'object') {
+                                const type = data.status ? 'success' : 'error' ;
+                                swal(data.message, '', type)
+                                .then((value) => {
+                                    location.reload();
+                                });
+                            }
 			            }
 					})
 			  	}

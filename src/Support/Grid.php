@@ -15,6 +15,7 @@ use Closure;
 use Onini\Gayly\Exception\Handler;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
@@ -72,6 +73,7 @@ class Grid
         'useRowSelector'    => true,
         'useCreate'       => true,
     ];
+
     public function __construct(Eloquent $model, Closure $builder)
     {
         $this->keyName = $model->getKeyName();
@@ -243,6 +245,19 @@ class Grid
         return app('request')->getPathInfo();
     }
 
+    /**
+     * set perpage
+     * @method paginate
+     * @param  integer  $perPage [description]
+     * @return [type]            [description]
+     */
+    public function paginate($perPage = 20)
+    {
+        $this->perPage = $perPage;
+
+        $this->model()->paginate($perPage);
+    }
+
     public function paginator()
     {
         return new \Onini\Gayly\Support\Grid\Tool\Paginator($this);
@@ -265,11 +280,75 @@ class Grid
         $this->perPages = $perPages;
     }
 
+    /**
+         * Register column displayers.
+         *
+         * @return void.
+         */
+    public static function registerColumnDisplayer()
+    {
+        $map = [
+                'editable'      => \Onini\Gayly\Support\Grid\Displayers\Editable::class,
+                'switch'        => \Onini\Gayly\Support\Grid\Displayers\SwitchDisplay::class,
+                'switchGroup'   => \Onini\Gayly\Support\Grid\Displayers\SwitchGroup::class,
+                'select'        => \Onini\Gayly\Support\Grid\Displayers\Select::class,
+                'image'         => \Onini\Gayly\Support\Grid\Displayers\Image::class,
+                'label'         => \Onini\Gayly\Support\Grid\Displayers\Label::class,
+                'button'        => \Onini\Gayly\Support\Grid\Displayers\Button::class,
+                'link'          => \Onini\Gayly\Support\Grid\Displayers\Link::class,
+                'badge'         => \Onini\Gayly\Support\Grid\Displayers\Badge::class,
+                'progressBar'   => \Onini\Gayly\Support\Grid\Displayers\ProgressBar::class,
+                'radio'         => \Onini\Gayly\Support\Grid\Displayers\Radio::class,
+                'checkbox'      => \Onini\Gayly\Support\Grid\Displayers\Checkbox::class,
+                'orderable'     => \Onini\Gayly\Support\Grid\Displayers\Orderable::class,
+            ];
+
+        foreach ($map as $abstract => $class) {
+            Column::extend($abstract, $class);
+        }
+    }
+
+    /**
+     * Add variables to grid view.
+     *
+     * @param array $variables
+     *
+     * @return $this
+     */
+    public function with($variables = [])
+    {
+        $this->variables = $variables;
+
+        return $this;
+    }
+
+    /**
+     * Get all variables will used in grid view.
+     *
+     * @return array
+     */
     protected function variables()
     {
         $this->variables['grid'] = $this;
+
         return $this->variables;
     }
+
+    /**
+     * Set a view to render.
+     *
+     * @param string $view
+     * @param array  $variables
+     */
+    public function setView($view, $variables = [])
+    {
+        if (!empty($variables)) {
+            $this->with($variables);
+        }
+
+        $this->view = $view;
+    }
+
 
     public function removeActions()
     {
@@ -300,6 +379,15 @@ class Grid
         });
 
         $column->setAttributes(['width' => '80']);
+    }
+
+    public function removeRowSelector()
+    {
+        $this->tool(function ($tool) {
+            $tool->removeActionButton();
+        });
+
+        return $this->option('useRowSelector', false);
     }
 
     protected function prependRowSelectorColumn()

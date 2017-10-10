@@ -50,7 +50,11 @@ class DeleteAction extends AbstractAction
 			                _token:Gayly.token,
 			            },
 			            success: function (data) {
-			                console.log(data);
+							const type = data.status ? 'success' : 'error' ;
+							swal(data.message, '', type)
+							.then((value) => {
+								location.reload();
+							});
 			            }
 					})
 			  	}

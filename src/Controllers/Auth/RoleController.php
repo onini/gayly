@@ -13,6 +13,11 @@ namespace Onini\Gayly\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Gayly;
+use Onini\Gayly\Models\Role;
+use Onini\Gayly\Support\Grid\Displayers\Actions;
+use Onini\Gayly\Support\Grid\Tool;
+use Onini\Gayly\Support\Grid\Tool\ActionButton;
 
 class RoleController extends Controller
 {
@@ -23,7 +28,10 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        return Gayly::content(function ($content) {
+            $content->title('角色列表');
+            $content->row($this->grid());
+        });
     }
 
     /**
@@ -90,5 +98,34 @@ class RoleController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    protected function grid()
+    {
+        return Gayly::grid(Role::class, function ($grid) {
+            $grid->id('ID')->sortable()->setAttributes(['width' => 80]);
+            $grid->slug(trans('gayly.slug'));
+            $grid->name(trans('gayly.name'));
+
+            $grid->permissions(trans('gayly.permission'))->pluck('name')->label();
+
+            $grid->created_at(trans('gayly.created_at'));
+            $grid->updated_at(trans('gayly.updated_at'));
+
+            $grid->actions(function (Actions $actions) {
+                if ($actions->row->slug == 'administrator') {
+                    $actions->removeDelete();
+                }
+            });
+
+            $grid->tool(function (Tool $tool) {
+                $tool->batch(function (ActionButton $actions) {
+                    $actions->removeDelete();
+                });
+            });
+
+            $grid->removeRowSelector();
+
+        });
     }
 }

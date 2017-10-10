@@ -13,23 +13,21 @@ namespace Onini\Gayly\Support\Grid\Filter;
 
 use Gayly;
 
-class Like extends AbstractFilter
+class NotEqual extends AbstractFilter
 {
-
-	public function condition($inputs)
+    /**
+     * {@inheritdoc}
+     */
+    public function condition($inputs)
     {
         $value = array_get($inputs, $this->column);
 
-        if (is_array($value)) {
-            $value = array_filter($value);
-        }
-
-        if (is_null($value) || empty($value)) {
+        if (!isset($value)) {
             return;
         }
 
         $this->value = $value;
 
-        return $this->buildCondition($this->column, 'like', "%{$this->value}%");
+        return $this->buildCondition($this->column, '!=', $this->value);
     }
 }

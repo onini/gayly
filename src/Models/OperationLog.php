@@ -28,6 +28,13 @@ class OperationLog extends Model
         'user_id', 'path', 'method', 'ip', 'input'
     ];
 
+    public static $methodColors = [
+        'GET'       => 'success',
+        'POST'      => 'warning',
+        'PUT'       => 'info',
+        'DELETE'    => 'important',
+    ];
+
     /**
      * http method
      * @var [type]

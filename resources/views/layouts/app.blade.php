@@ -22,6 +22,7 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link href="{{ gayly_asset('vendor/gayly/assets/plugins/animate.min.css') }}" rel="stylesheet" type="text/css" />
 	<link href="{{ gayly_asset('vendor/gayly/assets/plugins/jquery-scrollbar/jquery.scrollbar.css') }}" rel="stylesheet" type="text/css" />
+	<link href="{{ gayly_asset('vendor/gayly/assets/plugins/bootstrap-select2/select2.css') }}" rel="stylesheet" type="text/css" media="screen" />
 	<!-- END PLUGIN CSS -->
 	<!-- BEGIN CORE CSS FRAMEWORK -->
 	<link href="{{ gayly_asset('vendor/gayly/webarch/css/webarch.css') }}" rel="stylesheet" type="text/css" />

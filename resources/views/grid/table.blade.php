@@ -19,13 +19,6 @@
 		<div class="pull-right">
 			{!! $grid->renderFilter() !!}
 			<div class="btn-group pull-right m-l-10">
-			    <button href="" class="btn btn-mini btn-primary" data-toggle="modal" data-target="#filter-modal">
-					<i class="fa fa-search"></i>
-					搜索
-				</button>
-			    <button class="btn btn-mini btn-info"><i class="fa fa-undo"></i> 重置</button>
-			</div>
-			<div class="btn-group pull-right m-l-10">
 			    <button href="" class="btn btn-mini btn-white" data-toggle="modal" data-target="#filter-modal">
 					<i class="fa fa-file-excel-o"></i>
 				</button>
@@ -39,14 +32,6 @@
 					<i class="fa fa-reorder"></i>
 				</button>
 			</div>
-			{{-- <div class="btn-group pull-right m-l-10">
-				<button class="btn btn-mini btn-success btn-demo-space"><i class="fa fa-file-excel-o"></i> 导出</button>
-				<button class="btn btn-mini btn-success dropdown-toggle btn-demo-space" data-toggle="dropdown"> <span class="caret"></span> </button>
-				<ul class="dropdown-menu">
-					<li><a href="#">Excel</a></li>
-					<li class="divider"></li>
-				</ul>
-			</div> --}}
 			{!! $grid->renderCreateButton() !!}
 		</div>
 
@@ -55,7 +40,7 @@
 			<thead class="cf">
 				<tr>
 					@foreach($grid->columns() as $column)
-					<th>{{ $column->getLabel() }}</th>
+					<th>{{ $column->getLabel() }}{!! $column->sorter() !!}</th>
 					@endforeach
 				</tr>
 			</thead>

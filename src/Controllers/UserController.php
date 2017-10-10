@@ -20,6 +20,9 @@ use Onini\Gayly\Support\Grid;
 use Onini\Gayly\Support\Grid\Filter;
 use Onini\Gayly\Models\SystemUser;
 use Onini\Gayly\Support\Grid\Column;
+use Onini\Gayly\Support\Grid\Displayers\Actions;
+use Onini\Gayly\Support\Grid\Tool;
+use Onini\Gayly\Support\Grid\Tool\ActionButton;
 
 class UserController extends Controller
 {
@@ -111,15 +114,34 @@ class UserController extends Controller
     {
         return Gayly::grid(SystemUser::class, function (Grid $grid) {
             // $grid->id('ID');
-			$grid->name('昵称');
+			$grid->name('昵称')->sortable();
             $grid->email('邮箱');
             $grid->mobile('手机');
             $grid->wechat('微信');
             $grid->qq('QQ');
             // $grid->disableFilter();
             $grid->filter(function (Filter $filter) {
-                $filter->like('name');
+                $filter->removeIdFilter();
+                $filter->like('name', '用户名');
             });
+
+            $grid->actions(function (Actions $actions) {
+                if ($actions->getKey() === 1) {
+                    $actions->removeDelete();
+                }
+            });
+
+            // $grid->paginate(1);
+
+            // $grid->tool(function (Tool $tool) {
+            //     $tool->batch(function (ActionButton $actions) {
+            //         $actions->removeDelete();
+            //         $actions->add('测试', new \Onini\Gayly\Support\Grid\Tool\DeleteAction());
+            //     });
+            // });
+
+            $grid->removeRowSelector();
+
         });
     }
 }

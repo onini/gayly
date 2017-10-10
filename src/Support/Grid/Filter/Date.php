@@ -13,23 +13,25 @@ namespace Onini\Gayly\Support\Grid\Filter;
 
 use Gayly;
 
-class Like extends AbstractFilter
+class Date extends AbstractFilter
 {
+    /**
+     * {@inheritdoc}
+     */
+    protected $query = 'whereDate';
 
-	public function condition($inputs)
+    /**
+     * @var string
+     */
+    protected $fieldName = 'date';
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __construct($column, $label = '')
     {
-        $value = array_get($inputs, $this->column);
+        parent::__construct($column, $label);
 
-        if (is_array($value)) {
-            $value = array_filter($value);
-        }
-
-        if (is_null($value) || empty($value)) {
-            return;
-        }
-
-        $this->value = $value;
-
-        return $this->buildCondition($this->column, 'like', "%{$this->value}%");
+        $this->{$this->fieldName}();
     }
 }

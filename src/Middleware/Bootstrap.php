@@ -9,27 +9,26 @@
 // | Author: gayly <tthd@163.com>
 // +----------------------------------------------------------------------
 
-namespace Onini\Gayly\Support\Grid\Filter;
+namespace Onini\Gayly\Middleware;
 
-use Gayly;
+use Closure;
+use Illuminate\Support\Facades\Auth;
+use Onini\Gayly\Support\Grid;
 
-class Like extends AbstractFilter
+class Bootstrap
 {
-
-	public function condition($inputs)
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @param  string|null  $guard
+     * @return mixed
+     */
+    public function handle($request, Closure $next)
     {
-        $value = array_get($inputs, $this->column);
+        Grid::registerColumnDisplayer();
 
-        if (is_array($value)) {
-            $value = array_filter($value);
-        }
-
-        if (is_null($value) || empty($value)) {
-            return;
-        }
-
-        $this->value = $value;
-
-        return $this->buildCondition($this->column, 'like', "%{$this->value}%");
+        return $next($request);
     }
 }

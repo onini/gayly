@@ -89,6 +89,40 @@ class Tool implements Renderable
 	}
 
 	/**
+     * Disable refresh button.
+     *
+     * @return void
+     */
+    public function removeRefreshButton()
+    {
+        $this->tool = $this->tool->reject(function ($tool) {
+            return $tool instanceof RefreshButton;
+        });
+    }
+
+    /**
+     * Disable batch actions.
+     *
+     * @return void
+     */
+    public function removeActionButton()
+    {
+        $this->tool = $this->tool->reject(function ($tool) {
+            return $tool instanceof ActionButton;
+        });
+    }
+
+	/**
+     * @param \Closure $closure
+     */
+    public function batch(\Closure $closure)
+    {
+        call_user_func($closure, $this->tool->first(function ($tool) {
+            return $tool instanceof ActionButton;
+        }));
+    }
+
+	/**
 	 * tool bar
 	 * @method render
 	 * @return [type] [description]
