@@ -1,6 +1,8 @@
 @if(Gayly::user()->visible($item['roles']))
 	@if(!isset($item['children']))
-        <li>
+        <li @if (trim(request()->getPathInfo(), '/') == trim(gayly_base_path($item['uri']), '/'))
+	        class="active"
+	    @endif>
             @if(url()->isValidUrl($item['uri']))
                 <a href="{{ $item['uri'] }}" target="_blank">
             @else

@@ -13,6 +13,12 @@ namespace Onini\Gayly\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Gayly;
+use Onini\Gayly\Models\Permission;
+use Onini\Gayly\Support\Grid\Displayers\Actions;
+use Onini\Gayly\Support\Grid\Tool;
+use Onini\Gayly\Support\Grid\Tool\ActionButton;
+use Illuminate\Support\Str;
 
 class PermissionController extends Controller
 {
@@ -23,7 +29,10 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        //
+        return Gayly::content(function ($content) {
+            $content->title('权限列表');
+            $content->row($this->grid());
+        });
     }
 
     /**
@@ -90,5 +99,48 @@ class PermissionController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    protected function grid()
+    {
+        return Gayly::grid(Permission::class, function ($grid) {
+            $grid->id('ID')->sortable()->setAttributes(['width' => 60]);
+            $grid->slug(trans('gayly.slug'));
+            $grid->name(trans('gayly.name'));
+
+            $grid->http_path(trans('gayly.route'))->display(function ($path) {
+                return collect(explode("\r\n", $path))->map(function ($path) {
+                    $method = $this->http_method ?: ['ANY'];
+
+                    if (Str::contains($path, ':')) {
+                        list($method, $path) = explode(':', $path);
+                        $method = explode(',', $method);
+                    }
+
+                    $method = collect($method)->map(function ($name) {
+                        return strtoupper($name);
+                    })->map(function ($name) {
+                        return "<span class='label label-primary'>{$name}</span>";
+                    })->implode('&nbsp;');
+
+                    $path = '/'.trim(config('gayly.route.prefix'), '/').'/'.ltrim($path, '/');
+
+                    return "<div class=\"m-b-5\">$method<code>$path</code></div>";
+                })->implode('');
+            });
+
+            $grid->created_at(trans('gayly.created_at'));
+            $grid->updated_at(trans('gayly.updated_at'));
+
+            $grid->tool(function (Tool $tool) {
+                $tool->batch(function (ActionButton $actions) {
+                    $actions->removeDelete();
+                });
+            });
+
+            $grid->filter(function ($filter) {
+               $filter->equal('ip', 'IP');
+           });
+        });
     }
 }

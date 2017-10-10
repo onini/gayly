@@ -13,6 +13,7 @@ namespace Onini\Gayly\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Gayly;
 
 class MenuController extends Controller
 {
@@ -23,7 +24,10 @@ class MenuController extends Controller
      */
     public function index()
     {
-        //
+        return Gayly::content(function ($content) {
+            $content->title('系统菜单');
+            $content->row('haha');
+        });
     }
 
     /**
@@ -90,5 +94,10 @@ class MenuController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    protected function grid()
+    {
+
     }
 }
