@@ -11,11 +11,9 @@
 
 namespace Onini\Gayly\Traits;
 
-use Illuminate\{
-    Database\Eloquent\Model,
-    Support\Facades\DB,
-    Support\Facades\Request
-};
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Request;
 
 trait ModelTree
 {
@@ -128,6 +126,7 @@ trait ModelTree
     public function withQuery(\Closure $query = null)
     {
         $this->queryCallback = $query;
+        
         return $this;
     }
 
@@ -152,18 +151,23 @@ trait ModelTree
     protected function buildNestedArray(array $nodes = [], $parentId = 0)
     {
         $branch = [];
+
         if (empty($nodes)) {
             $nodes = $this->allNodes();
         }
+
         foreach ($nodes as $node) {
             if ($node[$this->parentColumn] == $parentId) {
                 $children = $this->buildNestedArray($nodes, $node[$this->getKeyName()]);
+
                 if ($children) {
                     $node['children'] = $children;
                 }
+
                 $branch[] = $node;
             }
         }
+
         return $branch;
     }
 
@@ -176,10 +180,13 @@ trait ModelTree
     {
         $orderColumn = DB::getQueryGrammar()->wrap($this->orderColumn);
         $byOrder = $orderColumn.' = 0,'.$orderColumn;
+
         $self = new static();
+
         if ($this->queryCallback instanceof \Closure) {
             $self = call_user_func($this->queryCallback, $self);
         }
+
         return $self->orderByRaw($byOrder)->get()->toArray();
     }
 
@@ -193,6 +200,7 @@ trait ModelTree
     protected static function setBranchOrder(array $order)
     {
         static::$branchOrder = array_flip(array_flatten($order));
+
         static::$branchOrder = array_map(function ($item) {
             return ++$item;
         }, static::$branchOrder);
@@ -209,11 +217,13 @@ trait ModelTree
         if (empty(static::$branchOrder)) {
             static::setBranchOrder($tree);
         }
+
         foreach ($tree as $branch) {
             $node = static::find($branch['id']);
             $node->{$node->getParentColumn()} = $parentId;
             $node->{$node->getOrderColumn()} = static::$branchOrder[$branch['id']];
             $node->save();
+
             if (isset($branch['children'])) {
                 static::saveOrder($branch['children'], $branch['id']);
             }
@@ -228,6 +238,7 @@ trait ModelTree
     public static function selectOptions()
     {
         $options = (new static())->buildSelectOptions();
+
         return collect($options)->prepend('Root', 0)->all();
     }
 
@@ -243,15 +254,20 @@ trait ModelTree
     protected function buildSelectOptions(array $nodes = [], $parentId = 0, $prefix = '')
     {
         $prefix = $prefix ?: str_repeat('&nbsp;', 6);
+
         $options = [];
+
         if (empty($nodes)) {
             $nodes = $this->allNodes();
         }
+
         foreach ($nodes as $node) {
             $node[$this->titleColumn] = $prefix.'&nbsp;'.$node[$this->titleColumn];
             if ($node[$this->parentColumn] == $parentId) {
                 $children = $this->buildSelectOptions($nodes, $node[$this->getKeyName()], $prefix.$prefix);
+
                 $options[$node[$this->getKeyName()]] = $node[$this->titleColumn];
+
                 if ($children) {
                     $options += $children;
                 }
@@ -266,6 +282,7 @@ trait ModelTree
     public function delete()
     {
         $this->where($this->parentColumn, $this->getKey())->delete();
+
         return parent::delete();
     }
 
@@ -275,17 +292,21 @@ trait ModelTree
     protected static function boot()
     {
         parent::boot();
+
         static::saving(function (Model $branch) {
             $parentColumn = $branch->getParentColumn();
+
             if (Request::has($parentColumn) && Request::input($parentColumn) == $branch->getKey()) {
                 throw new \Exception(trans('gayly.parent_select_error'));
             }
+
             if (Request::has('_order')) {
                 $order = Request::input('_order');
                 Request::offsetUnset('_order');
                 static::tree()->saveOrder($order);
                 return false;
             }
+
             return $branch;
         });
     }

@@ -9,32 +9,38 @@
 // | Author: gayly <tthd@163.com>
 // +----------------------------------------------------------------------
 
-namespace Onini\Gayly\Models;
+namespace Onini\Gayly\Support\Form\Field;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Onini\Gayly\Traits\HasPermission;
-use Onini\Gayly\Traits\Builder;
+use Onini\Gayly\Support\Form\Field;
 
-class SystemUser extends Authenticatable
+class Textarea extends Field
 {
-    use Notifiable, HasPermission, Builder;
+    /**
+     * Default rows of textarea.
+     *
+     * @var int
+     */
+    protected $rows = 5;
 
     /**
-     * The attributes that are mass assignable.
+     * Set rows of textarea.
      *
-     * @var array
+     * @param int $rows
+     *
+     * @return $this
      */
-    protected $fillable = [
-        'username', 'name', 'email', 'password',
-    ];
+    public function rows($rows = 5)
+    {
+        $this->rows = $rows;
+
+        return $this;
+    }
 
     /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
+     * {@inheritdoc}
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    public function render()
+    {
+        return parent::render()->with(['rows' => $this->rows]);
+    }
 }

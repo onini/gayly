@@ -11,16 +11,15 @@
 
 namespace Onini\Gayly\Models;
 
-use Illuminate\{
-	Database\Eloquent\Model,
-	Database\Eloquent\Relations\BelongsToMany,
-	Support\Facades\DB
-};
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\DB;
 use Onini\Gayly\Traits\ModelTree;
+use Onini\Gayly\Traits\Builder;
 
 class Menu extends Model
 {
-	use ModelTree;
+	use ModelTree, Builder;
 
 	/**
      * The attributes that are mass assignable.
