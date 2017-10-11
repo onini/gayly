@@ -15,6 +15,7 @@ use Onini\Gayly\Support\Form;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\MessageBag;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 trait UploadField
@@ -309,7 +310,7 @@ trait UploadField
      */
     protected function generateUniqueName(UploadedFile $file)
     {
-        return md5(uniqid()).'.'.$file->getClientOriginalExtension();
+        return date('Y-m-d', time()).'/'.md5(uniqid()).'.'.$file->getClientOriginalExtension();
     }
 
     /**
@@ -319,6 +320,12 @@ trait UploadField
      */
     public function destroy()
     {
+        $original = $this->original;
+        if (url()->isValidUrl($this->original)) {
+            $url = parse_url($this->original);
+            $original = Str::contains($this->original, 'vendor/gayly/'.config('filesystems.disks', conffig('gayly.upload.disk')));
+        }
+
         if ($this->storage->exists($this->original)) {
             $this->storage->delete($this->original);
         }

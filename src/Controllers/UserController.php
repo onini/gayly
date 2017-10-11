@@ -137,7 +137,6 @@ class UserController extends Controller
                     }
                 });
 
-                $form->disableHorizontal();
         });
     }
 }

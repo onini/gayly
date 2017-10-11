@@ -49,6 +49,7 @@ class File extends Field
         $this->initStorage();
 
         parent::__construct($column, $arguments);
+        $this->uniqueName();
     }
 
     /**
