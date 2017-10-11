@@ -78,7 +78,7 @@ class GaylyTableSeeder extends Seeder
                 'name'        => '权限管理',
                 'slug'        => 'auth.management',
                 'http_method' => '',
-                'http_path'   => "/auth/roles\r\n/auth/permissions\r\n/auth/menu\r\n/auth/logs",
+                'http_path'   => "/auth/roles\r\n/auth/permission\r\n/auth/menu\r\n/auth/log",
             ],
         ]);
         Role::first()->permissions()->save(Permission::first());

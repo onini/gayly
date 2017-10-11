@@ -19,9 +19,13 @@ use Onini\Gayly\Models\Role;
 use Onini\Gayly\Support\Tree;
 use Onini\Gayly\Support\Form;
 use Onini\Gayly\Support\Widgets\Box;
+use Onini\Gayly\Traits\ModelForm;
 
 class MenuController extends Controller
 {
+
+    use ModelForm;
+
     /**
      * Display a listing of the resource.
      *
@@ -60,28 +64,6 @@ class MenuController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -93,29 +75,6 @@ class MenuController extends Controller
             $content->title(trans('gayly.menu'));
             $content->row($this->form()->edit($id));
         });
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 
     protected function tree()
