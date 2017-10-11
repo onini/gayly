@@ -9,19 +9,19 @@
 // | Author: gayly <tthd@163.com>
 // +----------------------------------------------------------------------
 
-namespace Encore\Admin\Form\Field;
+namespace Onini\Gayly\Support\Form\Field;
 
-use Encore\Admin\Form\Field;
+use Onini\Gayly\Support\Form\Field;
 
 class Slider extends Field
 {
     protected static $css = [
-        '/vendor/laravel-admin/AdminLTE/plugins/ionslider/ion.rangeSlider.css',
-        '/vendor/laravel-admin/AdminLTE/plugins/ionslider/ion.rangeSlider.skinNice.css',
+        // '/vendor/laravel-admin/AdminLTE/plugins/ionslider/ion.rangeSlider.css',
+        // '/vendor/laravel-admin/AdminLTE/plugins/ionslider/ion.rangeSlider.skinNice.css',
     ];
 
     protected static $js = [
-        '/vendor/laravel-admin/AdminLTE/plugins/ionslider/ion.rangeSlider.min.js',
+        // '/vendor/laravel-admin/AdminLTE/plugins/ionslider/ion.rangeSlider.min.js',
     ];
 
     protected $options = [
@@ -32,10 +32,10 @@ class Slider extends Field
 
     public function render()
     {
-        $option = json_encode($this->options);
-
-        $this->script = "$('{$this->getElementClassSelector()}').ionRangeSlider($option)";
-
-        return parent::render();
+        // $option = json_encode($this->options);
+        //
+        // $this->script = "$('{$this->getElementClassSelector()}').ionRangeSlider($option)";
+        //
+        // return parent::render();
     }
 }

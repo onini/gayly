@@ -14,6 +14,7 @@ namespace Onini\Gayly\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 use Onini\Gayly\Support\Grid;
+use Onini\Gayly\Support\Form;
 
 class Bootstrap
 {
@@ -27,6 +28,14 @@ class Bootstrap
      */
     public function handle($request, Closure $next)
     {
+        Form::registerBuiltinFields();
+
+        if (file_exists($bootstrap = gayly_path('bootstrap.php'))) {
+            require $bootstrap;
+        }
+
+        Form::collectFieldAssets();
+
         Grid::registerColumnDisplayer();
 
         return $next($request);

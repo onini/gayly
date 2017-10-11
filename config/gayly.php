@@ -68,7 +68,7 @@ return [
 
     // Upload config
     'upload'    =>    [
-        'disk'    =>    'uploads',
+        'disk'    =>    'gayly',
 
         'directory'    =>    [
             'image'    =>    'images',

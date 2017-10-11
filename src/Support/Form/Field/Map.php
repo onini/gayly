@@ -29,34 +29,34 @@ class Map extends Field
      */
     public static function getAssets()
     {
-        if (config('app.locale') == 'zh-CN') {
-            $js = '//map.qq.com/api/js?v=2.exp';
-        } else {
-            $js = '//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key='.env('GOOGLE_API_KEY');
-        }
-
-        return compact('js');
+        // if (config('app.locale') == 'zh-CN') {
+        //     $js = '//map.qq.com/api/js?v=2.exp';
+        // } else {
+        //     $js = '//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key='.env('GOOGLE_API_KEY');
+        // }
+        //
+        // return compact('js');
     }
 
     public function __construct($column, $arguments)
     {
-        $this->column['lat'] = $column;
-        $this->column['lng'] = $arguments[0];
-
-        array_shift($arguments);
-
-        $this->label = $this->formatLabel($arguments);
-        $this->id = $this->formatId($this->column);
-
-        /*
-         * Google map is blocked in mainland China
-         * people in China can use Tencent map instead(;
-         */
-        if (config('app.locale') == 'zh-CN') {
-            $this->useTencentMap();
-        } else {
-            $this->useGoogleMap();
-        }
+        // $this->column['lat'] = $column;
+        // $this->column['lng'] = $arguments[0];
+        //
+        // array_shift($arguments);
+        //
+        // $this->label = $this->formatLabel($arguments);
+        // $this->id = $this->formatId($this->column);
+        //
+        // /*
+        //  * Google map is blocked in mainland China
+        //  * people in China can use Tencent map instead(;
+        //  */
+        // if (config('app.locale') == 'zh-CN') {
+        //     $this->useTencentMap();
+        // } else {
+        //     $this->useGoogleMap();
+        // }
     }
 
     public function useGoogleMap()

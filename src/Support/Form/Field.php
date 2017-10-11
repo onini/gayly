@@ -716,7 +716,7 @@ class Field implements Renderable
             ];
         }
 
-        return ['label' =>'', 'field' => '', 'form-group' => ''];
+        return ['label' =>'', 'field' => 'controls', 'form-group' => 'form-group '];
     }
 
     /**

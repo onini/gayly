@@ -44,8 +44,8 @@ class Tree implements Renderable
      * @var string
      */
     protected $view = [
-        'tree'      => 'admin::tree',
-        'branch'    => 'admin::tree.branch',
+        'tree'      => 'gayly::tree',
+        'branch'    => 'gayly::tree.branch',
     ];
 
     /**
@@ -198,12 +198,12 @@ class Tree implements Renderable
      */
     protected function script()
     {
-        $deleteConfirm = trans('admin.delete_confirm');
-        $saveSucceeded = trans('admin.save_succeeded');
-        $refreshSucceeded = trans('admin.refresh_succeeded');
-        $deleteSucceeded = trans('admin.delete_succeeded');
-        $confirm = trans('admin.confirm');
-        $cancel = trans('admin.cancel');
+        $deleteConfirm = trans('gayly.delete_confirm');
+        $saveSucceeded = trans('gayly.save_succeeded');
+        $refreshSucceeded = trans('gayly.refresh_succeeded');
+        $deleteSucceeded = trans('gayly.delete_succeeded');
+        $confirm = trans('gayly.confirm');
+        $cancel = trans('gayly.cancel');
 
         $nestableOptions = json_encode($this->nestableOptions);
 
@@ -228,7 +228,7 @@ class Tree implements Renderable
                     url: '{$this->path}/' + id,
                     data: {
                         _method:'delete',
-                        _token:LA.token,
+                        _token:Gayly.token,
                     },
                     success: function (data) {
                         $.pjax.reload('#pjax-container');
@@ -249,7 +249,7 @@ class Tree implements Renderable
             var serialize = $('#{$this->elementId}').nestable('serialize');
 
             $.post('{$this->path}', {
-                _token: LA.token,
+                _token: Gayly.token,
                 _order: JSON.stringify(serialize)
             },
             function(data){
@@ -332,7 +332,7 @@ SCRIPT;
      */
     public function render()
     {
-        Admin::script($this->script());
+        Gayly::script($this->script());
 
         view()->share([
             'path'           => $this->path,

@@ -70,7 +70,7 @@ EOT;
 
         return <<<EOT
 <div class="btn-group pull-right" style="margin-right: 10px">
-    <a class="btn btn-sm btn-default form-history-back"><i class="fa fa-arrow-left"></i>&nbsp;$text</a>
+    <a class="btn btn-mini btn-success form-history-back"><i class="fa fa-arrow-left"></i>&nbsp;$text</a>
 </div>
 EOT;
     }
@@ -84,7 +84,7 @@ EOT;
 
         return <<<EOT
 <div class="btn-group pull-right" style="margin-right: 10px">
-    <a href="$resource" class="btn btn-sm btn-default"><i class="fa fa-list"></i>&nbsp;$text</a>
+    <a href="$resource" class="btn btn-mini btn-info"><i class="fa fa-list"></i>&nbsp;$text</a>
 </div>
 EOT;
     }

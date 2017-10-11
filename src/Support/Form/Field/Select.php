@@ -19,11 +19,11 @@ use Illuminate\Support\Str;
 class Select extends Field
 {
     protected static $css = [
-        '/vendor/laravel-admin/AdminLTE/plugins/select2/select2.min.css',
+        '/vendor/gayly/assets/plugins/bootstrap-select2/select2.css',
     ];
 
     protected static $js = [
-        '/vendor/laravel-admin/AdminLTE/plugins/select2/select2.full.min.js',
+        '/vendor/gayly/assets/plugins/bootstrap-select2/select2.min.js',
     ];
 
     public function render()

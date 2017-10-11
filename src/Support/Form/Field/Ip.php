@@ -16,7 +16,7 @@ class Ip extends Text
     protected $rules = 'ip';
 
     protected static $js = [
-        '/vendor/laravel-admin/AdminLTE/plugins/input-mask/jquery.inputmask.bundle.min.js',
+        // '/vendor/laravel-admin/AdminLTE/plugins/input-mask/jquery.inputmask.bundle.min.js',
     ];
 
     /**
@@ -30,16 +30,16 @@ class Ip extends Text
 
     public function render()
     {
-        $options = json_encode($this->options);
-
-        $this->script = <<<EOT
-
-$('{$this->getElementClassSelector()}').inputmask($options);
-EOT;
-
-        $this->prepend('<i class="fa fa-laptop"></i>')
-            ->defaultAttribute('style', 'width: 130px');
-
-        return parent::render();
+//         $options = json_encode($this->options);
+//
+//         $this->script = <<<EOT
+//
+// $('{$this->getElementClassSelector()}').inputmask($options);
+// EOT;
+//
+//         $this->prepend('<i class="fa fa-laptop"></i>')
+//             ->defaultAttribute('style', 'width: 130px');
+//
+//         return parent::render();
     }
 }

@@ -13,6 +13,7 @@
 	<!-- BEGIN PLUGIN CSS -->
 	@stack('link')
 	{!! Gayly::css() !!}
+	<link href="{{ gayly_asset('vendor/gayly/assets/plugins/jquery-nestable/jquery.nestable.css') }}" rel="stylesheet" type="text/css" media="screen" />
 	<!-- END PLUGIN CSS -->
 	<!-- BEGIN PLUGIN CSS -->
 	<link href="{{ gayly_asset('vendor/gayly/assets/plugins/font-awesome/css/font-awesome.css') }}" rel="stylesheet" type="text/css" />
@@ -22,7 +23,6 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link href="{{ gayly_asset('vendor/gayly/assets/plugins/animate.min.css') }}" rel="stylesheet" type="text/css" />
 	<link href="{{ gayly_asset('vendor/gayly/assets/plugins/jquery-scrollbar/jquery.scrollbar.css') }}" rel="stylesheet" type="text/css" />
-	<link href="{{ gayly_asset('vendor/gayly/assets/plugins/bootstrap-select2/select2.css') }}" rel="stylesheet" type="text/css" media="screen" />
 	<!-- END PLUGIN CSS -->
 	<!-- BEGIN CORE CSS FRAMEWORK -->
 	<link href="{{ gayly_asset('vendor/gayly/webarch/css/webarch.css') }}" rel="stylesheet" type="text/css" />
@@ -47,9 +47,7 @@
 		<!-- BEGIN PAGE CONTAINER-->
 		<div class="page-content {{ $page_content_class or '' }}">
 		@section('page-content')
-			@include('gayly::partials.error')
-			@include('gayly::partials.success')
-			@include('gayly::partials.toastr')
+			
 			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 			<div id="portlet-config" class="modal hide">
 				<div class="modal-header">
@@ -81,7 +79,6 @@
 	<script src="{{ gayly_asset('vendor/gayly/assets/plugins/jquery-scrollbar/jquery.scrollbar.min.js') }}" type="text/javascript"></script>
 	<script src="{{ gayly_asset('vendor/gayly/assets/plugins/jquery-numberAnimate/jquery.animateNumbers.js') }}" type="text/javascript"></script>
 	<script src="{{ gayly_asset('vendor/gayly/assets/plugins/jquery-validation/js/jquery.validate.min.js') }}" type="text/javascript"></script>
-	<script src="{{ gayly_asset('vendor/gayly/assets/plugins/bootstrap-select2/select2.min.js') }}" type="text/javascript"></script>
 	<script src="{{ gayly_asset('vendor/gayly/assets/plugins/jquery-pjax/jquery.pjax.js') }}" type="text/javascript"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<!-- END CORE JS DEPENDECENCIES-->
@@ -91,6 +88,7 @@
 	<!-- BEGIN PAGE LEVEL JS -->
 	@stack('js')
 {!! Gayly::js() !!}
+	<script src="{{ gayly_asset('vendor/gayly/assets/plugins/jquery-nestable/jquery.nestable.js') }}" type="text/javascript"></script>
 	<!-- END PAGE LEVEL PLUGINS -->
 	@stack('script')
 {!! Gayly::script() !!}

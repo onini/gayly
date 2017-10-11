@@ -14,6 +14,7 @@ return [
     'login'                 => '登录',
     'logout'                => '登出',
     'setting'               => '设置',
+    'email'                 => '邮箱',
     'name'                  => '名称',
     'username'              => '用户名',
     'password'              => '密码',

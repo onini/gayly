@@ -14,7 +14,7 @@ namespace Onini\Gayly\Support\Form\Field;
 class Mobile extends Text
 {
     protected static $js = [
-        '/vendor/laravel-admin/AdminLTE/plugins/input-mask/jquery.inputmask.bundle.min.js',
+        // '/vendor/laravel-admin/AdminLTE/plugins/input-mask/jquery.inputmask.bundle.min.js',
     ];
 
     /**
@@ -28,16 +28,16 @@ class Mobile extends Text
 
     public function render()
     {
-        $options = json_encode($this->options);
-
-        $this->script = <<<EOT
-
-$('{$this->getElementClassSelector()}').inputmask($options);
-EOT;
-
-        $this->prepend('<i class="fa fa-phone"></i>')
-            ->defaultAttribute('style', 'width: 150px');
-
-        return parent::render();
+//         $options = json_encode($this->options);
+//
+//         $this->script = <<<EOT
+//
+// $('{$this->getElementClassSelector()}').inputmask($options);
+// EOT;
+//
+//         $this->prepend('<i class="fa fa-phone"></i>')
+//             ->defaultAttribute('style', 'width: 150px');
+//
+//         return parent::render();
     }
 }

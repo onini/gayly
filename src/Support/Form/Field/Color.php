@@ -14,11 +14,9 @@ namespace Onini\Gayly\Support\Form\Field;
 class Color extends Text
 {
     protected static $css = [
-        '/vendor/laravel-admin/AdminLTE/plugins/colorpicker/bootstrap-colorpicker.min.css',
     ];
 
     protected static $js = [
-        '/vendor/laravel-admin/AdminLTE/plugins/colorpicker/bootstrap-colorpicker.min.js',
     ];
 
     /**
@@ -58,13 +56,13 @@ class Color extends Text
      */
     public function render()
     {
-        $options = json_encode($this->options);
-
-        $this->script = "$('{$this->getElementClassSelector()}').parent().colorpicker($options);";
-
-        $this->prepend('<i></i>')
-            ->defaultAttribute('style', 'width: 140px');
-
-        return parent::render();
+        // $options = json_encode($this->options);
+        //
+        // $this->script = "$('{$this->getElementClassSelector()}').parent().colorpicker($options);";
+        //
+        // $this->prepend('<i></i>')
+        //     ->defaultAttribute('style', 'width: 140px');
+        //
+        // return parent::render();
     }
 }

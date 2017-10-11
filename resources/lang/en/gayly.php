@@ -14,6 +14,7 @@ return [
     'login'                 => 'Login',
     'logout'                => 'Logout',
     'setting'               => 'Setting',
+    'email'                 => 'Email',
     'name'                  => 'Name',
     'username'              => 'Username',
     'password'              => 'Password',

@@ -21,11 +21,11 @@ class Listbox extends MultipleSelect
     protected $settings = [];
 
     protected static $css = [
-        '/vendor/laravel-admin/bootstrap-duallistbox/dist/bootstrap-duallistbox.min.css',
+        // '/vendor/laravel-admin/bootstrap-duallistbox/dist/bootstrap-duallistbox.min.css',
     ];
 
     protected static $js = [
-        '/vendor/laravel-admin/bootstrap-duallistbox/dist/jquery.bootstrap-duallistbox.min.js',
+        // '/vendor/laravel-admin/bootstrap-duallistbox/dist/jquery.bootstrap-duallistbox.min.js',
     ];
 
     public function settings(array $settings)
@@ -37,22 +37,22 @@ class Listbox extends MultipleSelect
 
     public function render()
     {
-        $settings = array_merge($this->settings, [
-            'infoText'          => trans('gayly.listbox.text_total'),
-            'infoTextEmpty'     => trans('gayly.listbox.text_empty'),
-            'infoTextFiltered'  => trans('gayly.listbox.filtered'),
-            'filterTextClear'   => trans('gayly.listbox.filter_clear'),
-            'filterPlaceHolder' => trans('gayly.listbox.filter_placeholder'),
-        ]);
-
-        $settings = json_encode($settings);
-
-        $this->script = <<<SCRIPT
-
-$("{$this->getElementClassSelector()}").bootstrapDualListbox($settings);
-
-SCRIPT;
-
-        return parent::render();
+//         $settings = array_merge($this->settings, [
+//             'infoText'          => trans('gayly.listbox.text_total'),
+//             'infoTextEmpty'     => trans('gayly.listbox.text_empty'),
+//             'infoTextFiltered'  => trans('gayly.listbox.filtered'),
+//             'filterTextClear'   => trans('gayly.listbox.filter_clear'),
+//             'filterPlaceHolder' => trans('gayly.listbox.filter_placeholder'),
+//         ]);
+//
+//         $settings = json_encode($settings);
+//
+//         $this->script = <<<SCRIPT
+//
+// $("{$this->getElementClassSelector()}").bootstrapDualListbox($settings);
+//
+// SCRIPT;
+//
+//         return parent::render();
     }
 }

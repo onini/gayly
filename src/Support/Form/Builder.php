@@ -263,6 +263,11 @@ class Builder
         });
     }
 
+    public function hasHorizontal()
+    {
+        return $this->form->horizontal;
+    }
+
     /**
      * If the parant form has rows.
      *

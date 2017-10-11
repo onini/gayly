@@ -1,0 +1,17 @@
+<div class="grid simple vertical green" {!! $attributes !!}>
+	<div class="grid-title no-border">
+		<h4>{{ $title }} <span class="semi-bold"></span></h4>
+        <div class="box-tools pull-right">
+			@foreach($tools as $tool) {!! $tool !!} @endforeach
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse"></a>
+			<a href="#grid-config" data-toggle="modal" class="config"></a>
+			<a href="javascript:;" class="reload"></a>
+			<a href="javascript:;" class="remove"></a>
+		</div>
+	</div>
+	<div class="grid-body no-border">
+		{!! $content !!}
+	</div>
+</div>

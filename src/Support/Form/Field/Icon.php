@@ -16,11 +16,11 @@ class Icon extends Text
     protected $default = 'fa-pencil';
 
     protected static $css = [
-        '/vendor/laravel-admin/fontawesome-iconpicker/dist/css/fontawesome-iconpicker.min.css',
+        '/vendor/gayly/assets/plugins/fontawesome-iconpicker-1.3.1/dist/css/fontawesome-iconpicker.min.css',
     ];
 
     protected static $js = [
-        '/vendor/laravel-admin/fontawesome-iconpicker/dist/js/fontawesome-iconpicker.min.js',
+        '/vendor/gayly/assets/plugins/fontawesome-iconpicker-1.3.1/dist/js/fontawesome-iconpicker.min.js',
     ];
 
     public function render()

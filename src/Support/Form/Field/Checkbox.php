@@ -18,11 +18,9 @@ class Checkbox extends MultipleSelect
     protected $inline = true;
 
     protected static $css = [
-        '/vendor/laravel-admin/AdminLTE/plugins/iCheck/all.css',
     ];
 
     protected static $js = [
-        '/vendor/laravel-admin/AdminLTE/plugins/iCheck/icheck.min.js',
     ];
 
     /**
@@ -64,8 +62,8 @@ class Checkbox extends MultipleSelect
      */
     public function render()
     {
-        $this->script = "$('{$this->getElementClassSelector()}').iCheck({checkboxClass:'icheckbox_minimal-blue'});";
-
-        return parent::render()->with('inline', $this->inline);
+        // $this->script = "$('{$this->getElementClassSelector()}').iCheck({checkboxClass:'icheckbox_minimal-blue'});";
+        //
+        // return parent::render()->with('inline', $this->inline);
     }
 }

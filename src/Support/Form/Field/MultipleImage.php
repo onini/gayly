@@ -20,7 +20,7 @@ class MultipleImage extends MultipleFile
     /**
      * {@inheritdoc}
      */
-    protected $view = 'admin::form.multiplefile';
+    protected $view = 'gayly::form.multiplefile';
 
     /**
      *  Validation rules.

@@ -12,7 +12,7 @@
 namespace Onini\Gayly\Support;
 
 use Closure;
-use Onini\Gayly\Support\Exception\Handler;
+use Onini\Gayly\Exception\Handler;
 use Onini\Gayly\Support\Form\Builder;
 use Onini\Gayly\Support\Form\Field;
 use Onini\Gayly\Support\Form\Field\File;
@@ -176,6 +176,8 @@ class Form
      */
     public $rows = [];
 
+    protected $horizontal = false;
+
     /**
      * Create a new form instance.
      *
@@ -189,6 +191,11 @@ class Form
         $this->builder = new Builder($this);
 
         $callback($this);
+    }
+
+    public function enableHorizontal()
+    {
+        $this->horizontal = true;
     }
 
     /**
@@ -1372,6 +1379,10 @@ class Form
 
             $this->pushField($element);
 
+            if (!$this->horizontal) {
+                $element->disableHorizontal();
+            }
+            
             return $element;
         }
     }

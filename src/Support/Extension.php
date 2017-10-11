@@ -32,7 +32,10 @@ abstract class Extension
 
     protected static function routes($callback)
     {
-        /* @var \Illuminate\Routing\Router $router */
+        /**
+         * \Illuminate\Routing\Router $router
+         * @var [type]
+         */
         Route::group(['prefix' => config('gayly.route.prefix')], function ($router) use ($callback) {
             $attributes = array_merge([
                 'middleware' => config('gayly.route.middleware'),

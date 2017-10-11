@@ -17,15 +17,22 @@ use Gayly;
 use Onini\Gayly\Support\Layout\Row;
 use Onini\Gayly\Support\Layout\Content;
 use Onini\Gayly\Support\Grid;
+use Onini\Gayly\Support\Form;
 use Onini\Gayly\Support\Grid\Filter;
 use Onini\Gayly\Models\SystemUser;
+use Onini\Gayly\Models\Role;
+use Onini\Gayly\Models\Permission;
 use Onini\Gayly\Support\Grid\Column;
 use Onini\Gayly\Support\Grid\Displayers\Actions;
 use Onini\Gayly\Support\Grid\Tool;
 use Onini\Gayly\Support\Grid\Tool\ActionButton;
+use Onini\Gayly\Traits\ModelForm;
 
 class UserController extends Controller
 {
+
+    use ModelForm;
+
     /**
      * Display a listing of the resource.
      *
@@ -49,29 +56,8 @@ class UserController extends Controller
     {
         return Gayly::content(function (Content $content) {
             $content->title('创建用户');
+            $content->body($this->form()->edit($id));
         });
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -82,39 +68,17 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return Gayly::content(function (Content $content) {
-            $content->title('修改用户');
+        return Gayly::content(function (Content $content) use ($id) {
+            $content->title(trans('gayly.edit'));
+            $content->body($this->form()->edit($id));
         });
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 
     protected function grid()
     {
         return Gayly::grid(SystemUser::class, function (Grid $grid) {
             // $grid->id('ID');
-			$grid->name('昵称')->sortable();
+            $grid->name('昵称')->sortable();
             $grid->email('邮箱');
             $grid->mobile('手机');
             $grid->wechat('微信');
@@ -141,7 +105,39 @@ class UserController extends Controller
             });
 
             // $grid->removeRowSelector();
+        });
+    }
 
+    public function form()
+    {
+        return SystemUser::form(function (Form $form) {
+                $form->display('id', 'ID');
+
+                $form->text('username', trans('gayly.username'))->rules('required');
+                $form->text('name', trans('gayly.name'))->rules('required');
+                $form->email('email', trans('gayly.email'))->rules('required');
+                $form->image('avatar', trans('gayly.avatar'));
+                $form->password('password', trans('gayly.password'))->rules('required|confirmed');
+                $form->password('password_confirmation', trans('gayly.password_confirmation'))->rules('required')
+                ->default(function ($form) {
+                    return $form->model()->password;
+                });
+
+                $form->ignore(['password_confirmation']);
+
+                $form->multipleSelect('roles', trans('gayly.roles'))->options(Role::all()->pluck('name', 'id'));
+                $form->multipleSelect('permissions', trans('gayly.permissions'))->options(Permission::all()->pluck('name', 'id'));
+
+                $form->display('created_at', trans('gayly.created_at'));
+                $form->display('updated_at', trans('gayly.updated_at'));
+
+                $form->saving(function (Form $form) {
+                    if ($form->password && $form->model()->password != $form->password) {
+                        $form->password = bcrypt($form->password);
+                    }
+                });
+
+                $form->disableHorizontal();
         });
     }
 }

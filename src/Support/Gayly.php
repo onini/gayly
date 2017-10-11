@@ -129,6 +129,8 @@ class Gayly
             return;
         }
 
+        $css = array_get(Form::collectFieldAssets(), 'css', []);
+
         static::$css = array_merge(static::$css, (array) $css);
         return view('gayly::partials.css', ['css' => array_unique(static::$css)]);
     }
@@ -146,6 +148,8 @@ class Gayly
 
             return;
         }
+
+        $js = array_get(Form::collectFieldAssets(), 'js', []);
 
         static::$js = array_merge(static::$js, (array) $js);
         return view('gayly::partials.js', ['js' => array_unique(static::$js)]);
