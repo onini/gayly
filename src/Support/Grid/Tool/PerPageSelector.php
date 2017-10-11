@@ -67,9 +67,8 @@ class PerPageSelector extends AbstractTool
 
         return <<<EOT
 
-<label class="control-label pull-right" style="margin-right: 10px; font-weight: 100;">
-
-        <select class="input-sm gayly-perpage form-control" name="per-page">
+<label class="form-label pull-right" style="margin-right: 10px; font-weight: 100;">
+        <select class="input-sm gayly-perpage form-control" name="per-page" style="height: 26px !important;">
             $options
         </select>
     </label>
@@ -87,7 +86,7 @@ EOT;
         return <<<'EOT'
 
 $('.gayly-perpage').on("change", function(e) {
-    
+    window.location.href = this.value;
 });
 
 EOT;

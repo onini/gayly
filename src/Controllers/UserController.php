@@ -78,7 +78,7 @@ class UserController extends Controller
     {
         return Gayly::grid(SystemUser::class, function (Grid $grid) {
             // $grid->id('ID');
-            $grid->name('昵称')->sortable();
+            $grid->name('昵称')->sortable()->setAttributes(['width' => 150]);
             $grid->email('邮箱');
             $grid->mobile('手机');
             $grid->wechat('微信');
@@ -111,8 +111,6 @@ class UserController extends Controller
     public function form()
     {
         return SystemUser::form(function (Form $form) {
-                $form->display('id', 'ID');
-
                 $form->text('username', trans('gayly.username'))->rules('required');
                 $form->text('name', trans('gayly.name'))->rules('required');
                 $form->email('email', trans('gayly.email'))->rules('required');

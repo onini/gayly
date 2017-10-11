@@ -320,12 +320,6 @@ trait UploadField
      */
     public function destroy()
     {
-        $original = $this->original;
-        if (url()->isValidUrl($this->original)) {
-            $url = parse_url($this->original);
-            $original = Str::contains($original, 'vendor/gayly/'.config('filesystems.disks', conffig('gayly.upload.disk'))) ? str_replcace(config('filesystems.disks', conffig('gayly.upload.disk')), '', $original) : $original ;
-        }
-
         if ($this->storage->exists($this->original)) {
             $this->storage->delete($this->original);
         }

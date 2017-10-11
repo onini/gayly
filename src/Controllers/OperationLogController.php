@@ -124,7 +124,7 @@ class OperationLogController extends Controller
         return Gayly::grid(OperationLog::class, function ($grid) {
             $grid->id()->setAttributes(['width' => 60])->sortable();
             $grid->path('路径')->label('success');
-            $grid->user()->name('用户');
+            $grid->user()->name('用户')->setAttributes(['width' => 120]);
             $grid->method('类型')->display(function ($method) {
                 $color = array_get(OperationLog::$methodColors, $method, 'default');
 
@@ -140,7 +140,7 @@ class OperationLogController extends Controller
 
                 return '<code>'.json_encode($input, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE).'</code>';
             });
-            $grid->created_at(trans('gayly.created_at'))->setAttributes(['width' => 150]);
+            $grid->created_at(trans('gayly.created_at'))->setAttributes(['width' => 160]);
 
             $grid->actions(function (\Onini\Gayly\Support\Grid\Displayers\Actions $actions) {
                 $actions->removeEdit();
@@ -149,7 +149,8 @@ class OperationLogController extends Controller
             $grid->removeCreate();
             $grid->filter(function ($filter) {
                $filter->equal('user_id', 'User')->select(SystemUser::all()->pluck('name', 'id'));
-               $filter->equal('method')->select(array_combine(OperationLog::$methods, OperationLog::$methods));
+               $method = collect(array_combine(OperationLog::$methods, OperationLog::$methods))->prepend('All', '');
+               $filter->equal('method')->select($method);
                $filter->like('path', '路径');
                $filter->equal('ip', 'IP');
            });
