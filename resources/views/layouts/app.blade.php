@@ -47,7 +47,7 @@
 		<!-- BEGIN PAGE CONTAINER-->
 		<div class="page-content {{ $page_content_class or '' }}">
 		@section('page-content')
-			
+
 			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 			<div id="portlet-config" class="modal hide">
 				<div class="modal-header">

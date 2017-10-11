@@ -8,7 +8,7 @@
 				<div class="availability-bubble online"></div>
 			</div>
 			<div class="user-info sm">
-				<div class="username"> <span class="semi-bold">{{ Gayly::user()->username }}</span></div>
+				<div class="username"> <span class="semi-bold">{{ Gayly::user()->name }}</span></div>
 				<div class="status">{{ Gayly::user()->email }}</div>
 			</div>
 		</div>

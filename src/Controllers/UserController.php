@@ -117,7 +117,7 @@ class UserController extends Controller
                 $form->image('avatar', trans('gayly.avatar'));
                 $form->password('password', trans('gayly.password'))->rules('required|confirmed');
                 $form->password('password_confirmation', trans('gayly.password_confirmation'))->rules('required')
-                ->default('');
+                ->default($form->model()->password);
 
                 $form->ignore(['password_confirmation']);
 
