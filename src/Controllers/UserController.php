@@ -56,7 +56,7 @@ class UserController extends Controller
     {
         return Gayly::content(function (Content $content) {
             $content->title('创建用户');
-            $content->body($this->form()->edit($id));
+            $content->row($this->form());
         });
     }
 
@@ -77,8 +77,10 @@ class UserController extends Controller
     protected function grid()
     {
         return Gayly::grid(SystemUser::class, function (Grid $grid) {
-            // $grid->id('ID');
+            $grid->id('ID');
+            $grid->username(trans('gayly.username'));
             $grid->name('昵称')->sortable()->setAttributes(['width' => 150]);
+            $grid->roles(trans('gayly.roles'))->pluck('name')->label();
             $grid->email('邮箱');
             $grid->mobile('手机');
             $grid->wechat('微信');
@@ -97,43 +99,44 @@ class UserController extends Controller
 
             // $grid->paginate(1);
 
-            $grid->tool(function (Tool $tool) {
-                $tool->batch(function (ActionButton $actions) {
-                    $actions->removeDelete();
-                    $actions->add('测试', new \Onini\Gayly\Support\Grid\Tool\DeleteAction());
-                });
-            });
+            // $grid->tool(function (Tool $tool) {
+            //     $tool->batch(function (ActionButton $actions) {
+            //         $actions->removeDelete();
+            //         // $actions->add('测试', new \Onini\Gayly\Support\Grid\Tool\DeleteAction());
+            //     });
+            // });
 
-            // $grid->removeRowSelector();
+            $grid->removeRowSelector();
         });
     }
 
     public function form()
     {
         return SystemUser::form(function (Form $form) {
-                $form->text('username', trans('gayly.username'))->rules('required');
-                $form->text('name', trans('gayly.name'))->rules('required');
-                $form->email('email', trans('gayly.email'))->rules('required');
-                $form->image('avatar', trans('gayly.avatar'));
-                $form->password('password', trans('gayly.password'))->rules('required|confirmed');
-                $form->password('password_confirmation', trans('gayly.password_confirmation'))->rules('required')
-                    ->default(function ($form) {
-                        return $form->model()->password;
-                    });
-
-                $form->ignore(['password_confirmation']);
-
-                $form->multipleSelect('roles', trans('gayly.roles'))->options(Role::all()->pluck('name', 'id'));
-                $form->multipleSelect('permissions', trans('gayly.permissions'))->options(Permission::all()->pluck('name', 'id'));
-
-                $form->display('created_at', trans('gayly.created_at'));
-                $form->display('updated_at', trans('gayly.updated_at'));
-
-                $form->saving(function (Form $form) {
-                    if ($form->password && $form->model()->password != $form->password) {
-                        $form->password = bcrypt($form->password);
-                    }
+            $form->setWidth('col-md-8 col-md-offset-2');
+            $form->text('username', trans('gayly.username'))->rules('required');
+            $form->text('name', trans('gayly.name'))->rules('required');
+            $form->email('email', trans('gayly.email'))->rules('required');
+            $form->image('avatar', trans('gayly.avatar'));
+            $form->password('password', trans('gayly.password'))->rules('required|confirmed');
+            $form->password('password_confirmation', trans('gayly.password_confirmation'))->rules('required')
+                ->default(function ($form) {
+                    return $form->model()->password;
                 });
+
+            $form->ignore(['password_confirmation']);
+
+            $form->multipleSelect('roles', trans('gayly.roles'))->options(Role::all()->pluck('name', 'id'));
+            $form->multipleSelect('permissions', trans('gayly.permissions'))->options(Permission::all()->pluck('name', 'id'));
+
+            $form->display('created_at', trans('gayly.created_at'));
+            $form->display('updated_at', trans('gayly.updated_at'));
+
+            $form->saving(function (Form $form) {
+                if ($form->password && $form->model()->password != $form->password) {
+                    $form->password = bcrypt($form->password);
+                }
+            });
 
         });
     }

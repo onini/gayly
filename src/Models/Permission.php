@@ -71,6 +71,7 @@ class Permission extends Model
 
             return compact('method', 'path');
         }, explode("\r\n", $this->http_path));
+
         foreach ($matches as $match) {
             if ($this->matchRequest($match, $request)) {
                 return true;

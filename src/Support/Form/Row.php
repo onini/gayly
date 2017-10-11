@@ -42,7 +42,13 @@ class Row implements Renderable
      *
      * @var int
      */
-    protected $defaultFieldWidth = 12;
+    protected $defaultFieldWidth = 8;
+
+    /**
+     * Default offset.
+     * @var [type]
+     */
+    protected $defaultOffset = 2;
 
     /**
      * Row constructor.
@@ -66,9 +72,16 @@ class Row implements Renderable
      *
      * @return $this
      */
-    public function width($width = 12)
+    public function width($width = 8)
     {
         $this->defaultFieldWidth = $width;
+
+        return $this;
+    }
+
+    public function offset($offset = 2)
+    {
+        $this->defaultOffset = $offset;
 
         return $this;
     }
@@ -81,6 +94,11 @@ class Row implements Renderable
     public function render()
     {
         return view('gayly::form.row', ['fields' => $this->fields]);
+    }
+
+    public function form()
+    {
+        return $this->form;
     }
 
     /**
@@ -99,6 +117,7 @@ class Row implements Renderable
 
         $this->fields[] = [
             'width'   => $this->defaultFieldWidth,
+            'offset'  => $this->defaultOffset,
             'element' => $field,
         ];
 

@@ -44,6 +44,9 @@
             <div class="{{$width['label']}}">
 
             </div>
+			<div class="clearfix">
+
+			</div>
             <div class="{{$width['field']}}">
 
                 {!! $form->submitButton() !!}

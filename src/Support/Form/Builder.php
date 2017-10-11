@@ -462,7 +462,7 @@ class Builder
 
         return <<<EOT
 <div class="btn-group pull-right">
-    <button type="submit" class="btn btn-info pull-right" data-loading-text="<i class='fa fa-spinner fa-spin '></i> $text">$text</button>
+    <button type="submit" class="btn btn-info btn-cons pull-right" data-loading-text="<i class='fa fa-spinner fa-spin '></i> $text">$text</button>
 </div>
 EOT;
     }
@@ -482,7 +482,7 @@ EOT;
 
         return <<<EOT
 <div class="btn-group pull-left">
-    <button type="reset" class="btn btn-warning">$text</button>
+    <button type="reset" class="btn btn-danger btn-cons">$text</button>
 </div>
 EOT;
     }

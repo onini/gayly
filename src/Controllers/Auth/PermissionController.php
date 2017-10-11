@@ -19,9 +19,14 @@ use Onini\Gayly\Support\Grid\Displayers\Actions;
 use Onini\Gayly\Support\Grid\Tool;
 use Onini\Gayly\Support\Grid\Tool\ActionButton;
 use Illuminate\Support\Str;
+use Onini\Gayly\Traits\ModelForm;
+use Onini\Gayly\Support\Form;
+use Onini\Gayly\Support\Layout\Content;
 
 class PermissionController extends Controller
 {
+    use ModelForm;
+
     /**
      * Display a listing of the resource.
      *
@@ -42,29 +47,10 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return Gayly::content(function (Content $content) {
+            $content->title(trans('gayly.permissions'));
+            $content->body($this->form());
+        });
     }
 
     /**
@@ -75,19 +61,10 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        return Gayly::content(function (Content $content) use ($id) {
+            $content->title(trans('gayly.permissions'));
+            $content->body($this->form()->edit($id));
+        });
     }
 
     /**
@@ -139,8 +116,41 @@ class PermissionController extends Controller
             });
 
             $grid->filter(function ($filter) {
-               $filter->equal('slug', '标识');
-           });
+                $filter->equal('slug', '标识');
+            });
         });
+    }
+
+    /**
+     * [form description]
+     * @method form
+     * @return [type] [description]
+     */
+    public function form()
+    {
+        return Gayly::form(Permission::class, function (Form $form) {
+            $form->display('id', 'ID');
+
+            $form->text('slug', trans('gayly.slug'))->rules('required');
+            $form->text('name', trans('gayly.name'))->rules('required');
+
+            $form->multipleSelect('http_method', trans('gayly.http.method'))
+            ->options($this->getHttpMethodsOptions())
+            ->help('不选择默认为所有权限');
+            $form->textarea('http_path', trans('gayly.http.path'));
+
+            $form->display('created_at', trans('gayly.created_at'));
+            $form->display('updated_at', trans('gayly.updated_at'));
+        });
+    }
+
+    /**
+     * Get options of HTTP methods select field.
+     *
+     * @return array
+     */
+    protected function getHttpMethodsOptions()
+    {
+        return array_combine(Permission::$httpMethods, Permission::$httpMethods);
     }
 }

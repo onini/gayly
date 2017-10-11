@@ -80,7 +80,7 @@
 	<script src="{{ gayly_asset('vendor/gayly/assets/plugins/jquery-numberAnimate/jquery.animateNumbers.js') }}" type="text/javascript"></script>
 	<script src="{{ gayly_asset('vendor/gayly/assets/plugins/jquery-validation/js/jquery.validate.min.js') }}" type="text/javascript"></script>
 	<script src="{{ gayly_asset('vendor/gayly/assets/plugins/jquery-pjax/jquery.pjax.js') }}" type="text/javascript"></script>
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="{{ gayly_asset('vendor/gayly/assets/plugins/sweetalert/sweetalert.min.js') }}"></script>
 	<!-- END CORE JS DEPENDECENCIES-->
 	<!-- BEGIN CORE TEMPLATE JS -->
 	<script src="{{ gayly_asset('vendor/gayly/webarch/js/webarch.js') }}" type="text/javascript"></script>
