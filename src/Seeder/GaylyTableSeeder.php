@@ -72,7 +72,7 @@ class GaylyTableSeeder extends Seeder
                 'name'        => '用户管理',
                 'slug'        => 'auth.setting',
                 'http_method' => 'GET,PUT',
-                'http_path'   => '/auth/setting',
+                'http_path'   => '/auth/user',
             ],
             [
                 'name'        => '权限管理',
