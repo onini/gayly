@@ -10,7 +10,6 @@
 // +----------------------------------------------------------------------
 
 use Onini\Gayly\Models\Menu;
-use Gayly;
 
 if (!function_exists('gayly_path')) {
     /**
