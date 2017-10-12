@@ -53,7 +53,7 @@ class Menu extends Model
         return static::with('roles')->orderByRaw($byOrder)->get()->toArray();
     }
 
-	public function getCurrentParentNodes(Request $request)
+	public function getCurrentParentNodes()
 	{
 		$nodes = $this->allNodes();
 
