@@ -71,7 +71,7 @@ trait UploadField
     protected function setupDefaultOptions()
     {
         $defaultOptions = [
-            'overwriteInitial'     => false,
+            'overwriteInitial'     => true,
             'initialPreviewAsData' => true,
             'browseLabel'          => trans('gayly.browse'),
             'showRemove'           => false,

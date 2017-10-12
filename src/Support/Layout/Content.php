@@ -13,6 +13,7 @@ namespace Onini\Gayly\Support\Layout;
 
 use Closure;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Support\MessageBag;
 
 class Content implements Renderable
 {
@@ -127,6 +128,23 @@ class Content implements Renderable
 
 		return $content;
 	}
+
+	/**
+     * Set error message for content.
+     *
+     * @param string $title
+     * @param string $message
+     *
+     * @return $this
+     */
+    public function withError($title = '', $message = '')
+    {
+        $error = new MessageBag(compact('title', 'message'));
+
+        session()->flash('error', $error);
+
+        return $this;
+    }
 
 	/**
 	 * render content

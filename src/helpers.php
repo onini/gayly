@@ -55,6 +55,7 @@ if (!function_exists('gayly_base_path')) {
 }
 
 if (!function_exists('gayly_toastr')) {
+
     /**
      * Flash a toastr message bag to session.
      *
@@ -67,10 +68,10 @@ if (!function_exists('gayly_toastr')) {
     function gayly_toastr($message = '', $type = 'success', $options = [])
     {
         $toastr = new \Illuminate\Support\MessageBag(get_defined_vars());
+
         \Illuminate\Support\Facades\Session::flash('toastr', $toastr);
     }
 }
-
 if (!function_exists('gayly_asset')) {
     /**
      * @param $path

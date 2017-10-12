@@ -29,6 +29,7 @@ class GaylyServiceProvider extends ServiceProvider
         'gayly.permission'    =>    \Onini\Gayly\Middleware\Permission::class,
         'gayly.operationlog'    =>    \Onini\Gayly\Middleware\OperationLog::class,
         'gayly.bootstrap'    =>    \Onini\Gayly\Middleware\Bootstrap::class,
+        'gayly.exception'    =>    \Onini\Gayly\Middleware\Exception::class,
     ];
 
     /**
@@ -41,6 +42,7 @@ class GaylyServiceProvider extends ServiceProvider
             'gayly.permission',
             'gayly.operationlog',
             'gayly.bootstrap',
+            'gayly.exception',
         ],
     ];
 

@@ -16,6 +16,7 @@ use Closure;
 use Onini\Gayly\Support\Layout\Content;
 use Onini\Gayly\Models\Menu;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
+use InvalidArgumentException;
 
 class Gayly
 {
