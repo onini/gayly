@@ -1,7 +1,8 @@
 <div class="grid simple vertical green" {!! $attributes !!}>
+	@if ($useHeader)
 	<div class="grid-title no-border">
 		<h4>{{ $title }} <span class="semi-bold"></span></h4>
-        <div class="box-tools pull-right">
+		<div class="box-tools pull-right">
 			@foreach($tools as $tool) {!! $tool !!} @endforeach
 		</div>
 		<div class="tools">
@@ -11,6 +12,7 @@
 			<a href="javascript:;" class="remove"></a>
 		</div>
 	</div>
+	@endif
 	<div class="grid-body no-border">
 		{!! $content !!}
 	</div>

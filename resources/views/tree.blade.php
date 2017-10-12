@@ -1,4 +1,5 @@
 <div class="grid simple horizontal green">
+	@if ($useHeader)
 	<div class="grid-title no-border">
 		<h4>面板 <span class="semi-bold">盒子</span></h4>
 		<div class="tools">
@@ -8,6 +9,8 @@
 			<a href="javascript:;" class="remove"></a>
 		</div>
 	</div>
+	@endif
+
 	<div class="grid-body no-border">
 		<div class="btn-group">
 			<a class="btn btn-primary btn-mini {{ $id }}-tree-tool" data-action="expand">
@@ -35,6 +38,7 @@
 			<a class="btn btn-success btn-mini" href="{{ $path }}/create"><i class="fa fa-save"></i>&nbsp;{{ trans('gayly.new') }}</a>
 		</div>
 		@endif
+		<br>
 		<br>
 		<div class="cf nestable-lists">
 			<div class="dd" id="{{ $id }}" style="width: 100%">
