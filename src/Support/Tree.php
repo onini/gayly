@@ -63,6 +63,8 @@ class Tree implements Renderable
      */
     public $useCreate = true;
 
+    public $useHeader = true;
+
     /**
      * @var array
      */
@@ -172,6 +174,16 @@ class Tree implements Renderable
     }
 
     /**
+     * Disable header.
+     *
+     * @return void
+     */
+    public function disableHeader()
+    {
+        $this->useHeader = false;
+    }
+
+    /**
      * Save tree order from a input.
      *
      * @param string $serialize
@@ -214,37 +226,37 @@ class Tree implements Renderable
         $('.tree_branch_delete').click(function() {
             var id = $(this).data('id');
             swal({
-              title: "$deleteConfirm",
-              type: "warning",
-              showCancelButton: true,
-              confirmButtonColor: "#DD6B55",
-              confirmButtonText: "$confirm",
-              closeOnConfirm: false,
-              cancelButtonText: "$cancel"
-            },
-            function(){
-                $.ajax({
-                    method: 'post',
-                    url: '{$this->path}/' + id,
-                    data: {
-                        _method:'delete',
-                        _token:Gayly.token,
-                    },
-                    success: function (data) {
-                        $.pjax.reload('#pjax-container');
-
-                        if (typeof data === 'object') {
-                            if (data.status) {
-                                swal(data.message, '', 'success');
-                            } else {
-                                swal(data.message, '', 'error');
+                title: "$deleteConfirm",
+			  	icon: "warning",
+			  	buttons: ["$cancel", "$confirm"],
+			  	dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        method: 'post',
+                        url: '{$this->path}/' + id,
+                        data: {
+                            _method:'delete',
+                            _token:Gayly.token,
+                        },
+                        success: function (data) {
+                            if (typeof data === 'object') {
+                                if (data.status) {
+                                    swal(data.message, '', 'success')
+                                    .then((value) => {
+                                        location.reload();
+                                    });
+                                } else {
+                                    swal(data.message, '', 'error');
+                                }
                             }
                         }
-                    }
-                });
-            });
+                    })
+                }
+          });
         });
-
+        toastr.options.onHidden = function() { location.reload(); }
         $('.{$this->elementId}-save').click(function () {
             var serialize = $('#{$this->elementId}').nestable('serialize');
 
@@ -253,14 +265,13 @@ class Tree implements Renderable
                 _order: JSON.stringify(serialize)
             },
             function(data){
-                $.pjax.reload('#pjax-container');
                 toastr.success('{$saveSucceeded}');
             });
         });
 
         $('.{$this->elementId}-refresh').click(function () {
-            $.pjax.reload('#pjax-container');
-            toastr.success('{$refreshSucceeded}');
+            location.reload();
+            // toastr.success('{$refreshSucceeded}');
         });
 
         $('.{$this->elementId}-tree-tool').on('click', function(e){
@@ -310,6 +321,7 @@ SCRIPT;
             'tool'     => $this->tool->render(),
             'items'     => $this->getItems(),
             'useCreate' => $this->useCreate,
+            'useHeader' => $this->useHeader,
         ];
     }
 

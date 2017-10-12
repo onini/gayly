@@ -72,6 +72,8 @@ class Form implements Renderable
      */
     protected $attributes = [];
 
+    protected $horizontal = true;
+
     /**
      * Form constructor.
      *
@@ -268,6 +270,16 @@ class Form implements Renderable
     }
 
     /**
+     * @return $this
+     */
+    public function disableHorizontal()
+    {
+        $this->horizontal = false;
+
+        return $this;
+    }
+
+    /**
      * Generate a Field object and add to form builder if Field exists.
      *
      * @param string $method
@@ -281,6 +293,10 @@ class Form implements Renderable
             $name = array_get($arguments, 0, '');
 
             $element = new $className($name, array_slice($arguments, 1));
+
+            if (!$this->horizontal) {
+                $element->disableHorizontal();
+            }
 
             $this->pushField($element);
 

@@ -12,11 +12,9 @@
 namespace Onini\Gayly\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\{
-    Http\Request,
-    Support\Facades\Auth,
-    Foundation\Auth\AuthenticatesUsers
-};
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
@@ -82,6 +80,25 @@ class LoginController extends Controller
     public function username()
     {
         return 'email';
+    }
+
+    /**
+     * Attempt to log the user into the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return bool
+     */
+    protected function attemptLogin(Request $request)
+    {
+        $attempt = $this->guard()->attempt(
+            $this->credentials($request), $request->filled('remember')
+        );
+
+        if ($attempt) {
+            gayly_toastr(trans('gayly.login_successful'));
+        }
+
+        return $attempt;
     }
 
     /**

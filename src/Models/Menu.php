@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\DB;
 use Onini\Gayly\Traits\ModelTree;
 use Onini\Gayly\Traits\Builder;
+use Illuminate\Http\Request;
 
 class Menu extends Model
 {
@@ -51,4 +52,38 @@ class Menu extends Model
         $byOrder = $orderColumn.' = 0,'.$orderColumn;
         return static::with('roles')->orderByRaw($byOrder)->get()->toArray();
     }
+
+	public function getCurrentParentNodes(Request $request)
+	{
+		$nodes = $this->allNodes();
+
+		$current = gayly_menu_current();
+
+		$current_id = '';
+
+		collect($nodes)->map(function ($value) use($current, &$current_id) {
+			if ($value['uri'] == $current) {
+				$current_id = $value['id'];
+			}
+		});
+
+		return [
+			'current_id' => $current_id,
+			'parents' => $this->getParentId($nodes, $current_id)
+		];
+	}
+
+	protected function getParentId($data, $id)
+	{
+		$array = [];
+
+		foreach($data as $val){
+			if($val['id'] == $id){
+				$array[] = $val['id'];
+				$array=array_merge($this->getParentId($data, $val['parent_id']), $array);
+			}
+		}
+
+		return $array;
+	}
 }

@@ -36,6 +36,8 @@ class Box extends Widget implements Renderable
      */
     protected $tools = [];
 
+    public $useHeader = true;
+
     /**
      * Box constructor.
      *
@@ -113,6 +115,13 @@ class Box extends Widget implements Renderable
         return $this;
     }
 
+    public function disableHeader()
+    {
+        $this->useHeader = false;
+
+        return $this;
+    }
+
     /**
      * Set box style.
      *
@@ -157,6 +166,7 @@ class Box extends Widget implements Renderable
             'content'       => $this->content,
             'tools'         => $this->tools,
             'attributes'    => $this->formatAttributes(),
+            'useHeader'     => $this->useHeader,
         ];
     }
 

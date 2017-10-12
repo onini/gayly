@@ -9,6 +9,9 @@
 // | Author: gayly <tthd@163.com>
 // +----------------------------------------------------------------------
 
+use Onini\Gayly\Models\Menu;
+use Gayly;
+
 if (!function_exists('gayly_path')) {
     /**
      * Get gayly path.
@@ -102,5 +105,14 @@ if (!function_exists('gayly_error')) {
         } else {
             return response()->view('gayly::errors.default', $data);
         }
+    }
+}
+
+if (!function_exists('gayly_menu_current()')) {
+
+    function gayly_menu_current()
+    {
+        $uri = trim(str_replace(config('gayly.route.prefix'), '', request()->getPathInfo()), '/');
+        return empty($uri) ? '/' : $uri;
     }
 }

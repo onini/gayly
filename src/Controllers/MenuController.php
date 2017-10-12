@@ -19,11 +19,11 @@ use Onini\Gayly\Models\Role;
 use Onini\Gayly\Support\Tree;
 use Onini\Gayly\Support\Form;
 use Onini\Gayly\Support\Widgets\Box;
+use Onini\Gayly\Support\Widgets\Tab;
 use Onini\Gayly\Traits\ModelForm;
 
 class MenuController extends Controller
 {
-
     use ModelForm;
 
     /**
@@ -31,25 +31,11 @@ class MenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         return Gayly::content(function ($content) {
             $content->title('系统菜单');
-            $content->row(function ($row) {
-                $row->column(6, $this->tree());
-                $row->column(6, function ($column) {
-                    $form = new \Onini\Gayly\Support\Widgets\Form();
-                    $form->action(gayly_base_path('auth/menu'));
-
-                    $form->select('parent_id', trans('gayly.parent_id'))->options(Menu::selectOptions());
-                    $form->text('title', trans('gayly.title'))->rules('required');
-                    $form->icon('icon', trans('gayly.icon'))->default('fa-bars')->rules('required')->help($this->iconHelp());
-                    $form->text('uri', trans('gayly.uri'));
-                    $form->multipleSelect('roles', trans('gayly.roles'))->options(Role::all()->pluck('name', 'id'));
-
-                    $column->append((new Box(trans('gayly.new'), $form))->style('success'));
-                });
-            });
+            $content->row($this->tab());
         });
     }
 
@@ -77,10 +63,34 @@ class MenuController extends Controller
         });
     }
 
+    protected function tab()
+    {
+        $tab = new Tab();
+        $tab->add('菜单树', $this->tree());
+        $tab->add('添加菜单', $this->grid());
+        return $tab->render();
+    }
+
+    protected function grid()
+    {
+        $form = new \Onini\Gayly\Support\Widgets\Form();
+        $form->disableHorizontal();
+        $form->attribute('class', '');
+        $form->action(gayly_base_path('auth/menu'));
+        $form->select('parent_id', trans('gayly.parent_id'))->options(Menu::selectOptions());
+        $form->text('title', trans('gayly.title'))->rules('required');
+        $form->icon('icon', trans('gayly.icon'))->setElementClass('icon-picker')->default('fa-bars')->rules('required')->help($this->iconHelp());
+        $form->text('uri', trans('gayly.uri'));
+        $form->multipleSelect('roles', trans('gayly.roles'))->options(Role::all()->pluck('name', 'id'));
+
+        return (new Box(trans('gayly.new'), $form))->style('success')->disableHeader();
+    }
+
     protected function tree()
     {
         return Menu::tree(function (Tree $tree) {
             $tree->disableCreate();
+            $tree->disableHeader();
 
             $tree->branch(function ($branch) {
                 $payload = "<i class='fa {$branch['icon']}'></i>&nbsp;<strong>{$branch['title']}</strong>";
@@ -108,7 +118,7 @@ class MenuController extends Controller
     public function form()
     {
         return Menu::form(function (Form $form) {
-            $form->row( function ($form) {
+            $form->row(function ($form) {
                 $form->display('id', 'ID');
 
                 $form->select('parent_id', trans('gayly.parent_id'))->options(Menu::selectOptions());
@@ -120,7 +130,6 @@ class MenuController extends Controller
                 $form->display('created_at', trans('gayly.created_at'));
                 $form->display('updated_at', trans('gayly.updated_at'));
             });
-
         });
     }
 
