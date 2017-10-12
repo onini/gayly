@@ -11,10 +11,8 @@
 
 namespace Onini\Gayly\Models;
 
-use Illuminate\Database\Eloquent\{
-    Model,
-    Relations\BelongsTo
-};
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class OperationLog extends Model
 {

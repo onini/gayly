@@ -11,10 +11,8 @@
 
 namespace Onini\Gayly\Models;
 
-use Illuminate\Database\Eloquent\{
-    Model,
-    Relations\BelongsToMany
-};
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Role extends Model
 {

@@ -11,10 +11,8 @@
 
 namespace Onini\Gayly;
 
-use Illuminate\Support\{
-    ServiceProvider,
-    Facades\Route
-};
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Route;
 
 class GaylyServiceProvider extends ServiceProvider
 {

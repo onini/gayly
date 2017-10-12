@@ -11,10 +11,8 @@
 
 namespace Onini\Gayly\Console;
 
-use Illuminate\{
-	Filesystem\Filesystem,
-	Console\GeneratorCommand
-};
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Onini\Gayly\Models\SystemUser;
 
