@@ -90,7 +90,7 @@ class OperationLogController extends Controller
         return Gayly::grid(OperationLog::class, function ($grid) {
             $grid->id()->setAttributes(['width' => 60])->sortable();
             $grid->path('路径')->label('success');
-            $grid->user()->name('用户');
+            $grid->user()->name('用户')->setAttributes(['width' => 110]);
             $grid->method('类型')->display(function ($method) {
                 $color = array_get(OperationLog::$methodColors, $method, 'default');
 
