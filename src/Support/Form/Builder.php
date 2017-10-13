@@ -53,6 +53,7 @@ class Builder
     protected $options = [
         'enableSubmit' => true,
         'enableReset'  => true,
+        'enableHeaderTool' => true,
     ];
 
     /**
@@ -88,6 +89,8 @@ class Builder
         'label' => 2,
         'field' => 8,
     ];
+
+    protected $useHeader = true;
 
     /**
      * View for this form.
@@ -361,6 +364,16 @@ class Builder
         return '';
     }
 
+    public function disableHeader()
+    {
+        $this->useHeader = false;
+    }
+
+    public function useHeader()
+    {
+        return $this->useHeader;
+    }
+
     /**
      * Determine if form fields has files.
      *
@@ -561,6 +574,10 @@ SCRIPT;
      */
     public function renderHeaderTool()
     {
+        if (!$this->options['enableHeaderTool']) {
+            return '';
+        }
+
         return $this->tool->render();
     }
 

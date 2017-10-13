@@ -1145,6 +1145,21 @@ class Form
         return $this;
     }
 
+
+    public function disableHeader()
+    {
+        $this->builder()->disableHeader();
+
+        return $this;
+    }
+
+    public function disableHeaderTool()
+    {
+        $this->builder()->options(['enableHeaderTool' => false]);
+
+        return $this;
+    }
+
     /**
      * Disable form reset.
      *
@@ -1382,7 +1397,7 @@ class Form
             if (!$this->horizontal) {
                 $element->disableHorizontal();
             }
-            
+
             return $element;
         }
     }

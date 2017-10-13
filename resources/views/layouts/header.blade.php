@@ -39,35 +39,35 @@
 				<ul class="nav quick-section">
 					<li class="quicklinks">
 						<a href="#" class="" id="layout-condensed-toggle">
-			  <i class="material-icons">menu</i>
-			</a>
+						  <i class="material-icons">menu</i>
+						</a>
 					</li>
 				</ul>
 				<ul class="nav quick-section">
 					<li class="quicklinks  m-r-10">
-						<a href="#" class="">
-			  <i class="material-icons">refresh</i>
-			</a>
+						<a href="javascript:;" class="" onclick="location.reload()">
+						  <i class="material-icons">refresh</i>
+						</a>
 					</li>
-					<li class="quicklinks">
+					{{-- <li class="quicklinks">
 						<a href="#" class="">
-			  <i class="material-icons">apps</i>
-			</a>
+						  <i class="material-icons">apps</i>
+						</a>
 					</li>
 					<li class="quicklinks"> <span class="h-seperate"></span></li>
 					<li class="quicklinks">
 						<a href="#" class="" id="my-task-list" data-placement="bottom" data-content='' data-toggle="dropdown" data-original-title="Notifications">
-			  <i class="material-icons">notifications_none</i>
-			  <span class="badge badge-important bubble-only"></span>
-			</a>
+						  <i class="material-icons">notifications_none</i>
+						  <span class="badge badge-important bubble-only"></span>
+						</a>
 					</li>
 					<li class="m-r-10 input-prepend inside search-form no-boarder">
 						<span class="add-on"> <i class="material-icons">search</i></span>
 						<input name="" type="text" class="no-boarder " placeholder="Search Dashboard" style="width:250px;">
-					</li>
+					</li> --}}
 				</ul>
 			</div>
-			<div id="notification-list" style="display:none">
+			{{-- <div id="notification-list" style="display:none">
 				<div style="width:300px">
 					<div class="notification-messages info">
 						<div class="user-profile">
@@ -121,7 +121,7 @@
 						<div class="clearfix"></div>
 					</div>
 				</div>
-			</div>
+			</div> --}}
 			<!-- END TOP NAVIGATION MENU -->
 			<!-- BEGIN CHAT TOGGLER -->
 			<div class="pull-right">
@@ -138,15 +138,15 @@
 			</a>
 						<ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
 							<li>
-								<a href="user-profile.html"> 个人资料</a>
+								<a href="{{ gayly_base_path('/auth/user/profile') }}"> 个人资料</a>
 							</li>
 							<li>
-								<a href="calender.html">设置中心</a>
+								<a href="{{ gayly_base_path('/setting') }}">设置中心</a>
 							</li>
 							<li>
-								<a href="email.html"> 消息&nbsp;&nbsp;
-					<span class="badge badge-important animated bounceIn">2</span>
-				</a>
+								<a href="{{ gayly_base_path('/user/message') }}"> 消息&nbsp;&nbsp;
+									{{-- <span class="badge badge-important animated bounceIn">2</span> --}}
+								</a>
 							</li>
 							<li class="divider"></li>
 							<li>

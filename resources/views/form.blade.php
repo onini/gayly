@@ -1,14 +1,16 @@
 
 <div class="grid simple horizontal green">
-	<div class="grid-title no-border">
-		<h4>{{ $form->title() }} <span class="semi-bold"></span></h4>
-		<div class="tools">
-			<a href="javascript:;" class="collapse"></a>
-			<a href="#grid-config" data-toggle="modal" class="config"></a>
-			<a href="javascript:;" class="reload"></a>
-			<a href="javascript:;" class="remove"></a>
+	@if ($form->useHeader())
+		<div class="grid-title no-border">
+			<h4>{{ $form->title() }} <span class="semi-bold"></span></h4>
+			<div class="tools">
+				<a href="javascript:;" class="collapse"></a>
+				<a href="#grid-config" data-toggle="modal" class="config"></a>
+				<a href="javascript:;" class="reload"></a>
+				<a href="javascript:;" class="remove"></a>
+			</div>
 		</div>
-	</div>
+	@endif
 	<div class="grid-body no-border">
         <div class="pull-right">
             {!! $form->renderHeaderTool() !!}

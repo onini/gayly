@@ -140,11 +140,14 @@ class GaylyServiceProvider extends ServiceProvider
                     'prefix'    =>  'auth',
                     'namespace' => 'Onini\\Gayly\\Controllers',
                 ], function ($router) {
+                    $router->pattern('user', '\d+');
                     $router->resource('user', 'UserController', ['names' => config('gayly.route.name', 'gayly.').'user']);
                     $router->resource('role', 'Auth\RoleController', ['names' => config('gayly.route.name', 'gayly.').'role']);
                     $router->resource('permission', 'Auth\PermissionController', ['names' => config('gayly.route.name', 'gayly.').'permission']);
                     $router->resource('menu', 'MenuController', ['names' => config('gayly.route.name', 'gayly.').'menu', 'except' => ['create']]);
                     $router->resource('log', 'OperationLogController', ['names' => config('gayly.route.name', 'gayly.').'log', 'only' => ['index', 'destroy']]);
+                    $router->get('user/profile', 'UserController@profile')->name(config('gayly.route.name', 'gayly.').'user.profile');
+                    $router->get('user/profile/edit', 'UserController@profileEdit')->name(config('gayly.route.name', 'gayly.').'user.profile.edit');
                 });
 
                 if (file_exists($routes = gayly_path('routes.php'))) {

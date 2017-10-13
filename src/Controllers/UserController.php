@@ -74,6 +74,21 @@ class UserController extends Controller
         });
     }
 
+    /**
+     * [profile description]
+     * @method profile
+     * @return [type]  [description]
+     */
+    public function profile()
+    {
+        return view('gayly::auth.user.profile');
+    }
+
+    public function profileEdit()
+    {
+        return view('gayly::auth.user.profile', ['form' => $this->form(true)->edit(Gayly::user()->id)]);
+    }
+
     protected function grid()
     {
         return Gayly::grid(SystemUser::class, function (Grid $grid) {
@@ -110,13 +125,15 @@ class UserController extends Controller
         });
     }
 
-    public function form()
+    public function form($profile = false)
     {
-        return SystemUser::form(function (Form $form) {
+        return SystemUser::form(function (Form $form) use ($profile) {
             $form->setWidth('col-md-8 col-md-offset-2');
-            $form->text('username', trans('gayly.username'))->rules('required');
+            $profile && $form->disableHeader();
+            $profile && $form->disableHeaderTool();
+            !$profile && $form->text('username', trans('gayly.username'))->rules('required');
             $form->text('name', trans('gayly.name'))->rules('required');
-            $form->email('email', trans('gayly.email'))->rules('required');
+            !$profile && $form->email('email', trans('gayly.email'))->rules('required');
             $form->image('avatar', trans('gayly.avatar'));
             $form->password('password', trans('gayly.password'))->rules('required|confirmed');
             $form->password('password_confirmation', trans('gayly.password_confirmation'))->rules('required')
@@ -126,11 +143,11 @@ class UserController extends Controller
 
             $form->ignore(['password_confirmation']);
 
-            $form->multipleSelect('roles', trans('gayly.roles'))->options(Role::all()->pluck('name', 'id'));
-            $form->multipleSelect('permissions', trans('gayly.permissions'))->options(Permission::all()->pluck('name', 'id'));
+            !$profile && $form->multipleSelect('roles', trans('gayly.roles'))->options(Role::all()->pluck('name', 'id'));
+            !$profile && $form->multipleSelect('permissions', trans('gayly.permissions'))->options(Permission::all()->pluck('name', 'id'));
 
-            $form->display('created_at', trans('gayly.created_at'));
-            $form->display('updated_at', trans('gayly.updated_at'));
+            !$profile && $form->display('created_at', trans('gayly.created_at'));
+            !$profile && $form->display('updated_at', trans('gayly.updated_at'));
 
             $form->saving(function (Form $form) {
                 if ($form->password && $form->model()->password != $form->password) {
