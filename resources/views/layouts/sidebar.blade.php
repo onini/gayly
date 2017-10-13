@@ -17,6 +17,10 @@
 			.page-sidebar .page-sidebar-wrapper > ul > li > a i {
 				top:auto;
 			}
+
+			.sidebar-icon {
+				font-size: 11px !important;
+			}
 		</style>
 		<!-- BEGIN SIDEBAR MENU -->
 		<p class="menu-title sm">控制面板 <span class="pull-right"><a href="javascript:;"><i class="material-icons">refresh</i></a></span></p>

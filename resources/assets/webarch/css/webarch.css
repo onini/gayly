@@ -584,7 +584,7 @@ body.boxed-layout .footer-widget {
   border: 0px;
   padding: 11.5px 28px 11.5px 28px;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 11px;
   font-weight: normal;
 }
 .page-sidebar .page-sidebar-wrapper > ul > li > a.open {
@@ -664,7 +664,7 @@ body.boxed-layout .footer-widget {
   color: #e1eaf1;
   text-decoration: none;
   text-shadow: 0 1px 1px #000;
-  font-size: 13px;
+  font-size: 10px;
   font-weight: 300;
   background: none;
 }

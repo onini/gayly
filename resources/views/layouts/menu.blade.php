@@ -10,13 +10,13 @@
          @else
               <a href="{{ gayly_base_path($item['uri']) }}">
          @endif
- 			<i class="fa {{ $item['icon'] }} fa-lg"></i>
+ 			<i class="fa {{ $item['icon'] }} fa-lg sidebar-icon"></i>
  			<span class="title">{{ $item['title'] }}</span>
  			{{-- <span class=" badge badge-disable pull-right ">203</span> --}}
          </a>
  @else
  		<a href="javascript:;">
- 			<i class="fa {{ $item['icon'] }} fa-lg"></i>
+ 			<i class="fa {{ $item['icon'] }} fa-lg sidebar-icon"></i>
  			<span class="title">{{ $item['title'] }}</span>
  			<span class="arrow"></span>
  		</a>
