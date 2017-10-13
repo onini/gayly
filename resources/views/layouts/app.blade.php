@@ -16,6 +16,7 @@
 	<link href="{{ gayly_asset('vendor/gayly/assets/plugins/jquery-nestable/jquery.nestable.css') }}" rel="stylesheet" type="text/css" media="screen" />
 	<!-- END PLUGIN CSS -->
 	<!-- BEGIN PLUGIN CSS -->
+	<link href="{{ gayly_asset('vendor/gayly/assets/plugins/toastr/build/toastr.min.css') }}" rel="stylesheet" type="text/css" media="screen" />
 	<link href="{{ gayly_asset('vendor/gayly/assets/plugins/font-awesome/css/font-awesome.css') }}" rel="stylesheet" type="text/css" />
 	<link href="{{ gayly_asset('vendor/gayly/assets/plugins/pace/pace-theme-flash.css') }}" rel="stylesheet" type="text/css" media="screen" />
 	<link href="{{ gayly_asset('vendor/gayly/assets/plugins/bootstrapv3/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
@@ -47,18 +48,11 @@
 		<!-- BEGIN PAGE CONTAINER-->
 		<div class="page-content {{ $page_content_class or '' }}">
 		@section('page-content')
-
-			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-			<div id="portlet-config" class="modal hide">
-				<div class="modal-header">
-					<button data-dismiss="modal" class="close" type="button"></button>
-					<h3>Widget Settings</h3>
-				</div>
-				<div class="modal-body"> Widget settings form goes here </div>
-			</div>
-			<div class="clearfix"></div>
 			@section('content')
 			<div class="content {{ $content_class or '' }}">
+				@include('gayly::partials.error')
+				@include('gayly::partials.success')
+				@include('gayly::partials.exception')
 				@yield('container')
 			</div>
 			@show
@@ -70,7 +64,7 @@
 	</div>
 	<!-- END CONTAINER -->
 	<!-- END CONTAINER -->
-	{{-- <script src="{{ gayly_asset('vendor/gayly/assets/plugins/pace/pace.min.js') }}" type="text/javascript"></script> --}}
+	<script src="{{ gayly_asset('vendor/gayly/assets/plugins/pace/pace.min.js') }}" type="text/javascript"></script>
 	<!-- BEGIN JS DEPENDECENCIES-->
 	<script src="{{ gayly_asset('vendor/gayly/assets/plugins/jquery/jquery-1.11.3.min.js') }}" type="text/javascript"></script>
 	<script src="{{ gayly_asset('vendor/gayly/assets/plugins/bootstrapv3/js/bootstrap.min.js') }}" type="text/javascript"></script>
@@ -81,6 +75,16 @@
 	<script src="{{ gayly_asset('vendor/gayly/assets/plugins/jquery-validation/js/jquery.validate.min.js') }}" type="text/javascript"></script>
 	<script src="{{ gayly_asset('vendor/gayly/assets/plugins/jquery-pjax/jquery.pjax.js') }}" type="text/javascript"></script>
 	<script src="{{ gayly_asset('vendor/gayly/assets/plugins/sweetalert/sweetalert.min.js') }}"></script>
+	<script src="{{ gayly_asset('vendor/gayly/assets/plugins/toastr/build/toastr.min.js') }}" type="text/javascript"></script>
+	<script src="{{ gayly_asset('vendor/gayly/assets/plugins/jquery-nestable/jquery.nestable.js') }}" type="text/javascript"></script>
+	<script type="text/javascript">
+		toastr.options = {
+			closeButton: true,
+			progressBar: true,
+			showMethod: 'slideDown',
+			timeOut: 4000
+		};
+	</script>
 	<!-- END CORE JS DEPENDECENCIES-->
 	<!-- BEGIN CORE TEMPLATE JS -->
 	<script src="{{ gayly_asset('vendor/gayly/webarch/js/webarch.js') }}" type="text/javascript"></script>
@@ -88,10 +92,10 @@
 	<!-- BEGIN PAGE LEVEL JS -->
 	@stack('js')
 {!! Gayly::js() !!}
-	<script src="{{ gayly_asset('vendor/gayly/assets/plugins/jquery-nestable/jquery.nestable.js') }}" type="text/javascript"></script>
 	<!-- END PAGE LEVEL PLUGINS -->
 	@stack('script')
 {!! Gayly::script() !!}
+	@include('gayly::partials.toastr')
 	<!-- END CORE TEMPLATE JS -->
 </body>
 

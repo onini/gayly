@@ -14,6 +14,5 @@
                 <span class="input-group-addon clearfix">{!! $append !!}</span>
             @endif
       	</div>
-
     </div>
-  </div>
+</div>

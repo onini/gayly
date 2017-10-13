@@ -1,16 +1,15 @@
 <div class="grid simple horizontal green">
 	@if ($useHeader)
-	<div class="grid-title no-border">
-		<h4>面板 <span class="semi-bold">盒子</span></h4>
-		<div class="tools">
-			<a href="javascript:;" class="collapse"></a>
-			<a href="#grid-config" data-toggle="modal" class="config"></a>
-			<a href="javascript:;" class="reload"></a>
-			<a href="javascript:;" class="remove"></a>
+		<div class="grid-title no-border">
+			<h4>面板 <span class="semi-bold">盒子</span></h4>
+			<div class="tools">
+				<a href="javascript:;" class="collapse"></a>
+				<a href="#grid-config" data-toggle="modal" class="config"></a>
+				<a href="javascript:;" class="reload"></a>
+				<a href="javascript:;" class="remove"></a>
+			</div>
 		</div>
-	</div>
 	@endif
-
 	<div class="grid-body no-border">
 		<div class="btn-group">
 			<a class="btn btn-primary btn-mini {{ $id }}-tree-tool" data-action="expand">

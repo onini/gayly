@@ -13,8 +13,6 @@
 	<i class="icon-custom-left"></i>
 	<h3>Basic - <span class="semi-bold">{{ $title or config('gayly.name') }}</span></h3>
 </div>
-@include('gayly::partials.error')
-@include('gayly::partials.success')
-@include('gayly::partials.toastr')
+
 {!! $content !!}
 @endsection

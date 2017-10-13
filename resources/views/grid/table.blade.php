@@ -8,7 +8,7 @@
 			<a href="javascript:;" class="remove"></a>
 		</div>
 	</div>
-	<div class="grid-body no-border">
+	<div class="grid-body no-border ">
 		<br>
 		{{-- <h3>Stripped  <span class="semi-bold">Table</span></h3> --}}
 		{{-- <p>They (allegedly) aid usability in reading tabular data by offering the user a coloured means of separating and differentiating rows from one another. Simply add the class<code>.table-striped</code> --}}
@@ -36,7 +36,7 @@
 		</div>
 
 		<br>
-		<table class="table table-striped table-flip-scroll cf">
+		<table class="table table-hover table-striped no-more-tables">
 			<thead class="cf">
 				<tr>
 					@foreach($grid->columns() as $column)

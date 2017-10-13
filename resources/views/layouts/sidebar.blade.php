@@ -13,6 +13,11 @@
 			</div>
 		</div>
 		<!-- END MINI-PROFILE -->
+		<style media="screen">
+			.page-sidebar .page-sidebar-wrapper > ul > li > a i {
+				top:auto;
+			}
+		</style>
 		<!-- BEGIN SIDEBAR MENU -->
 		<p class="menu-title sm">控制面板 <span class="pull-right"><a href="javascript:;"><i class="material-icons">refresh</i></a></span></p>
 		<ul>
