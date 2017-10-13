@@ -3,8 +3,10 @@
 	<div class="page-sidebar-wrapper scrollbar-dynamic" id="main-menu-wrapper">
 		<div class="user-info-wrapper sm">
 			<div class="profile-wrapper sm">
-				<img src="{{ Gayly::user()->avatar }}" alt="" data-src="{{ Gayly::user()->avatar }}" data-src-retina="{{ Gayly::user()->avatar }}" width="69"
-				 height="69" />
+				<a href="{{ gayly_base_path('/auth/user/profile') }}">
+					<img src="{{ Gayly::user()->avatar }}" alt="" data-src="{{ Gayly::user()->avatar }}" data-src-retina="{{ Gayly::user()->avatar }}" width="69"
+					 height="69" />
+				</a>
 				<div class="availability-bubble online"></div>
 			</div>
 			<div class="user-info sm">
