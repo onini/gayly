@@ -88,14 +88,14 @@ class GaylyTableSeeder extends Seeder
                 'parent_id' => 0,
                 'order'     => 1,
                 'title'     => '首页',
-                'icon'      => 'home',
+                'icon'      => 'fa-home',
                 'uri'       => '/',
             ],
             [
                 'parent_id' => 0,
                 'order'     => 2,
                 'title'     => '系统设置',
-                'icon'      => 'dvr',
+                'icon'      => 'fa-cogs',
                 'uri'       => '',
             ],
             [
