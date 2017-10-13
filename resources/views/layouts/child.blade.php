@@ -1,13 +1,11 @@
-@if(!isset($item['children']))
 @php
-	$parent = (new \Onini\Gayly\Models\Menu())->getCurrentParentNodes(request());
-	$class = collect($parent['parents'])->search($parent['current_id']) ? 'active open' : '';
+	$parent = (new \Onini\Gayly\Models\Menu())->getCurrentParentNodes();
+	$class = false !== collect($parent['parents'])->search($item['id']) ? 'class="active open"' : '';
 @endphp
- <li>
+<li {!! $class !!}>
+@if(!isset($item['children']))
 	 <a href="{{ gayly_base_path($item['uri']) }}">{{ $item['title'] }}</a>
- </li>
 @else
- <li>
      <a href="javascript:;">
          <span class="title">{{ $item['title'] }}</span>
          <span class="arrow"></span>
@@ -17,5 +15,5 @@
              @include('gayly::layouts.child', $item)
          @endforeach
      </ul>
- </li>
 @endif
+</li>
