@@ -5,9 +5,11 @@
 			<div class="tiles green cover-pic-wrapper">
 				<div class="overlayer bottom-right">
 					<div class="overlayer-wrapper">
+						@if (!isset($form))
 						<div class="padding-10 hidden-xs">
 							<a href="{{ gayly_base_path('auth/user/profile/edit') }}" type="button" class="btn btn-primary btn-small">{{ trans('gayly.edit') }}</a>
 						</div>
+						@endif
 					</div>
 				</div>
 				<img src="{{ gayly_asset('vendor/gayly/assets/img/cover_pic.png') }}" alt="">
