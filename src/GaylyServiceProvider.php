@@ -148,6 +148,7 @@ class GaylyServiceProvider extends ServiceProvider
                     $router->resource('log', 'OperationLogController', ['names' => config('gayly.route.name', 'gayly.').'log', 'only' => ['index', 'destroy']]);
                     $router->get('user/profile', 'UserController@profile')->name(config('gayly.route.name', 'gayly.').'user.profile');
                     $router->get('user/profile/edit', 'UserController@profileEdit')->name(config('gayly.route.name', 'gayly.').'user.profile.edit');
+                    $router->put('user/profile/{user}/edit', 'UserController@profileUpdate')->name(config('gayly.route.name', 'gayly.').'user.profile.update');
                 });
 
                 if (file_exists($routes = gayly_path('routes.php'))) {

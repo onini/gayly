@@ -89,6 +89,11 @@ class UserController extends Controller
         return view('gayly::auth.user.profile', ['form' => $this->form(true)->edit(Gayly::user()->id)]);
     }
 
+    public function profileUpdate($id)
+    {
+        return $this->form(true)->update($id);
+    }
+
     protected function grid()
     {
         return Gayly::grid(SystemUser::class, function (Grid $grid) {
@@ -128,6 +133,7 @@ class UserController extends Controller
     public function form($profile = false)
     {
         return SystemUser::form(function (Form $form) use ($profile) {
+            $profile && $form->setAction(gayly_base_path('/auth/user/profile/'.Gayly::user()->id.'/edit'));
             $form->setWidth('col-md-8 col-md-offset-2');
             $profile && $form->disableHeader();
             $profile && $form->disableHeaderTool();

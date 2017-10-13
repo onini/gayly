@@ -89,12 +89,18 @@ class Permission extends Model
      */
     protected function matchRequest(array $match, Request $request) : bool
     {
-        if (!$request->is(trim($match['path'], '/'))) {
+        /**
+         * 设置权限判定正则
+         * @var [type]
+         */
+        if (!preg_match('#^'.trim($match['path'], '/').'\z#u', $request->decodedPath())) {
             return false;
         }
+
         $method = collect($match['method'])->filter()->map(function ($method) {
             return strtoupper($method);
         });
+
         return $method->isEmpty() || $method->contains($request->method());
     }
 
