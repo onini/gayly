@@ -28,22 +28,37 @@ class GaylyTableSeeder extends Seeder
     {
         // create a user.
         SystemUser::truncate();
-        SystemUser::create([
-            'username'  => 'gayly',
-            'password'  => bcrypt('gayly'),
-            'email' =>  'tthd@163.com',
-            'name'      => '太年轻',
+        SystemUser::insert([
+            [
+                'username'  => 'gayly',
+                'password'  => bcrypt('gayly'),
+                'email' =>  'tthd@163.com',
+                'name'      => '太年轻',
+            ],
+            [
+                'username'  => 'guest',
+                'password'  => bcrypt('guest'),
+                'email' =>  'guest@guest.com',
+                'name'      => 'guest',
+            ]
         ]);
 
         // create a role.
         Role::truncate();
-        Role::create([
-            'name'  => 'Administrator',
-            'slug'  => 'administrator',
+        Role::insert([
+            [
+                'name'  => 'Administrator',
+                'slug'  => 'administrator',
+            ],
+            [
+                'name'  => 'Default',
+                'slug'  => 'default',
+            ]
         ]);
 
         // add role to user.
         SystemUser::first()->roles()->save(Role::first());
+        SystemUser::where('username', 'guest')->first()->roles()->save(Role::where('slug', 'default')->first());
 
         //create a permission
         Permission::truncate();
@@ -78,8 +93,18 @@ class GaylyTableSeeder extends Seeder
                 'http_method' => '',
                 'http_path'   => "/auth/roles\r\n/auth/permission\r\n/auth/menu\r\n/auth/log",
             ],
+            [
+                'name'        => '用户信息',
+                'slug'        => 'user.profile',
+                'http_method' => '',
+                'http_path'   => "/auth/user/profile\r\n/auth/user/profile/edit\r\n/auth/user/profile/\d+/edit",
+            ]
         ]);
         Role::first()->permissions()->save(Permission::first());
+        $default = Role::where('slug', 'default')->first()->permissions();
+        $default->save(Permission::where('slug', 'dashboard')->first());
+        $default->save(Permission::where('slug', 'login')->first());
+        $default->save(Permission::where('slug', 'user.profile')->first());
 
         // add default menus.
         Menu::truncate();
