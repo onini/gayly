@@ -59,7 +59,7 @@ body {
   direction: ltr;
   background-color: #1b1e24;
   color: #6f7b8a;
-  font-family: 'Roboto';
+  font-family: 'Roboto',"Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
   font-size: 13px;
   padding: 0px !important;
   margin: 0px !important;
@@ -539,7 +539,7 @@ body.boxed-layout .footer-widget {
 .page-sidebar {
   background-color: #1b1e24 !important;
   height: 100%;
-  font-family: 'Roboto';
+  font-family: 'Roboto',"Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
   -webkit-backface-visibility: hidden;
   -webkit-transition: -webkit-transform 0.3s ease;
   transition: transform 0.3s ease;
@@ -958,7 +958,7 @@ body.boxed-layout .footer-widget {
   z-index: 10;
 }
 .chat-window-wrapper {
-  font-family: 'Roboto';
+  font-family: 'Roboto',"Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
   font-size: 13px;
   position: fixed;
   top: 0;
@@ -1383,7 +1383,7 @@ body.boxed-layout .footer-widget {
   font-size: 18px;
 }
 .page-content .breadcrumb {
-  font-family: 'Roboto';
+  font-family: 'Roboto',"Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   border-radius: 0px;
@@ -1414,7 +1414,7 @@ body.boxed-layout .footer-widget {
   display: inline-block;
   position: absolute;
   width: 200px;
-  font-family: 'Roboto';
+  font-family: 'Roboto',"Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
   background-color: #1b1e24;
   height: 100%;
 }
@@ -2079,7 +2079,7 @@ h4,
 h5,
 h6 {
   margin: 10px 0;
-  font-family: 'Roboto';
+  font-family: 'Roboto',"Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
   font-weight: 300;
   color: #505458;
 }
@@ -2098,7 +2098,7 @@ h4 {
 h3 small,
 h4 small,
 h5 small {
-  font-family: 'Roboto';
+  font-family: 'Roboto',"Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
   font-weight: 300;
   color: #444;
 }
@@ -2365,7 +2365,7 @@ hr {
   color: #666;
   margin: 0 0 10px;
   font-weight: 300;
-  font-family: 'Roboto';
+  font-family: 'Roboto',"Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
 }
 .page-title h3 {
   display: inline-block;
@@ -2393,7 +2393,7 @@ hr {
   color: #888;
 }
 .page-title .actions {
-  font-family: 'Roboto';
+  font-family: 'Roboto',"Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
 }
 .page-content .breadcrumb a,
 .page-content .breadcrumb i,
@@ -5364,7 +5364,7 @@ form legend,
   padding: 15px 18px 15px;
 }
 .notification-messages {
-  font-family: 'Roboto';
+  font-family: 'Roboto',"Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
   background-color: #eef9f8;
   padding: 15px 18px 10px;
   display: block;
@@ -5570,7 +5570,7 @@ form legend,
   font-size: 11px;
   text-shadow: none;
   background-color: #d1dade;
-  font-family: 'Roboto';
+  font-family: 'Roboto',"Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
   font-weight: 600;
   color: #5E5E5E;
 }
@@ -5583,7 +5583,7 @@ form legend,
 }
 .badge {
   text-shadow: none;
-  font-family: 'Roboto';
+  font-family: 'Roboto',"Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
   font-weight: 600;
   background-color: #d1dade;
   font-size: 11px;
@@ -5734,7 +5734,7 @@ form legend,
 }
 .tiles .tiles-title {
   font-size: 11px;
-  font-family: 'Roboto';
+  font-family: 'Roboto',"Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
   letter-spacing: 0.7px;
   font-weight: 500;
 }
@@ -5880,7 +5880,7 @@ form legend,
 .tiles .heading {
   font-size: 25px;
   display: block;
-  font-family: 'Roboto';
+  font-family: 'Roboto',"Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
   font-weight: 600;
   margin: 4px 0px;
 }
@@ -7906,7 +7906,7 @@ input[type="checkbox"] {
 }
 .error-body {
   background-color: #e5e9ec !important;
-  font-family: 'Roboto';
+  font-family: 'Roboto',"Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
   height: 100%;
 }
 .error-wrapper {
@@ -7941,7 +7941,7 @@ input[type="checkbox"] {
   height: inherit;
 }
 .error-container {
-  font-family: 'Roboto';
+  font-family: 'Roboto',"Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
 }
 .error-container .error-number {
   color: #22262e;
@@ -8046,7 +8046,7 @@ input[type="checkbox"] {
   width: 25%;
   padding-right: 100px;
   position: absolute;
-  font-family: 'Roboto';
+  font-family: 'Roboto',"Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
   text-align: right;
 }
 .cbp_tmtimeline > li .cbp_tmtime .date {
