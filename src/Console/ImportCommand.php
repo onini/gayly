@@ -12,7 +12,7 @@
 namespace Onini\Gayly\Console;
 
 use Illuminate\Console\Command;
-use Gayly;
+use Onini\Gayly\Support\Gayly;
 
 class ImportCommand extends Command
 {
