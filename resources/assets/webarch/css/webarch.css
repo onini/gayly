@@ -6380,7 +6380,7 @@ h4.custom-line-height {
   text-shadow: none;
   box-shadow: none;
   transition: all 0.12s linear 0s !important;
-  font: 14px/20px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: 14px/20px ,"Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
 }
 .btn:focus {
   outline: none !important;
