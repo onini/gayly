@@ -14,21 +14,21 @@ namespace Onini\Gayly\Console;
 use Illuminate\Console\Command;
 use Gayly;
 
-class MenuCommand extends Command
+class ImportCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $name = 'gayly:menu';
+    protected $signature = 'gayly:import {extension?}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Show all menu';
+    protected $description = 'Import extension';
 
     /**
      * Execute the console command.
@@ -37,9 +37,22 @@ class MenuCommand extends Command
      */
     public function handle()
     {
-        $menu = Gayly::menu();
+        $extension = $this->argument('extension');
 
-        echo json_encode($menu, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE), "\r\n";
+        if (empty($extension) || !array_has(Gayly::$extensions, $extension)) {
+            $extension = $this->choice('Please choose a extension to import', array_keys(Gayly::$extensions));
+        }
+
+        $className = array_get(Gayly::$extensions, $extension);
+
+        if (!class_exists($className) || !method_exists($className, 'import')) {
+            $this->error("Invalid Extension [$className]");
+
+            return;
+        }
+
+        call_user_func([$className, 'import'], $this);
+
+        $this->info("Extension [$className] imported");
     }
-
 }

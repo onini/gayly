@@ -15,6 +15,7 @@ use Auth;
 use Closure;
 use Onini\Gayly\Support\Layout\Content;
 use Onini\Gayly\Models\Menu;
+use Onini\Gayly\Support\Widgets\Navbar;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use InvalidArgumentException;
 
@@ -39,10 +40,10 @@ class Gayly
     public static $script = [];
 
     /**
-     * [protected description]
+     * [public description]
      * @var [type]
      */
-    protected static $extension = [];
+    public static $extensions = [];
 
     /**
      * [content description]
@@ -198,14 +199,42 @@ class Gayly
     }
 
     /**
-     * [extension description]
-     * @method extension
-     * @param  [type]    $key   [description]
-     * @param  [type]    $class [description]
-     * @return [type]           [description]
-     */
-    public static function extension($key, $class)
+ * Set navbar.
+ *
+ * @param Closure $builder
+ */
+    public function navbar(Closure $builder = null)
     {
-        static::$extension[$key] = $class;
+        if (is_null($builder)) {
+            return $this->getNavbar();
+        }
+
+        call_user_func($builder, $this->getNavbar());
+    }
+
+    /**
+     * Get navbar object.
+     *
+     * @return \Encore\Admin\Widgets\Navbar
+     */
+    public function getNavbar()
+    {
+        if (is_null($this->navbar)) {
+            $this->navbar = new Navbar();
+        }
+
+        return $this->navbar;
+    }
+
+    /**
+     * [extend description]
+     * @method extend
+     * @param  [type] $key   [description]
+     * @param  [type] $class [description]
+     * @return [type]        [description]
+     */
+    public static function extend($key, $class)
+    {
+        static::$extensions[$key] = $class;
     }
 }
