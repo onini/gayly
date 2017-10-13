@@ -45,7 +45,7 @@
 					<input type="text" placeholder="Name of folder" class="no-boarder folder-name" name="">
 				</li>
 			</ul>
-			<p class="menu-title">项目 </p>
+			{{-- <p class="menu-title">项目 </p>
 			<div class="status-widget">
 				<div class="status-widget-wrapper">
 					<div class="title">Freelancer<a href="#" class="remove-widget"><i class="material-icons">close</i></a></div>
@@ -57,7 +57,7 @@
 					<div class="title">envato<a href="#" class="remove-widget"><i class="material-icons">close</i></a></div>
 					<p>Statistical report</p>
 				</div>
-			</div>
+			</div> --}}
 		</div>
 		<div class="clearfix"></div>
 		<!-- END SIDEBAR MENU -->
@@ -70,5 +70,5 @@
 	</div>
 	<div class="pull-right">
 		<div class="details-status"> <span class="animate-number" data-value="86" data-animation-duration="560">86</span>% </div>
-		<a href="lockscreen.html"><i class="material-icons">power_settings_new</i></a></div>
+		<a href="{{ gayly_base_path('auth/logout') }}"><i class="material-icons">power_settings_new</i></a></div>
 </div>
