@@ -20,15 +20,17 @@
 						<i class="material-icons">home</i>
 				  	</a>
 				</li>
-				{{-- <li class="dropdown hidden-xs hidden-sm">
+				{{--
+				<li class="dropdown hidden-xs hidden-sm">
 					<a href="email.html" class="dropdown-toggle">
 						<i class="material-icons">email</i><span class="badge bubble-only"></span>
 				  	</a>
 				</li> --}}
 				<li class="dropdown visible-xs visible-sm">
-					<a href="#" data-webarch="toggle-right-side">
-			<i class="material-icons">chat</i>
-		  </a>
+					{{-- <a href="#" data-webarch="toggle-right-side"> --}}
+					<a href="#">
+						<i class="material-icons">chat</i>
+				  	</a>
 				</li>
 			</ul>
 		</div>
@@ -49,7 +51,8 @@
 						  <i class="material-icons">refresh</i>
 						</a>
 					</li>
-					{{-- <li class="quicklinks">
+					{{--
+					<li class="quicklinks">
 						<a href="#" class="">
 						  <i class="material-icons">apps</i>
 						</a>
@@ -67,7 +70,8 @@
 					</li> --}}
 				</ul>
 			</div>
-			{{-- <div id="notification-list" style="display:none">
+			{{--
+			<div id="notification-list" style="display:none">
 				<div style="width:300px">
 					<div class="notification-messages info">
 						<div class="user-profile">
