@@ -404,7 +404,7 @@ class Builder
         }
 
         if (Str::contains($previous, url($this->getResource()))) {
-            $this->addHiddenField((new Form\Field\Hidden(static::PREVIOUS_URL_KEY))->value($previous));
+            $this->addHiddenField((new \Onini\Gayly\Support\Form\Field\Hidden(static::PREVIOUS_URL_KEY))->value($previous));
         }
     }
 
