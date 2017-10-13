@@ -403,7 +403,7 @@ class Builder
             return;
         }
 
-        if (Str::contains($previous, url($this->getResource(), [], config('gayly.secure')))) {
+        if (Str::contains($previous, url($this->getResource()))) {
             $this->addHiddenField((new \Onini\Gayly\Support\Form\Field\Hidden(static::PREVIOUS_URL_KEY))->value($previous));
         }
     }
