@@ -93,7 +93,7 @@ class Permission extends Model
          * 设置权限判定正则
          * @var [type]
          */
-        if (!preg_match('#^'.trim($match['path'], '/').'\z#u', $request->decodedPath())) {
+        if (!preg_match('#^'.str_replace('*', '.*', trim($match['path'], '/')).'\z#u', $request->decodedPath())) {
             return false;
         }
 
