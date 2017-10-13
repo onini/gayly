@@ -6,7 +6,7 @@
 	<meta charset="utf-8" />
 	<!-- CSRF Token -->
 	<meta name="csrf-token" content="{{ csrf_token() }}">
-	<title>{{ config('app.name', 'Laravel') }}</title>
+	<title>{{ config('gayly.title', 'Onini') }}</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />

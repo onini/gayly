@@ -129,11 +129,8 @@ class PermissionController extends Controller
     public function form()
     {
         return Gayly::form(Permission::class, function (Form $form) {
-            $form->display('id', 'ID');
-
             $form->text('slug', trans('gayly.slug'))->rules('required');
             $form->text('name', trans('gayly.name'))->rules('required');
-
             $form->multipleSelect('http_method', trans('gayly.http.method'))
             ->options($this->getHttpMethodsOptions())
             ->help('不选择默认为所有权限');

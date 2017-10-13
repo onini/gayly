@@ -119,8 +119,6 @@ class MenuController extends Controller
     {
         return Menu::form(function (Form $form) {
             $form->row(function ($form) {
-                $form->display('id', 'ID');
-
                 $form->select('parent_id', trans('gayly.parent_id'))->options(Menu::selectOptions());
                 $form->text('title', trans('gayly.title'))->rules('required');
                 $form->icon('icon', trans('gayly.icon'))->default('fa-bars')->rules('required')->help($this->iconHelp());
