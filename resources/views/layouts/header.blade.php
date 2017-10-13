@@ -11,20 +11,20 @@
 			</ul>
 			<!-- BEGIN LOGO -->
 			<a href="index.html">
-		<img src="{{ gayly_asset('vendor/gayly/assets/img/logo.png') }}" class="logo" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/logo.png') }}" data-src-retina="{{ gayly_asset('vendor/gayly/assets/img/logo2x.png') }}" width="106" height="21" />
-	  </a>
+				<img src="{{ gayly_asset('vendor/gayly/assets/img/logo.png') }}" class="logo" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/logo.png') }}" data-src-retina="{{ gayly_asset('vendor/gayly/assets/img/logo2x.png') }}" width="106" height="21" />
+		  	</a>
 			<!-- END LOGO -->
 			<ul class="nav pull-right notifcation-center">
 				<li class="dropdown hidden-xs hidden-sm">
-					<a href="index.html" class="dropdown-toggle active" data-toggle="">
-			<i class="material-icons">home</i>
-		  </a>
+					<a href="{{ gayly_base_path('/') }}" class="dropdown-toggle active" data-toggle="">
+						<i class="material-icons">home</i>
+				  	</a>
 				</li>
-				<li class="dropdown hidden-xs hidden-sm">
+				{{-- <li class="dropdown hidden-xs hidden-sm">
 					<a href="email.html" class="dropdown-toggle">
-			<i class="material-icons">email</i><span class="badge bubble-only"></span>
-		  </a>
-				</li>
+						<i class="material-icons">email</i><span class="badge bubble-only"></span>
+				  	</a>
+				</li> --}}
 				<li class="dropdown visible-xs visible-sm">
 					<a href="#" data-webarch="toggle-right-side">
 			<i class="material-icons">chat</i>
