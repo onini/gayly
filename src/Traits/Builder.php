@@ -14,7 +14,7 @@ namespace Onini\Gayly\Traits;
 use Closure;
 use Onini\Gayly\Support\Grid;
 use Onini\Gayly\Support\Form;
-use Onini\Gayly\Support\tree;
+use Onini\Gayly\Support\Tree;
 
 /**
  *
