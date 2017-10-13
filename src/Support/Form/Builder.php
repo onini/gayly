@@ -403,7 +403,7 @@ class Builder
             return;
         }
 
-        if (Str::contains($previous, url($this->getResource()))) {
+        if (Str::contains($previous, url($this->getResource(), [], config('gayly.secure')))) {
             $this->addHiddenField((new \Onini\Gayly\Support\Form\Field\Hidden(static::PREVIOUS_URL_KEY))->value($previous));
         }
     }
@@ -420,7 +420,7 @@ class Builder
         $attributes = [];
 
         if ($this->mode == self::MODE_EDIT) {
-            $this->addHiddenField((new Form\Field\Hidden('_method'))->value('PUT'));
+            $this->addHiddenField((new \Onini\Gayly\Support\Form\Field\Hidden('_method'))->value('PUT'));
         }
 
         $this->addRedirectUrlField();
