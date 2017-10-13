@@ -11,7 +11,7 @@
 			</ul>
 			<!-- BEGIN LOGO -->
 			<a href="index.html">
-				<img src="{{ gayly_asset('vendor/gayly/assets/img/logo.png') }}" class="logo" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/logo.png') }}" data-src-retina="{{ gayly_asset('vendor/gayly/assets/img/logo2x.png') }}" width="106" height="21" />
+				<img src="{{ gayly_asset('vendor/gayly/assets/img/logo.png') }}" class="logo" alt="" data-src="{{ gayly_asset('vendor/gayly/assets/img/logo.png') }}" data-src-retina="{{ gayly_asset('vendor/gayly/assets/img/logo.png') }}" width="106" height="21" />
 		  	</a>
 			<!-- END LOGO -->
 			<ul class="nav pull-right notifcation-center">
