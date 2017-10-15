@@ -237,4 +237,13 @@ class Gayly
     {
         static::$extensions[$key] = $class;
     }
+
+    public function __call($method, $arguments = null)
+    {
+        if (!isset(static::$extensions[$method])) {
+            return false;
+        }
+
+        return call_user_func(static::$extensions[$method], $arguments);
+    }
 }
