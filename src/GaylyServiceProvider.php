@@ -53,6 +53,7 @@ class GaylyServiceProvider extends ServiceProvider
         'Onini\Gayly\Console\UninstallCommand',
         'Onini\Gayly\Console\MenuCommand',
         'Onini\Gayly\Console\ImportCommand',
+        'Onini\Gayly\Console\ControllerMakeCommand',
     ];
 
     /**
