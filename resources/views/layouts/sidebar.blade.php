@@ -17,7 +17,7 @@
 		<!-- END MINI-PROFILE -->
 		<style media="screen">
 			.page-sidebar .page-sidebar-wrapper > ul > li > a i {
-				top:auto;
+				top:-1px;
 			}
 
 			.sidebar-icon {
