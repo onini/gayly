@@ -17,7 +17,7 @@ return [
     'title'    =>    'Onini Gayly Panel',
 
     // Version
-    'version'    =>    'beta-0.1',
+    'version'    =>    'v0.1',
 
     // Database setting
     'database'    =>    [
