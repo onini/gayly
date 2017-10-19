@@ -15,7 +15,6 @@
 	},
 	"minimum-stability": "dev",
 	"require": {
-		"predis/predis": "^2.0@dev"
 	},
 	"extra": {
         "laravel": {
