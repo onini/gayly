@@ -15,19 +15,19 @@ use Illuminate\Routing\Console\ControllerMakeCommand as ControllerMake;
 
 class ControllerMakeCommand extends ControllerMake
 {
-	/**
-	 * The console command name.
-	 *
-	 * @var string
-	 */
-	protected $name = 'gayly:controller';
+    /**
+     * The console command name.
+     *
+     * @var string
+     */
+    protected $name = 'gayly:controller';
 
-	/**
-	 * The console command description.
-	 *
-	 * @var string
-	 */
-	protected $description = 'Create a new controller class';
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Create a new controller class';
 
 
     /**

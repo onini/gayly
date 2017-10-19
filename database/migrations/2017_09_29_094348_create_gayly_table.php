@@ -49,7 +49,7 @@ class CreateGaylyTable extends Migration
             $table->integer('parent_id')->default(0);
             $table->integer('order')->default(0);
             $table->string('title', 50);
-            $table->string('icon', 50);
+            $table->string('icon', 50)->default('');
             $table->string('uri', 50)->nullable();
             $table->timestamps();
         });
