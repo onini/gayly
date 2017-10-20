@@ -72,34 +72,15 @@ class InstallCommand extends GeneratorCommand
 		$this->info($this->type.' install successfully.');
     }
 
+	/**
+	 * [installMigrateAndSeeder description]
+	 * @method installMigrateAndSeeder
+	 * @return [type]                  [description]
+	 */
 	protected function installMigrateAndSeeder()
 	{
-		if (!$this->confirm('Install database?')) {
-            return;
-        }
-
-		$gayly = include config_path('gayly.php');
-		config(array_dot($gayly, 'gayly.'));
-
-		// set table prefix
-		$default = config('database.default');
-        config(['database.connections.'.$default.'.prefix' => config('gayly.database.prefix')]);
-
 		$this->call('migrate');
-
-		if ($this->confirm('Install seeder?') && SystemUser::count() == 0) {
-			$this->call('db:seed', ['--class' => \Onini\Gayly\Seeder\GaylyTableSeeder::class]);
-		}
-	}
-
-	/**
-	 * Install publishes
-	 * @method installPublishes
-	 * @return [type]           [description]
-	 */
-	protected function installPublishes()
-	{
-		$this->call('vendor:publish', ['--provider' => \Onini\Gayly\GaylyServiceProvider::class]);
+		$this->call('db:seed', ['--class' => \Onini\Gayly\Seeder\GaylyTableSeeder::class]);
 	}
 
 	/**
