@@ -26,7 +26,7 @@ abstract class Extension
         return config($key, $default);
     }
 
-    public static function import()
+    public static function import($command = null)
     {
     }
 
