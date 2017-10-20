@@ -12,6 +12,7 @@
 namespace Onini\Gayly\Console;
 
 use Illuminate\Console\Command;
+use Onini\Gayly\Support\Gayly;
 
 class UninstallCommand extends Command
 {
@@ -56,5 +57,13 @@ class UninstallCommand extends Command
         $this->laravel['files']->deleteDirectory(public_path('vendor/gayly'));
         $this->laravel['files']->delete(config_path('gayly.php'));
         $this->laravel['files']->delete(database_path('migrations/2017_09_29_094348_create_gayly_table.php'));
+
+        if (!empty(Gayly::$extenstions)) {
+            foreach (Gayly::$extenstions as $className) {
+                if (method_exists($className, 'uninstall')) {
+                    call_user_func([$className, 'uninstall'], $this);
+                }
+            }
+        }
     }
 }

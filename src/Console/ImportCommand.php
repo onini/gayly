@@ -45,13 +45,13 @@ class ImportCommand extends Command
 
         $className = array_get(Gayly::$extensions, $extension);
 
-        if (!class_exists($className) || !method_exists($className, 'import')) {
+        if (!class_exists($className) || !method_exists($className, 'install')) {
             $this->error("Invalid Extension [$className]");
 
             return;
         }
 
-        call_user_func([$className, 'import'], $this);
+        call_user_func([$className, 'install'], $this);
 
         $this->info("Extension [$className] imported");
     }

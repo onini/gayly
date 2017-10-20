@@ -26,9 +26,9 @@ abstract class Extension
         return config($key, $default);
     }
 
-    public static function import($command = null)
-    {
-    }
+    public static function install($command = null){}
+
+    public static function uninstall($command = null){}
 
     protected static function routes($callback)
     {
