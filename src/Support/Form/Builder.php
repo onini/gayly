@@ -87,7 +87,7 @@ class Builder
      */
     protected $width = [
         'label' => 2,
-        'field' => 8,
+        'field' => 'col-md-8 col-md-offset-2',
     ];
 
     protected $useHeader = true;
