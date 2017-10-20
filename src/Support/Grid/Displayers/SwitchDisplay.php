@@ -43,7 +43,7 @@ $('.$class').bootstrapSwitch({
     offText: '{$this->states['off']['text']}',
     onColor: '{$this->states['on']['color']}',
     offColor: '{$this->states['off']['color']}',
-    onSwitchChange: function(event, state){
+    onSwitchChange: function(event, state) {
 
         $(this).val(state ? 'on' : 'off');
 
@@ -67,7 +67,7 @@ $('.$class').bootstrapSwitch({
 
 EOT;
 
-        Admin::script($script);
+        Gayly::script($script);
 
         $key = $this->row->{$this->grid->getKeyName()};
 
