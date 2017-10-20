@@ -1,4 +1,3 @@
-
 <div class="grid simple horizontal green">
 	@if ($form->useHeader())
 		<div class="grid-title no-border">

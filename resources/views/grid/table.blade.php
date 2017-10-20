@@ -18,20 +18,7 @@
 		</div>
 		<div class="pull-right">
 			{!! $grid->renderFilter() !!}
-			<div class="btn-group pull-right m-l-10">
-			    <button href="" class="btn btn-mini btn-white" data-toggle="modal" data-target="#filter-modal">
-					<i class="fa fa-file-excel-o"></i>
-				</button>
-				<button href="" class="btn btn-mini btn-white" data-toggle="modal" data-target="#filter-modal">
-					<i class="fa fa-file-word-o"></i>
-				</button>
-				<button href="" class="btn btn-mini btn-white" data-toggle="modal" data-target="#filter-modal">
-					<i class="fa fa-file-pdf-o"></i>
-				</button>
-				<button href="" class="btn btn-mini btn-white" data-toggle="modal" data-target="#filter-modal">
-					<i class="fa fa-reorder"></i>
-				</button>
-			</div>
+			{!! $grid->renderExportButton() !!}
 			{!! $grid->renderCreateButton() !!}
 		</div>
 

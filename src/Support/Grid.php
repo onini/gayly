@@ -28,6 +28,8 @@ use Onini\Gayly\Support\Grid\Filter;
 use Onini\Gayly\Support\Grid\Column;
 use Onini\Gayly\Support\Grid\Row;
 use Onini\Gayly\Support\Grid\Tool;
+use Onini\Gayly\Support\Grid\Exporter;
+use Onini\Gayly\Support\Grid\Tool\ExportButton;
 use Onini\Gayly\Support\Grid\Displayers\Actions;
 use Onini\Gayly\Support\Grid\Displayers\RowSelector;
 
@@ -54,6 +56,8 @@ class Grid
     protected $variables = [];
 
     protected $filter;
+
+    protected $exporter;
 
     protected $view = 'gayly::grid.table';
 
@@ -85,6 +89,7 @@ class Grid
 
         $this->setupTool();
         $this->setupFilter();
+        $this->setupExporter();
     }
 
     protected function setupTool()
@@ -95,6 +100,17 @@ class Grid
     protected function setupFilter()
     {
         $this->filter = new Filter($this->model());
+    }
+
+    protected function setupExporter()
+    {
+        if ($scope = Input::get(Exporter::$queryName)) {
+            $this->model()->usePaginate(false);
+
+            call_user_func($this->builder, $this);
+
+            (new Exporter($this))->resolve($this->exporter)->withScope($scope)->export();
+        }
     }
 
     public function option($key, $value = null)
@@ -180,6 +196,11 @@ class Grid
         }
     }
 
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
     public function processFilter()
     {
         call_user_func($this->builder, $this);
@@ -200,6 +221,22 @@ class Grid
         return $this->filter->render();
     }
 
+    public function exportUrl($scope = 1, $args = null)
+    {
+        $input = array_merge(Input::all(), Exporter::formatExportQuery($scope, $args));
+        return $this->resource().'?'.http_build_query($input);
+    }
+
+    public function useExport()
+    {
+        return $this->option('useExporter');
+    }
+
+    public function renderExportButton()
+    {
+        return new ExportButton($this);
+    }
+
     public function removeCreate()
     {
         return $this->option('useCreate', false);
@@ -213,6 +250,13 @@ class Grid
     public function tool(Closure $callback)
     {
         return call_user_func($callback, $this->tool);
+    }
+
+    public function exporter($exporter)
+    {
+        $this->exporter = $exporter;
+
+        return $this;
     }
 
     /**
