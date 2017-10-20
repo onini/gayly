@@ -58,7 +58,6 @@ class InstallCommand extends GeneratorCommand
      */
     public function handle()
     {
-		$this->installPublishes();
 
 		$this->installMigrateAndSeeder();
 
