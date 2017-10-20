@@ -232,6 +232,11 @@ class Grid
         return $this->option('useExporter');
     }
 
+    public function removeExport()
+    {
+        return $this->option('useExporter', false);
+    }
+
     public function renderExportButton()
     {
         return new ExportButton($this);
