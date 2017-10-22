@@ -27,13 +27,15 @@ class SwitchDisplay extends AbstractDisplayer
         }
     }
 
-    public function display($states = [])
+    public function display($states = [], $js = null)
     {
         $this->updateStates($states);
 
         $name = $this->column->getName();
 
         $class = "grid-switch-{$name}";
+
+        $js = $js ?? 'toastr.success(data.message);';
 
         $script = <<<EOT
 
@@ -59,7 +61,7 @@ $('.$class').bootstrapSwitch({
                 _method: 'PUT'
             },
             success: function (data) {
-                toastr.success(data.message);
+                {$js}
             }
         });
     }
