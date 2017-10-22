@@ -12,16 +12,29 @@
 namespace Onini\Gayly\Support\Form\Field;
 
 use Onini\Gayly\Support\Form\Field;
+use Gayly;
 
 class Editor extends Field
 {
     protected static $js = [
-        '//cdn.ckeditor.com/4.5.10/standard/ckeditor.js',
+        '/vendor/gayly/assets/plugins/ckeditor/ckeditor.js',
     ];
 
     public function render()
     {
-        $this->script = "CKEDITOR.replace('{$this->column}');";
+        $this->script = <<<EOT
+
+        if ( CKEDITOR.env.ie && CKEDITOR.env.version < 9 )
+        	CKEDITOR.tools.enableHtml5Elements( document );
+
+        CKEDITOR.config.filebrowserUploadUrl = '/gayly/cms/article/upload?_token='+Gayly.token;
+        // The trick to keep the editor in the sample quite small
+        // unless user specified own height.
+        CKEDITOR.config.height = 350;
+        CKEDITOR.config.width = 'auto';
+        CKEDITOR.replace('{$this->column}');
+
+EOT;
 
         return parent::render();
     }

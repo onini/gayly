@@ -413,6 +413,13 @@ class Field implements Renderable
         return $this;
     }
 
+    public function messages($messages = [])
+    {
+        $this->validationMessages = $messages;
+
+        return $this;
+    }
+
     /**
      * Get field validation rules.
      *

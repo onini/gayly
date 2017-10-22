@@ -12,3 +12,21 @@
 
     </div>
 </div>
+
+<style media="screen">
+    .cke_chrome {
+        border-radius: 5px;
+    }
+
+    .cke_top {
+        background: none;
+    }
+
+    .cke_inner {
+        border-radius: 5px
+    }
+
+    .cke_bottom {
+        background: none
+    }
+</style>

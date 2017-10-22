@@ -574,6 +574,7 @@ class Column
     {
         if ($this->isRelation() && !$this->relationColumn) {
             $this->name = "{$this->relation}.$method";
+            
             $this->label = isset($arguments[0]) ? $arguments[0] : ucfirst($method);
 
             $this->relationColumn = $method;

@@ -17,3 +17,12 @@
 
     </div>
 </div>
+<style media="screen">
+    .select2-container--default .select2-selection--multiple {
+        border: 1px solid #ddd;
+    }
+
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        background-color: #fff
+    }
+</style>

@@ -199,10 +199,10 @@ class Gayly
     }
 
     /**
- * Set navbar.
- *
- * @param Closure $builder
- */
+     * Set navbar.
+     *
+     * @param Closure $builder
+     */
     public function navbar(Closure $builder = null)
     {
         if (is_null($builder)) {
