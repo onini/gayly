@@ -59,14 +59,14 @@ class InstallCommand extends GeneratorCommand
     public function handle()
     {
 
-		$this->installMigrateAndSeeder();
-
-		if (!$this->alreadyExists($this->directory)) {
-
-			$this->installGaylyController();
-
-			$this->installRoutesFile();
+		if (!file_exists(config_path('gayly.php'))) {
+			$this->error('Please run `vendor:publish`');
+			exit;
 		}
+
+		$this->installMigrateAndSeeder();
+		$this->installGaylyController();
+		$this->installRoutesFile();
 
 		$this->info($this->type.' install successfully.');
     }

@@ -21,7 +21,7 @@ class UninstallCommand extends Command
      *
      * @var string
      */
-    protected $name = 'gayly:uninstall';
+    protected $signature = 'gayly:uninstall {extension?}';
 
     /**
      * The console command description.
@@ -53,17 +53,39 @@ class UninstallCommand extends Command
      */
     protected function removeFilesAndDirectory()
     {
-        $this->laravel['files']->deleteDirectory(config('gayly.directory'));
-        $this->laravel['files']->deleteDirectory(public_path('vendor/gayly'));
-        $this->laravel['files']->delete(config_path('gayly.php'));
-        $this->laravel['files']->delete(database_path('migrations/2017_09_29_094348_create_gayly_table.php'));
 
-        if (!empty(Gayly::$extenstions)) {
-            foreach (Gayly::$extenstions as $className) {
-                if (method_exists($className, 'uninstall')) {
-                    call_user_func([$className, 'uninstall'], $this);
+        $extension = $this->argument('extension');
+
+        if (empty($extension) || !array_has(Gayly::$extensions, $extension)) {
+            $extension = $this->choice('Please choose a extension to uninstall', array_merge(['all'], array_keys(Gayly::$extensions)));
+        }
+
+        switch ($extension) {
+            case 'all':
+                $this->laravel['files']->deleteDirectory(config('gayly.directory'));
+                $this->laravel['files']->deleteDirectory(public_path('vendor/gayly'));
+                $this->laravel['files']->delete(config_path('gayly.php'));
+                $this->laravel['files']->delete(database_path('migrations/2017_09_29_094348_create_gayly_table.php'));
+
+                if (!empty(Gayly::$extensions)) {
+                    foreach (Gayly::$extensions as $className) {
+                        $this->uninstallExtension($className);
+                    }
                 }
-            }
+                break;
+
+            default:
+                $this->uninstallExtension(array_get(Gayly::$extensions, $extension));
+                break;
+        }
+    }
+
+    protected function uninstallExtension($name)
+    {
+        if (!class_exists($name) || method_exists($name, 'uninstall')) {
+            call_user_func([$name, 'uninstall'], $this);
+        } else {
+            $this->error($name.' no exits!');
         }
     }
 }
