@@ -19,11 +19,11 @@ use Illuminate\Support\Str;
 class Select extends Field
 {
     protected static $css = [
-        '/vendor/gayly/assets/plugins/bootstrap-select2/select2.css',
+        '/vendor/gayly/assets/plugins/select2/select2.min.css',
     ];
 
     protected static $js = [
-        '/vendor/gayly/assets/plugins/bootstrap-select2/select2.min.js',
+        '/vendor/gayly/assets/plugins/select2/select2.full.min.js',
     ];
 
     public function render()
