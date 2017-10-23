@@ -19,7 +19,7 @@ class Date extends Text
      * @var array
      */
     protected static $css = [
-        '/vendor/gayly/assets/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css',
+        'http://laravel-admin.org/vendor/laravel-admin/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',
     ];
 
     /**
@@ -28,7 +28,8 @@ class Date extends Text
      * @var array
      */
     protected static $js = [
-        '/vendor/gayly/assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js',
+        '/vendor/gayly/assets/plugins/moment/min/moment-with-locales.min.js',
+        '/vendor/gayly/assets/plugins/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
     ];
 
     protected $format = 'YYYY-MM-DD';

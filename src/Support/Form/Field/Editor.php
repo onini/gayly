@@ -33,7 +33,7 @@ class Editor extends Field
         // unless user specified own height.
         CKEDITOR.config.height = 350;
         CKEDITOR.config.width = 'auto';
-        CKEDITOR.replace('{$this->column}');
+        CKEDITOR.replace('{$this->id}');
 
 EOT;
 
