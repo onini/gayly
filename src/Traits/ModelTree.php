@@ -235,11 +235,11 @@ trait ModelTree
      *
      * @return \Illuminate\Support\Collection
      */
-    public static function selectOptions()
+    public static function selectOptions($root = true)
     {
         $options = (new static())->buildSelectOptions();
 
-        return collect($options)->prepend('Root', 0)->all();
+        return $root ? collect($options)->prepend('Root', 0)->all() : collect($options)->all();
     }
 
     /**
