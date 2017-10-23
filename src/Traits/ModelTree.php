@@ -126,7 +126,7 @@ trait ModelTree
     public function withQuery(\Closure $query = null)
     {
         $this->queryCallback = $query;
-        
+
         return $this;
     }
 

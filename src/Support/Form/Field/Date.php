@@ -13,10 +13,22 @@ namespace Onini\Gayly\Support\Form\Field;
 
 class Date extends Text
 {
+    /**
+     * Css.
+     *
+     * @var array
+     */
     protected static $css = [
+        '/vendor/gayly/assets/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css',
     ];
 
+    /**
+     * Js.
+     *
+     * @var array
+     */
     protected static $js = [
+        '/vendor/gayly/assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js',
     ];
 
     protected $format = 'YYYY-MM-DD';
@@ -39,14 +51,14 @@ class Date extends Text
 
     public function render()
     {
-        // $this->options['format'] = $this->format;
-        // $this->options['locale'] = config('app.locale');
-        //
-        // $this->script = "$('{$this->getElementClassSelector()}').datetimepicker(".json_encode($this->options).');';
-        //
-        // $this->prepend('<i class="fa fa-calendar"></i>')
-        //     ->defaultAttribute('style', 'width: 110px');
-        //
-        // return parent::render();
+        $this->options['format'] = $this->format;
+        $this->options['locale'] = config('app.locale');
+
+        $this->script = "$('{$this->getElementClassSelector()}').datetimepicker(".json_encode($this->options).');';
+
+        $this->prepend('<i class="fa fa-calendar"></i>')
+            ->defaultAttribute('style', 'width: 110px');
+
+        return parent::render();
     }
 }

@@ -44,17 +44,17 @@ class Currency extends Text
 
     public function render()
     {
-//         $options = json_encode($this->options);
-//
-//         $this->script = <<<EOT
-//
-// $('{$this->getElementClassSelector()}').inputmask($options);
-//
-// EOT;
-//
-//         $this->prepend($this->symbol)
-//             ->defaultAttribute('style', 'width: 120px');
-//
-//         return parent::render();
+        $options = json_encode($this->options);
+
+        $this->script = <<<EOT
+
+$('{$this->getElementClassSelector()}').inputmask($options);
+
+EOT;
+
+        $this->prepend($this->symbol)
+            ->defaultAttribute('style', 'width: 120px');
+
+        return parent::render();
     }
 }

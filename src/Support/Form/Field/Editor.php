@@ -28,6 +28,7 @@ class Editor extends Field
         	CKEDITOR.tools.enableHtml5Elements( document );
 
         CKEDITOR.config.filebrowserUploadUrl = '/gayly/cms/article/upload?_token='+Gayly.token;
+        CKEDITOR.config.image_previewText = '';
         // The trick to keep the editor in the sample quite small
         // unless user specified own height.
         CKEDITOR.config.height = 350;

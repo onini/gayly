@@ -19,11 +19,11 @@ class Radio extends Field
     protected $inline = true;
 
     protected static $css = [
-        // '/vendor/laravel-admin/AdminLTE/plugins/iCheck/all.css',
+        '/vendor/gayly/assets/plugins/iCheck/all.css',
     ];
 
     protected static $js = [
-        // 'vendor/laravel-admin/AdminLTE/plugins/iCheck/icheck.min.js',
+        'vendor/gayly/assets/plugins/iCheck/icheck.min.js',
     ];
 
     /**
@@ -86,7 +86,7 @@ class Radio extends Field
     public function render()
     {
         // $this->script = "$('{$this->getElementClassSelector()}').iCheck({radioClass:'iradio_minimal-blue'});";
-        //
-        // return parent::render()->with(['options' => $this->options, 'inline' => $this->inline]);
+
+        return parent::render()->with(['options' => $this->options, 'inline' => $this->inline]);
     }
 }

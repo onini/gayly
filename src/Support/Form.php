@@ -178,6 +178,8 @@ class Form
 
     protected $horizontal = false;
 
+    protected $action = '';
+
     /**
      * Create a new form instance.
      *
@@ -330,6 +332,26 @@ class Form
         });
     }
 
+    protected function storeAction()
+    {
+        $this->action = 'store';
+    }
+
+    protected function updateAction()
+    {
+        $this->action = 'update';
+    }
+
+    protected function clearAction()
+    {
+        $this->action = '';
+    }
+
+    public function getAction()
+    {
+        return $this->action;
+    }
+
     /**
      * Store a new record.
      *
@@ -337,6 +359,7 @@ class Form
      */
     public function store()
     {
+        $this->storeAction();
         $data = Input::all();
 
         // Handle validation errors.
@@ -516,6 +539,7 @@ class Form
      */
     public function update($id)
     {
+        $this->updateAction();
         $data = Input::all();
 
         $data = $this->handleEditable($data);

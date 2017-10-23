@@ -3,7 +3,7 @@
 	@include('gayly::form.help-block')
     <div class="{{$viewClass['field']}}">
 		@include('gayly::form.error')
-		<div class="input-group transparent">
+		<div class="input-group ">
 			@if ($prepend)
                 <span class="input-group-addon">
 					{!! $prepend !!}

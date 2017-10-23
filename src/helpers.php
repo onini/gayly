@@ -10,6 +10,7 @@
 // +----------------------------------------------------------------------
 
 use Onini\Gayly\Models\Menu;
+use Illuminate\Http\Request;
 
 if (!function_exists('gayly_path')) {
     /**
@@ -113,5 +114,23 @@ if (!function_exists('gayly_menu_current()')) {
     {
         $uri = trim(str_replace(config('gayly.route.prefix'), '', request()->getPathInfo()), '/');
         return empty($uri) ? '/' : $uri;
+    }
+}
+
+if (!function_exists('ajax_response')) {
+
+    function ajax_response($message)
+    {
+        $request = Request::capture();
+
+        // ajax but not pjax
+        if ($request->ajax() && !$request->pjax()) {
+            return response()->json([
+                'status'  => true,
+                'message' => $message,
+            ]);
+        }
+
+        return false;
     }
 }

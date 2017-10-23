@@ -28,13 +28,13 @@ class Decimal extends Text
 
     public function render()
     {
-        // $options = json_encode($this->options);
-        //
-        // $this->script = "$('{$this->getElementClassSelector()}').inputmask($options);";
-        //
-        // $this->prepend('<i class="fa fa-terminal"></i>')
-        //     ->defaultAttribute('style', 'width: 130px');
-        //
-        // return parent::render();
+        $options = json_encode($this->options);
+
+        $this->script = "$('{$this->getElementClassSelector()}').inputmask($options);";
+
+        $this->prepend('<i class="fa fa-terminal"></i>')
+            ->defaultAttribute('style', 'width: 130px');
+
+        return parent::render();
     }
 }
