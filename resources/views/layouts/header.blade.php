@@ -141,17 +141,22 @@
 			  <i class="material-icons">tune</i>
 			</a>
 						<ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
-							<li>
-								<a href="{{ gayly_base_path('/auth/user/profile') }}"> 个人资料</a>
-							</li>
-							<li>
-								<a href="{{ gayly_base_path('/setting') }}">设置中心</a>
-							</li>
-							<li>
+							@if (Gayly::user()->c('user.profile'))
+								<li>
+									<a href="{{ gayly_base_path('/auth/user/profile') }}"> 个人资料</a>
+								</li>
+							@endif
+							@if (Gayly::user()->c('auth.setting'))
+								<li>
+									<a href="{{ gayly_base_path('/setting') }}">设置中心</a>
+								</li>
+							@endif
+
+							{{-- <li>
 								<a href="{{ gayly_base_path('/user/message') }}"> 消息&nbsp;&nbsp;
-									{{-- <span class="badge badge-important animated bounceIn">2</span> --}}
+									<span class="badge badge-important animated bounceIn">2</span>
 								</a>
-							</li>
+							</li> --}}
 							<li class="divider"></li>
 							<li>
 								<a href="{{ gayly_base_path('auth/logout') }}"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;注销</a>

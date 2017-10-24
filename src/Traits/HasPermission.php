@@ -11,11 +11,9 @@
 
 namespace Onini\Gayly\Traits;
 
-use Illuminate\{
-    Database\Eloquent\Relations\BelongsToMany,
-    Support\Collection,
-    Support\Facades\Storage
-};
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
 
 trait HasPermission
 {
@@ -68,35 +66,37 @@ trait HasPermission
         return $this->roles()->with('permissions')->get()->pluck('permissions')->flatten()->merge($this->permissions);
     }
 
-    // /**
-    //  * Check if user has permission.
-    //  *
-    //  * @param $permission
-    //  *
-    //  * @return bool
-    //  */
-    // public function can(string $permission) : bool
-    // {
-    //     if ($this->isAdministrator()) {
-    //         return true;
-    //     }
-    //     if ($this->permissions->pluck('slug')->contains($permission)) {
-    //         return true;
-    //     }
-    //     return $this->roles->pluck('permissions')->flatten()->pluck('slug')->contains($permission);
-    // }
-	//
-    // /**
-    //  * Check if user has no permission.
-    //  *
-    //  * @param $permission
-    //  *
-    //  * @return bool
-    //  */
-    // public function cannot(string $permission) : bool
-    // {
-    //     return !$this->can($permission);
-    // }
+    /**
+     * Check if user has permission.
+     *
+     * @param $permission
+     *
+     * @return bool
+     */
+    public function c(string $permission) : bool
+    {
+        if ($this->isAdministrator()) {
+            return true;
+        }
+
+        if ($this->permissions->pluck('slug')->contains($permission)) {
+            return true;
+        }
+
+        return $this->roles->pluck('permissions')->flatten()->pluck('slug')->contains($permission);
+    }
+
+    /**
+     * Check if user has no permission.
+     *
+     * @param $permission
+     *
+     * @return bool
+     */
+    public function cn(string $permission) : bool
+    {
+        return !$this->c($permission);
+    }
 
     /**
      * Check if user is administrator.
