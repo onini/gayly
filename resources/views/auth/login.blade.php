@@ -11,6 +11,7 @@
 	<meta content="" name="author" />
 	<!-- BEGIN PLUGIN CSS -->
 	<link href="{{ gayly_asset('vendor/gayly/assets/plugins/pace/pace-theme-flash.css') }}" rel="stylesheet" type="text/css" media="screen" />
+	<link href="{{ gayly_asset('vendor/gayly/assets/plugins/font-awesome/css/font-awesome.css') }}" rel="stylesheet" type="text/css" />
 	<link href="{{ gayly_asset('vendor/gayly/assets/plugins/bootstrapv3/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
 	<link href="{{ gayly_asset('vendor/gayly/assets/plugins/bootstrapv3/css/bootstrap-theme.min.css') }}" rel="stylesheet" type="text/css" />
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -23,23 +24,42 @@
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
+<!-- Modal -->
+<div class="modal fade" id="filter-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body" >
+				<div id="qrcode" style="margin:auto;width:300px">
 
+				</div>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- Modal -->
 <body class="error-body no-top">
 	<div class="container">
 		<div class="row login-container column-seperation">
 			<div class="col-md-5 col-md-offset-1">
 				<h2>
-        后台管理面板登录
-      </h2>
+					Onini
+      			</h2>
 				{{-- <p>
 					Use Facebook, Twitter or your email to sign in.
 					<br>
 					<a href="#">Sign up Now!</a> for a webarch account,It's free and always will be..
 				</p> --}}
 				<br>
-				<button class="btn btn-block btn-info col-md-8" type="button"><span class="pull-left icon-facebook" style="font-style: italic"></span> <span class="bold">QQ</span></button>
-				<button class="btn btn-block btn-success col-md-8" type="button"><span class="pull-left icon-twitter" style="font-style: italic"></span>
-            <span class="bold">Wechat</span></button>
+				<button class="btn btn-block btn-success col-md-8" type="button">
+					<i class="fa fa-qq pull-left" style="padding-top: 3px"></i>
+					<span class="bold">QQ</span>
+				</button>
+				<button class="btn btn-block btn-primary col-md-8" type="button" data-toggle="modal" data-target="#filter-modal">
+					<span class="fa fa-wechat pull-left" style="padding-top: 3px"></span>
+	            	<span class="bold">Wechat</span>
+				</button>
 			</div>
 			<div class="col-md-5">
 				<br>
@@ -90,6 +110,18 @@
 	<!-- BEGIN CORE TEMPLATE JS -->
 	<script src="{{ gayly_asset('vendor/gayly/webarch/js/webarch.js') }}" type="text/javascript"></script>
 	<script src="{{ gayly_asset('vendor/gayly/assets/js/chat.js') }}" type="text/javascript"></script>
+	<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+	<script type="text/javascript">
+	var obj = new WxLogin({
+			id:"qrcode",
+			appid: "",
+			scope: "",
+			redirect_uri: "",
+			state: "",
+			style: "",
+			href: ""
+		});
+	</script>
 	<!-- END CORE TEMPLATE JS -->
 </body>
 

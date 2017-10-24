@@ -5,8 +5,11 @@
             @isset($branch['uri'])
                 <a href="{{ gayly_base_path($branch['uri']) }}" style="color: #b6bfc5"><i class="fa fa-eye"></i></a>
             @endisset
-            <a href="{{ $path }}/{{ $branch[$keyName] }}/edit" class="text-success"><i class="fa fa-edit"></i></a>
-            <a href="javascript:void(0);" data-id="{{ $branch[$keyName] }}" class="text-error tree_branch_delete"><i class="fa fa-trash"></i></a>
+
+            @if (isset($branch['ab']) && $branch['ab'] !== '/')
+                <a href="{{ $path }}/{{ $branch[$keyName] }}/edit" class="text-success"><i class="fa fa-edit"></i></a>
+                <a href="javascript:void(0);" data-id="{{ $branch[$keyName] }}" class="text-error tree_branch_delete"><i class="fa fa-trash"></i></a>
+            @endif
         </span>
     </div>
     @if(isset($branch['children']))
